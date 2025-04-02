@@ -3,6 +3,37 @@ Nuno David Lopes.
 Created:  2024/04/09
 Last changed - N. Lopes:2025/03/28 15:54:54
 =#
+
+"""
+    SimulatedAnnealing
+
+A module that implements a Simulated Annealing optimization algorithm for job scheduling and partitioning problems.
+
+This module includes various functions for building optimization models, solving them, partitioning jobs, and performing the simulated annealing process. It provides functionality for handling different job instances, computing costs, and performing heuristic optimizations across multiple stages. The module supports parallel processing of instances, job transfers between stages, and logging of detailed information for each step of the optimization process.
+
+# Key Functions:
+- `model_builder`: Builds the optimization model for a given instance of the job scheduling problem.
+- `solver`: Solves the optimization model and computes the objective value.
+- `determine_transfer_indexes`: Determines which jobs need to be transferred between stages.
+- `solve_and_store`: Solves a job scheduling problem and stores the results.
+- `process_instances_group`: Processes multiple job instances, solving them and aggregating the results.
+- `transfer_reminder_jobs!`: Transfers jobs to another stage based on certain conditions.
+- `move_job!`: Moves a job from one partition to another.
+- `simulated_annealing`: Performs the Simulated Annealing optimization process, iterating over job partitions and selecting the best configurations.
+- `run_sim`: Executes the full simulation, from initialization to the completion of the simulated annealing process, logging key information along the way.
+
+# Example Usage:
+```julia
+using SimulatedAnnealing
+
+# Define job instances and settings
+instances = ...
+order_dict = ...
+
+# Run the simulated annealing optimization process
+run_sim(order_file="settings_file.jl")
+
+"""
 module SimulatedAnnealing
 export run_sim
 
@@ -14,16 +45,23 @@ include(srcdir("loggers.jl"))
 
 
 """
-	model_builder(instance; x_cnst_indxs = []; order_dict = order_dict)
+    model_builder(instance; x_cnst_indxs=[], order_dict=order_dict) -> Model
 
-Builds the optimization model using the given instance and optional constraints.
+Builds a Gurobi optimization model for job scheduling.
 
 # Arguments
-- `instance`: The instance data for the model.
-- `x_cnst_indxs`: Optional constraints for the model.
+- `instance`: Job parameters (`g`, `n`, `o`).
+- `x_cnst_indxs` (optional): Fixed variable constraints.
+- `order_dict` (optional): Optimization parameters (`α`, `β`, `p`, `Tl`).
 
 # Returns
-- `model`: The built optimization model.
+- A JuMP model minimizing tardiness and sequencing penalties.
+
+# Example
+```julia
+model = model_builder(instance; order_dict=order_dict)
+optimize!(model)
+
 """
 function model_builder(instance; x_cnst_indxs=[], order_dict=order_dict)
     @debug " Optimization model builder "
@@ -76,18 +114,25 @@ function model_builder(instance; x_cnst_indxs=[], order_dict=order_dict)
     return model
 end
 
-"""
-	solver(model, instance; order_dict = order_dict)
 
-Solves the given optimization model and returns the solution.
+"""
+    solver(model, instance; order_dict=order_dict) -> (table_dict, sol_dict)
+
+Solves the optimization model and extracts key results.
 
 # Arguments
-- `model`: The optimization model to solve.
-- `instance`: The instance data for the model.
+- `model`: JuMP model to solve.
+- `instance`: Problem data (`n`, `o`, `g`).
+- `order_dict` (optional): Optimization parameters (`α`, `β`, `p`).
 
 # Returns
-- `table_dict`: A dictionary with the solution summary.
-- `sol_dict`: A dictionary with the detailed solution.
+- `table_dict`: Summary metrics (cost, memory, runtime, status).
+- `sol_dict`: Solution details (decision variables, indices).
+
+# Example
+```julia
+table_dict, sol_dict = solver(model, instance)
+
 """
 function solver(model, instance; order_dict=order_dict)
     @debug "Solver for Instance:  $instance "
@@ -160,17 +205,24 @@ end
 
 
 """
-	determine_transfer_indexes(df, sols_dict, i2)
+    determine_transfer_indexes(df, sols_dict, i2, step, nshelves) -> Vector
 
-Determines the indexes of jobs to transfer based on the solution.
+Identifies jobs to transfer based on the last scheduled job.
 
 # Arguments
-- `df`: The DataFrame with the solution summary.
-- `sols_dict`: The dictionary with the detailed solution.
-- `i2`: The instance to transfer jobs to.
+- `df`: DataFrame containing solution details.
+- `sols_dict`: Dictionary of solution variables.
+- `i2`: Destination instance.
+- `step`: Current step in the process.
+- `nshelves`: Shelf capacity constraint.
 
 # Returns
-- `indexes`: The indexes of jobs to transfer.
+- A list of job indices to transfer, or an empty list if no transfer is needed.
+
+# Example
+```julia
+transfer_idxs = determine_transfer_indexes(df, sols_dict, i2, step, nshelves)
+
 """
 function determine_transfer_indexes(df, sols_dict, i2, step, nshelves)
     @unpack p = order_dict
@@ -191,19 +243,24 @@ end
 
 
 """
-	solve_and_store(instance, df, sols_dict, x_cnst_indxs = []; order_dict = order_dict)
+    solve_and_store(instance, df, sols_dict, x_cnst_indxs=[]; order_dict=order_dict) -> (df, sols_dict)
 
-Solves the given instance and stores the solution in the provided DataFrame and dictionary.
+Builds, solves, and stores the optimization model results.
 
 # Arguments
-- `instance`: The instance data for the model.
-- `df`: The DataFrame to store the solution summary.
-- `sols_dict`: The dictionary to store the detailed solution.
-- `x_cnst_indxs`: Optional constraints for the model.
+- `instance`: Problem data for optimization.
+- `df`: DataFrame to store solution summaries.
+- `sols_dict`: Dictionary to store solution details.
+- `x_cnst_indxs` (optional): Indices for constraints.
+- `order_dict` (optional): Optimization parameters.
 
 # Returns
-- `df`: The updated DataFrame with the solution summary.
-- `sols_dict`: The updated dictionary with the detailed solution.
+- Updated `df` and `sols_dict` with the solution.
+
+# Example
+```julia
+df, sols_dict = solve_and_store(instance, df, sols_dict)
+
 """
 function solve_and_store(instance, df, sols_dict, x_cnst_indxs=[]; order_dict=order_dict)
     model = model_builder(instance; x_cnst_indxs=x_cnst_indxs, order_dict=order_dict)
@@ -221,16 +278,22 @@ end
 
 
 """
-	process_instances_group(instances_group)
+    process_instances_group(instances_group; order_dict=order_dict) -> (costs, sols_dict_group)
 
-Processes a group of instances and returns the costs and solutions.
+Solves and processes a group of instance partitions while tracking costs and transfers.
 
 # Arguments
-- `instances_group`: The group of instances to process.
+- `instances_group`: A collection of grouped problem instances.
+- `order_dict` (optional): Parameters for optimization.
 
 # Returns
-- `costs`: The list of costs for each instance.
-- `sols_dict_group`: The list of solution dictionaries for each instance.
+- `costs`: List of computed costs for each instance group.
+- `sols_dict_group`: List of solution dictionaries for each group.
+
+# Example
+```julia
+costs, sols_dict_group = process_instances_group(instances_group)
+
 """
 function process_instances_group(instances_group; order_dict=order_dict)
     @unpack p, Pg = order_dict
@@ -297,17 +360,22 @@ end
 
 
 """
-	transfer_reminder_jobs!(dest, indexes, val)
+    transfer_reminder_jobs!(dest, indexes, val) -> x_indxs
 
-Transfers reminder jobs, if any, to the destination instance.
+Transfers remaining jobs to a destination instance and updates its attributes.
 
 # Arguments
-- `dest`: The destination instance.
-- `indexes`: The indexes of jobs to transfer.
-- `val`: The value to assign to the transferred jobs.
+- `dest`: Destination instance where jobs are transferred.
+- `indexes`: List of job indexes to be transferred.
+- `val`: Value associated with the transferred jobs.
 
 # Returns
-- `x_indxs`: The updated list of indexes.
+- `x_indxs`: List of updated indexes after transfer.
+
+# Example
+```julia
+x_indxs = transfer_reminder_jobs!(dest_instance, job_indexes, transfer_value)
+
 """
 function transfer_reminder_jobs!(dest, indexes, val)
     x_indxs = []
@@ -334,15 +402,21 @@ function transfer_reminder_jobs!(dest, indexes, val)
 end
 
 
-"""
-	move_job!(src, dest, jobindex)
 
-Moves a job from the source instance to the destination instance.
+"""
+    move_job!(src, dest, jobindex)
+
+Moves a job from the source instance (`src`) to the destination instance (`dest`) at the specified job index.
 
 # Arguments
-- `src`: The source instance.
-- `dest`: The destination instance.
-- `jobindex`: The index of the job to move.
+- `src`: The source instance from which the job will be moved.
+- `dest`: The destination instance to which the job will be moved.
+- `jobindex`: The index of the job to be moved.
+
+# Example
+```julia
+move_job!(source_instance, dest_instance, job_index)
+
 """
 function move_job!(src, dest, jobindex)
     for key in [:g, :n, :o]
@@ -355,20 +429,26 @@ end
 
 
 """
-	partition_jobs(n, o, g, p)
+    partition_jobs(n, o, g, p, Pg)
 
-Partitions the jobs into two groups such that each group has at least `p` subjobs.
+Partitions jobs into `Pg` groups such that the total size of each group is at least `p`.
 
 # Arguments
-- `n`: A list of job sizes.
-- `o`: A list of subjob sizes corresponding to each job.
-- `g`: A list of job identifiers.
-- `p`: The minimum number of subjobs required in each group. (number of available shelves)
+- `n`: A vector of job identifiers.
+- `o`: A vector of job sizes corresponding to each job in `n`.
+- `g`: A vector of job groups corresponding to each job in `n`.
+- `p`: The minimum size each group should have.
+- `Pg`: The number of groups to partition the jobs into.
 
 # Returns
-- `ns`: A tuple containing two lists of job sizes, one for each group.
-- `os`: A tuple containing two lists of subjob sizes, one for each group.
-- `gs`: A tuple containing two lists of job identifiers, one for each group.
+- `ns`: A list of job identifiers partitioned into `Pg` groups.
+- `os`: A list of job sizes partitioned into `Pg` groups.
+- `gs`: A list of job groups partitioned into `Pg` groups.
+
+# Example
+```julia
+ns, os, gs = partition_jobs(job_ids, job_sizes, job_groups, min_size, num_groups)
+
 """
 function partition_jobs(n, o, g, p, Pg)
     while true
@@ -391,7 +471,23 @@ function partition_jobs(n, o, g, p, Pg)
 end
 
 
+"""
+    generate_instance_groups(instances, Pg)
 
+Generates all permutations of the instances based on the given partition size `Pg`. The function only supports partition sizes between 1 and 3.
+
+# Arguments
+- `instances`: A vector of instances to be partitioned.
+- `Pg`: The number of groups to partition the instances into (must be between 1 and 3).
+
+# Returns
+- A list of permutations of the instances for the given partition size `Pg`. 
+  If `Pg` is not between 1 and 3, an error is raised.
+
+# Example
+```julia
+groups = generate_instance_groups([inst1, inst2, inst3], 2)
+"""
 function generate_instance_groups(instances, Pg)
     if 1 ≤ Pg ≤ 3
         return collect(permutations(instances[1:Pg]))
@@ -403,17 +499,32 @@ end
 
 
 """
-	simulated_annealing_init(order_dict)
+    simulated_annealing_init(; order_dict=order_dict)
 
-Initializes the simulated annealing process.
+Initializes the simulated annealing process by partitioning jobs, generating instance groups, and processing them to find the best solution.
 
 # Arguments
-- `order_dict`: The dictionary with the order data.
+- `order_dict`: A dictionary containing various parameters needed for the initialization, such as:
+  - `g`: A vector of group sizes.
+  - `n`: A vector of job sizes.
+  - `o`: A vector of job orders.
+  - `p`: A threshold parameter.
+  - `α`, `β`: Cost coefficients.
+  - `Nit`: Number of iterations (though not used in this function).
+  - `Pg`: Number of groups for partitioning jobs.
 
 # Returns
-- `instances`: The initialized instances.
-- `cost`: The initial cost.
-- `sols_dict`: The initial solutions dictionary.
+- `instances`: The selected best instance group based on the simulated annealing initialization process.
+- `cost`: The cost associated with the best instance group.
+- `sols_dict`: The solution dictionary corresponding to the best instance group.
+
+# Description
+This function partitions jobs into `Pg` groups and generates permutations of instances. It processes these instances to compute costs, and selects the one with the minimum cost as the best initial solution for the simulated annealing algorithm.
+
+# Example
+```julia
+instances, cost, sols_dict = simulated_annealing_init(order_dict=some_dict)
+
 """
 function simulated_annealing_init(; order_dict=order_dict)
     @unpack g, n, o, p, α, β, Nit, Pg = order_dict
@@ -452,15 +563,26 @@ end
 
 
 """
-Finds a valid job partition and moves it.
+    neighbour_partition!(instances, g, p, Pg)
+
+Performs a job transfer between partitions to improve the current solution, selecting a random job and attempting to move it to another partition if certain conditions are met.
 
 # Arguments
-- `instances`: The current job instances.
-- `g`: Set of possible job IDs.
-- `p`: Partition size limit.
+- `instances`: A list of job partitions.
+- `g`: A vector of job IDs to choose from.
+- `p`: A threshold parameter used to check if the job can be moved.
+- `Pg`: The number of partitions (must be at least 2).
 
 # Returns
-- `jobid`: The selected job ID.
+- The `jobid` of the job that was successfully moved, or raises an error if no suitable job is found after a maximum number of attempts.
+
+# Description
+This function attempts to move a randomly chosen job from one partition to another, ensuring that the destination partition meets certain constraints (e.g., the sum of orders in the source partition must be greater than or equal to `p`). It tries a maximum of `max_counter` iterations, and will exit with an error if no valid job transfer is found.
+
+# Example
+```julia
+jobid = neighbour_partition!(instances, g, p, Pg)
+
 """
 function neighbour_partition!(instances, g, p, Pg)
 
@@ -493,18 +615,39 @@ end
 
 
 """
-	simulated_annealing!(best_instances, best_cost, best_sols_dict, order_dict)
+    simulated_annealing(input_instances, input_cost, input_sols_dict; order_dict=order_dict)
 
-Performs an iteration of the simulated annealing process.
+Performs the Simulated Annealing optimization algorithm to minimize the cost of a set of instances over a number of iterations.
 
 # Arguments
-- `best_instances`: The best instances so far.
-- `best_cost`: The best cost so far.
-- `best_sols_dict`: The best solutions dictionary so far.
-- `order_dict`: The dictionary with the order data.
+- `input_instances`: The initial set of job instances.
+- `input_cost`: The initial cost of the current solution.
+- `input_sols_dict`: The initial solution dictionary.
+- `order_dict`: A dictionary containing various parameters:
+  - `g`: Group identifiers.
+  - `p`: Partition size.
+  - `Nit`: Number of iterations.
+  - `Pg`: Number of partitions.
+  - `Gl`: Global time limit.
+  - `T0`: Initial temperature.
+  - `Tf`: Final temperature.
+  - `Tj`: Temperature adjustment interval.
 
 # Returns
-- `cur_costs_list`: The list of current costs after the iteration.
+- `best_instances`: The best solution found after all iterations.
+- `best_cost`: The cost of the best solution.
+- `best_sols_dict`: The solution dictionary for the best solution.
+- `cur_costs_list`: A list of costs recorded at each iteration.
+
+# Description
+This function runs the Simulated Annealing algorithm, starting with an initial solution, and iteratively improves the solution by performing random job moves between partitions. The temperature is gradually decreased according to a cooling factor, allowing the algorithm to escape local minima.
+
+The algorithm accepts random job moves, but only accepts worse solutions based on a probabilistic function of the temperature. The temperature decreases as the algorithm progresses, reducing the probability of accepting worse solutions over time.
+
+# Example
+```julia
+best_instances, best_cost, best_sols_dict, cur_costs_list = simulated_annealing(input_instances, input_cost, input_sols_dict; order_dict=order_dict)
+
 """
 function simulated_annealing(input_instances, input_cost, input_sols_dict; order_dict=order_dict)
     @unpack g, p, Nit, Pg, Gl = order_dict
@@ -582,12 +725,27 @@ end
 
 
 """
-	run_sim(;order_file = nothing)
+    run_sim(; order_file=nothing)
 
-Runs the simulated annealing process for the given order dictionary and logs the results.
+Runs the Simulated Annealing optimization process using a provided order file, logging the process and results.
 
 # Arguments
-- `order_file`: The order file to use.
+- `order_file`: The path to a file containing the order settings. If not provided, the function will throw an error.
+
+# Returns
+- `nothing`: The function does not return any values but logs the results to a specified location.
+
+# Description
+This function initializes the simulation, performs a Simulated Annealing optimization, and logs key information at each step. It begins by loading the settings from the provided order file. If the partition size (`Pg`) is 1, the function skips the Simulated Annealing process.
+
+The function tracks the time spent on initialization, Simulated Annealing, and logs details on the best solutions found, including the `m` values and the heuristic cost.
+
+If the order file is not provided, the function raises an error and exits.
+
+# Example
+```julia
+run_sim(order_file="path_to_order_file")
+
 """
 function run_sim(; order_file=nothing)
     if order_file == nothing
