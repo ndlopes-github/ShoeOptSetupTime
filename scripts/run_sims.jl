@@ -9,4 +9,9 @@ using DrWatson
 include(scriptsdir("simulated_annealing.jl"))
 using .SimulatedAnnealing
 
+"""
+Check the simulated_annealing.jl docstrings for a detailed description.
+Run the simulated annealing optimization process
+run_sim(order_file="settings_file.jl")
+"""
 run_sim(; order_file="H_O1_33.jl")
