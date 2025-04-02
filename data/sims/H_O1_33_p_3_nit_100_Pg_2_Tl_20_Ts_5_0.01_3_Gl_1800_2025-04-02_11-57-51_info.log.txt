@@ -1,3 +1,0 @@
-[Info] Main.SimulatedAnnealing:[603] | Simulation date  2025-04-02T11:57:51.401
-[Info] Main.SimulatedAnnealing:[604] | Order Dictionary Dict{Symbol, Any}(:o => [1 1 2 2 1 1 1 1], :α => 1, :p => 3, :n => [215 463 970 1240 842 342 147 99], :Tf => 0.01, :Pg => 2, :Tj => 3, :Oid => "_p_3_nit_100_Pg_2_Tl_20_Ts_5_0.01_3_Gl_1800", :T0 => 5, :Tl => 20, :g => [1 2 3 4 5 6 7 8], :β => 3, :gitcommit => "323000d3cb179614f239c7a45b88785529871e95", :Gl => 1800, :script => "data/settings/H_O1_33.jl#54", :Nit => 100)
-[Info] Main.SimulatedAnnealing:[432] | Instances group length 2
