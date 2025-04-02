@@ -37,8 +37,13 @@ It is authored by N.Lopes.
 
 To (locally) reproduce this project, do the following:
 
-0. Download this code base. Notice that raw data are typically not included in the
+0. Download or clone this code base. Notice that raw data are typically not included in the
    git-history and may need to be downloaded independently.
+
+```
+git clone https://github.com/yourusername/ShoeOptSetupTime.git
+```
+
 1. Open a Julia console and do:
    ```
    julia> using Pkg
@@ -120,9 +125,9 @@ After running the model, you can expect the following output:
 
 ### Troubleshooting
 
-    Ensure the settings file is correctly formatted and all required parameters are provided.
+   1. Ensure the settings file is correctly formatted and all required parameters are provided.
 
-    Verify that the required Julia packages (DrWatson, Gurobi, etc.) are installed and accessible.
+   2. Verify that the required Julia packages (DrWatson, Gurobi, etc.) are installed and accessible.
 
 # Contributing
 
