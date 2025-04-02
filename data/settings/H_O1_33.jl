@@ -9,6 +9,7 @@ using DrWatson
 
 
 #######################################
+# EDIT 
 # Jobs ID
 g = [1 2 3 4 5 6 7 8]
 # Number of molds available per job
@@ -43,9 +44,10 @@ Gl= 1800
 # Gurobi parameters
 # Time limit (seconds)
 Tl = 20
-
+######################################
 
 #######################################
+# DO NOT EDIT #
 # Order Dictionary
 order_dict = @dict g n o p α β T0 Tf Tj Pg Nit Gl Tl
 # Order ID

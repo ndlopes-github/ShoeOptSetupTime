@@ -77,7 +77,7 @@ To run the model, follow the steps below:
 
 After running the model, you can expect the following output:
 
-+ A log.txt file reflecting the heuristic or optimal solution for the instance.
++ An info log.txt file reflecting the heuristic or optimal solution for the instance.
 
 
 # Contributing
