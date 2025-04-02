@@ -97,7 +97,7 @@ p = 3
 
 # Heuristics parameters
 # Partition size
-Pg = 2
+Pg = 2 # Pg = 1 -> Exact Problem / Heuristic is not employed
 
 # Number of Simulated annealing iterations
 Nit = 100
