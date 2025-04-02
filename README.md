@@ -121,13 +121,13 @@ Tl = 20
 
 After running the model, you can expect the following output:
 
-+ An info log.txt file reflecting the heuristic or optimal solution for the instance.
++ An info log.txt file located at data/sims reflecting the heuristic or optimal solution for the instance.
 
 ### Troubleshooting
 
-   1. Ensure the settings file is correctly formatted and all required parameters are provided.
+1. Ensure the settings file is correctly formatted and all required parameters are provided.
 
-   2. Verify that the required Julia packages (DrWatson, Gurobi, etc.) are installed and accessible.
+2. Verify that the required Julia packages (DrWatson, Gurobi, etc.) are installed and accessible.
 
 # Contributing
 
