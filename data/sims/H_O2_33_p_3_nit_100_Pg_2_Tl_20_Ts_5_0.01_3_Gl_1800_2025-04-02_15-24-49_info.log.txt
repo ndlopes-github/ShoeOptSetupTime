@@ -1,6 +1,6 @@
 [Info] Main.SimulatedAnnealing:[761] | Simulation date  2025-04-02T15:24:49.740
 [Info] Main.SimulatedAnnealing:[762] | Order Dictionary Dict{Symbol, Any}(:o => [1 1 2 2 1 1 1 1], :α => 1, :p => 3, :n => [215 463 970 1240 842 342 147 99], :Tf => 0.01, :Pg => 2, :Tj => 3, :Oid => "_p_3_nit_100_Pg_2_Tl_20_Ts_5_0.01_3_Gl
-_1800", :T0 => 5, :Tl => 20, :g => [1 2 3 4 5 6 7 8], :β => 3, :gitcommit => "d907f78b4a4d4912b4fabf1cef523c66058c4233-dirty", :Gl => 1800, :script => "data/settings/H_O1_33.jl#56", :Nit => 100)
+_1800", :T0 => 5, :Tl => 20, :g => [1 2 3 4 5 6 7 8], :β => 3, :gitcommit => "d907f78b4a4d4912b4fabf1cef523c66058c4233-dirty", :Gl => 1800, :script => "data/settings/H_O2_33.jl#56", :Nit => 100)
 [Info] Main.SimulatedAnnealing:[543] | Instances group length 2
 [Info] Main.SimulatedAnnealing:[548] | Costs  Any[1550.0, 1550.0]
 [Info] Main.SimulatedAnnealing:[550] | Best cost 1550.0 at instances 1
