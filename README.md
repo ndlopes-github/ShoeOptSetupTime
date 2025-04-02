@@ -123,6 +123,7 @@ After running the model, you can expect the following output:
 
 + An info log.txt file located at data/sims reflecting the heuristic or optimal solution for the instance.
 
+
 ### Troubleshooting
 
 1. Ensure the settings file is correctly formatted and all required parameters are provided.
