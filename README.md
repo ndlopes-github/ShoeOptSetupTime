@@ -37,14 +37,14 @@ It is authored by N.Lopes.
 
 To (locally) reproduce this project, do the following:
 
-0. Download or clone this code base. Notice that raw data are typically not included in the
+1. Download or clone this code base. Notice that raw data are typically not included in the
    git-history and may need to be downloaded independently.
 
 ```
 git clone https://github.com/yourusername/ShoeOptSetupTime.git
 ```
 
-1. Open a Julia console and do:
+2. Open a Julia console and do:
    ```
    julia> using Pkg
    julia> Pkg.add("DrWatson") # install globally, for using `quickactivate`
