@@ -1,4 +1,4 @@
-# RailwayOptSitePos 
+# ShoeOptSetupTime 
 
 This repository reflects the implementation of an algorithm based on a paper that is set to appear. Please note that the contents of this repository are currently under development and may undergo changes as we refine the implementation to align with the paper. We encourage you to keep an eye on this repository for updates.
 
@@ -7,6 +7,7 @@ This repository reflects the implementation of an algorithm based on a paper tha
    > Title: 
 
    > Authors: [To appear]
+
 <!---
    > Authors: J. O. Cerdeira 1, R. Enguiça 2,  N. Lopes 3, A. Moura 4
 
