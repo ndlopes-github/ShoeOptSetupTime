@@ -73,9 +73,9 @@ To run the model, follow the steps below:
 
 2. Run the following command:
    ```
-   $julia scripts/runsims.jl
+   $julia scripts/run_sims.jl
    ```
-      >   This command executes an instance described in the settings file "H_O1_33.jl" in data/settings dir.
+      >   This command executes an instance described in the settings file "H_O2_33.jl" in data/settings dir.
 
 ## Settings File
 
