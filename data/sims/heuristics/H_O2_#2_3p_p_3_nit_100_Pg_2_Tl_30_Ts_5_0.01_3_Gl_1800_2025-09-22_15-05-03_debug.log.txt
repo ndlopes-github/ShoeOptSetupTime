@@ -1,0 +1,3 @@
+[Debug] Main.SimulatedAnnealing:[440] | Simulated Annealing Initialization Function
+[Debug] Main.SimulatedAnnealing:[407] | Partitioned jobs in 2 groups
+[Debug] Main.SimulatedAnnealing:[29 ] |  Optimization model builder 

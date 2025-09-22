@@ -1,7 +1,7 @@
 #= Copyright (C) 2024
 Nuno David Lopes.
 Created:  2024/04/09
-Last changed - N. Lopes: 2025/09/22 14:56:19
+Last changed - N. Lopes: 2025/09/22 15:04:40
 =#
 
 """
@@ -16,5 +16,5 @@ using DrWatson
 include(scriptsdir("simulated_annealing.jl"))
 using .SimulatedAnnealing
 
-run_sim(; order_file="H_O2_33.jl")
+run_sim(; order_file="H_O2_#2_3p.jl")
 
