@@ -1,22 +1,152 @@
+```markdown
+# ShoeOptSetupTime
+
+Lightweight Julia project implementing the algorithms from a forthcoming paper on
+parallel job scheduling with interruptions (shoe sole production case study). The
+repository contains small experiment runners (DrWatson-style), heuristic code, and
+example settings to reproduce results locally.
+
+Status: active development — use the code as a reference/experimental implementation.
+
+---
+
+## Quick overview
+
+- Language: Julia
+- Experiment driver: DrWatson (`@quickactivate "ShoeOptSetupTime"`)
+- Main scripts: `scripts/run_sims.jl` (entry), `scripts/simulated_annealing.jl` (heuristics)
+- Example settings: `data/settings/H_O2_33.jl`
+- Outputs: run logs and results written to `data/sims/`
+
+## Get started (local)
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/ShoeOptSetupTime.git
+cd ShoeOptSetupTime
+```
+
+2. In a Julia REPL, activate and instantiate the project environment:
+
+```julia
+using Pkg
+Pkg.activate("path/to/ShoeOptSetupTime")
+Pkg.instantiate()
+```
+
+3. Run a default experiment (uses the settings file referenced in `scripts/run_sims.jl`):
+
+```bash
+julia scripts/run_sims.jl
+```
+
+Notes:
+- Many scripts start with:
+
+```julia
+using DrWatson
+@quickactivate "ShoeOptSetupTime"
+```
+
+This ensures the project environment and local paths are configured automatically.
+
+## Settings
+
+Experiment settings are plain Julia scripts under `data/settings/` that set global
+variables. Example variables in `H_O2_33.jl`:
+
+```julia
+# Problem instance
+g = [1 2 3 4 5 6 7 8]
+o = [1 1 2 2 1 1 1 1]
+n = [215 463 970 1240 842 342 147 99]
+
+# Algorithm / heuristic parameters
+Pg = 2       # Pg = 1 -> exact solve (no heuristic)
+Nit = 100    # simulated annealing iterations
+T0 = 5; Tf = 0.01; Tj = 3
+
+# Time limits (seconds)
+Gl = 1800    # global time limit for whole run
+Tl = 20      # time limit passed to the solver
+```
+
+When editing or adding settings, follow the same pattern (set global variables, no
+parsing). Keep test instances small (lower `Nit`, `Gl`) for faster iteration.
+
+## Solver note (Gurobi / HiGHS)
+
+Note: An active Gurobi license is required to run the code as is. However, you can
+replace Gurobi with HiGHS, an open-source optimization solver. To do this, install
+the `HiGHS.jl` package and modify the solver settings in the scripts accordingly.
+Refer to the HiGHS documentation for detailed instructions.
+
+If you switch solvers, update the places where the optimizer is constructed and any
+solver-specific option names. Search the codebase for `Gurobi` to find these sites.
+
+## Running small smoke tests
+
+- Create a minimal settings file for CI or quick checks (example):
+
+```julia
+Pg = 1; Nit = 1; Gl = 10; Tl = 1
+```
+
+- Run `julia scripts/run_sims.jl` and inspect `data/sims/` for generated logs.
+
+## Logs and outputs
+
+- Runs write timestamped log files to `data/sims/` (info/debug/warn). These contain
+  solver output and the final schedules produced by the heuristics/solvers.
+
+## Code structure and conventions
+
+- `scripts/` — runnable experiment drivers. Preserve `@quickactivate` lines.
+- `data/settings/` — plain Julia scripts that set variables (no option parsing).
+- `src/` — small helpers and logger wrappers used by scripts (e.g., `loggers.jl`).
+
+When changing interfaces (settings variable names, log filenames) update README
+and any scripts that depend on those names.
+
+## Troubleshooting
+
+- If runs fail, first check `data/sims/*_debug.log.txt` and `_info.log.txt` for errors.
+- Ensure required Julia packages are installed in the activated environment
+  (use `Pkg.instantiate()` after `Pkg.activate(...)`).
+- If the solver fails to start, confirm Gurobi license availability or switch to HiGHS.
+
+## Contributing
+
+Contributions welcome. Open an issue for design changes or large refactors. For
+small fixes, send a PR that:
+
+1. Explains the change in the PR description.
+2. Includes a small smoke test or instructions to reproduce locally.
+
+## Contact
+
+Author: N. Lopes — nuno(dot)lopes(at)isel(dot)pt
+
+---
+
+`ShoeOptSetupTime` aims to be a compact, reproducible research codebase. If you want
+help adding CI, a small test harness, or switching the solver to HiGHS, say which one
+and I'll prepare a focused patch.
+```
 # ShoeOptSetupTime 
 
 This repository implements an optimization algorithm based on a forthcoming paper. The contents of this repository are under active development and may undergo changes to align with the paper's final version. Please stay tuned for updates as we continue refining the implementation.
 
 ## Paper Details
 
-   > Title: 
+   > Title: Optimizing Parallel Job Scheduling with Simultaneous Interruptions: A Case Study in Shoe Sole Production
 
-   > Authors: [To appear]
-
-<!---
-   > Authors: J. O. Cerdeira 1, R. Enguiça 2,  N. Lopes 3, A. Moura 4
-
+   > Authors: J. O. Cerdeira 1, R. Enguiça 2,  N. Lopes 2
    > 1- CMA, Department of Mathematics, NOVA University Lisbon; 
-     2- ISEL, Polytechnic of Lisboa, and CEMAT, University of Lisboa;
-     3- ISEL, Polytechnic of Lisboa, and CEMAT, University of Lisboa;
-     4- ISEP-LEMA, Polytechnic of Porto, and CMUP, University of Porto;
---->
-   > Journal: [To appear]
+     2- ISEL, Polytechnic of Lisbon, and CEMAT, University of Lisboa;
+
+   > Journal: Submitted [To appear]
 
    > Publication Date: [To appear]
 
