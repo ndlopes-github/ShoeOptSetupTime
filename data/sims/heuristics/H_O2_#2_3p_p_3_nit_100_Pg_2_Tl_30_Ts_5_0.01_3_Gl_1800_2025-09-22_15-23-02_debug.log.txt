@@ -1,0 +1,1771 @@
+[Debug] Main.SimulatedAnnealing:[447] | Simulated Annealing Initialization Function
+[Debug] Main.SimulatedAnnealing:[414] | Partitioned jobs in 2 groups
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[463, 842, 99], :g => Any[2, 5, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 851.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1, 1, 1], :p => 3, :n => Any[215, 970, 1240, 342, 147, 379.0], :g => Any[1, 3, 4, 6, 7, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1123.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any         Any     Any
+─────┼─────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  851.0   469.0   0.00408506  896.6   OPTIMAL
+   2 │ 1    3    3    6.0  1123.0  985.0   2.04642     1005.7  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1, 1], :p => 3, :n => Any[215, 970, 1240, 342, 147], :g => Any[1, 3, 4, 6, 7], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 987.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[463, 842, 99, 2.0, 2.0], :g => Any[2, 5, 8, 1, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 854.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  987.0  982.0   0.658568   1012.1  OPTIMAL
+   2 │ 1    3    3    4.0  854.0  474.0   0.0060389  1013.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[468] | Instances  Any[Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[463, 842, 99], :g => Any[2, 5, 8], :β => 3), Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1, 1], :p => 3, :n => Any[215, 970, 1240, 342, 147], :g => Any[1, 3, 4, 6, 7], :β => 3)]
+[Debug] Main.SimulatedAnnealing:[472] | Instance permutation 1
+[Debug] Main.SimulatedAnnealing:[473] | Any[Dict{Symbol, Any}(:m => 3.0, :Dxf => 3×3 DataFrame
+ Row │ Job2,1   Job5,1   Job8,1
+     │ Float64  Float64  Float64
+─────┼───────────────────────────
+   1 │     1.0      1.0      0.0
+   2 │     1.0      1.0      1.0
+   3 │     0.0      1.0      0.0, :Dtf => 3×3 DataFrame
+ Row │ Job2,1   Job5,1   Job8,1
+     │ Float64  Float64  Float64
+─────┼───────────────────────────
+   1 │   364.0    364.0      0.0
+   2 │    99.0     99.0     99.0
+   3 │     0.0    379.0      0.0, :Idxs => [(2, 1), (5, 1), (8, 1)]), Dict{Symbol, Any}(:m => 6.0, :Dxf => 7×7 DataFrame
+ Row │ Job1,1   Job3,1   Job4,1   Job4,2   Job6,1   Job7,1   Job5,1
+     │ Float64  Float64  Float64  Float64  Float64  Float64  Float64
+─────┼───────────────────────────────────────────────────────────────
+   1 │     0.0      1.0      0.0      1.0      0.0      0.0      1.0
+   2 │     0.0      1.0      0.0      1.0      1.0      0.0      0.0
+   3 │     1.0      1.0      0.0      1.0      0.0      0.0      0.0
+   4 │     0.0      1.0      0.0      1.0      0.0      0.0      0.0
+   5 │     0.0      1.0      0.0      1.0      0.0      1.0      0.0
+   6 │     0.0      0.0      1.0      1.0      0.0      1.0      0.0
+   7 │     0.0      0.0      0.0      0.0      0.0      0.0      0.0, :Dtf => 7×7 DataFrame
+ Row │ Job1,1   Job3,1   Job4,1   Job4,2   Job6,1   Job7,1   Job5,1
+     │ Float64  Float64  Float64  Float64  Float64  Float64  Float64
+─────┼───────────────────────────────────────────────────────────────
+   1 │     0.0    379.0      0.0    379.0      0.0      0.0    379.0
+   2 │     0.0    342.0      0.0    342.0    342.0      0.0      0.0
+   3 │   215.0    215.0      0.0    215.0      0.0      0.0      0.0
+   4 │     0.0     22.0      0.0     22.0      0.0      0.0      0.0
+   5 │     0.0     12.0      0.0     12.0      0.0     12.0      0.0
+   6 │     0.0      0.0    135.0    135.0      0.0    135.0      0.0
+   7 │     0.0      0.0      0.0      0.0      0.0      0.0      0.0, :Idxs => [(1, 1), (3, 1), (4, 1), (4, 2), (6, 1), (7, 1), (5, 1)])]
+[Debug] Main.SimulatedAnnealing:[472] | Instance permutation 2
+[Debug] Main.SimulatedAnnealing:[473] | Any[Dict{Symbol, Any}(:m => 5.0, :Dxf => 6×6 DataFrame
+ Row │ Job1,1   Job3,1   Job4,1   Job4,2   Job6,1   Job7,1
+     │ Float64  Float64  Float64  Float64  Float64  Float64
+─────┼──────────────────────────────────────────────────────
+   1 │    -0.0      1.0      1.0     -0.0      0.0      1.0
+   2 │    -0.0      1.0      1.0      0.0      1.0     -0.0
+   3 │    -0.0      1.0      1.0      1.0      0.0     -0.0
+   4 │     1.0      1.0     -0.0      1.0      0.0     -0.0
+   5 │     1.0      0.0     -0.0      1.0      0.0     -0.0
+   6 │    -0.0     -0.0     -0.0     -0.0     -0.0     -0.0, :Dtf => 6×6 DataFrame
+ Row │ Job1,1   Job3,1   Job4,1   Job4,2   Job6,1   Job7,1
+     │ Float64  Float64  Float64  Float64  Float64  Float64
+─────┼──────────────────────────────────────────────────────
+   1 │    -0.0    147.0    147.0     -0.0      0.0    147.0
+   2 │    -0.0    342.0    342.0      0.0    342.0     -0.0
+   3 │    -0.0    268.0    268.0    268.0      0.0     -0.0
+   4 │   213.0    213.0     -0.0    213.0      0.0     -0.0
+   5 │     2.0      0.0     -0.0      2.0      0.0     -0.0
+   6 │    -0.0     -0.0     -0.0     -0.0     -0.0     -0.0, :Idxs => [(1, 1), (3, 1), (4, 1), (4, 2), (6, 1), (7, 1)]), Dict{Symbol, Any}(:m => 4.0, :Dxf => 5×5 DataFrame
+ Row │ Job2,1   Job5,1   Job8,1   Job1,1   Job4,1
+     │ Float64  Float64  Float64  Float64  Float64
+─────┼─────────────────────────────────────────────
+   1 │    -0.0      1.0     -0.0      1.0      1.0
+   2 │     1.0      1.0     -0.0     -0.0     -0.0
+   3 │     1.0      1.0      1.0      0.0      0.0
+   4 │    -0.0      1.0     -0.0      0.0      0.0
+   5 │    -0.0      0.0     -0.0      0.0      0.0, :Dtf => 5×5 DataFrame
+ Row │ Job2,1   Job5,1   Job8,1   Job1,1   Job4,1
+     │ Float64  Float64  Float64  Float64  Float64
+─────┼─────────────────────────────────────────────
+   1 │    -0.0      2.0     -0.0      2.0      2.0
+   2 │   364.0    364.0     -0.0      0.0      0.0
+   3 │    99.0     99.0     99.0      0.0      0.0
+   4 │    -0.0    377.0     -0.0      0.0      0.0
+   5 │    -0.0      0.0     -0.0      0.0      0.0, :Idxs => [(2, 1), (5, 1), (8, 1), (1, 1), (4, 1)])]
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 3 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 3
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[463, 842, 99, 970], :g => Any[2, 5, 8, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1], :p => 3, :n => Any[215, 1240, 342, 147, 29.0], :g => Any[1, 4, 6, 7, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 712.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0  950.0   0.012157  1040.6  OPTIMAL
+   2 │ 1    3    3    6.0  712.0  708.0   0.281258  1040.6  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1], :p => 3, :n => Any[215, 1240, 342, 147], :g => Any[1, 4, 6, 7], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 709.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1], :p => 3, :n => Any[463, 842, 99, 970, 1.0, 1.0], :g => Any[2, 5, 8, 3, 1, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  709.0  705.0   0.154685   1040.6  OPTIMAL
+   2 │ 1    3    3    5.0  985.0  855.0   0.0158679  1040.6  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1662.0, 1690.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 2/100 - Best: 1592.0, Current: 1592.0, Alternative: 1662.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 1.1779069900512695 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 3 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 3
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[463, 842, 99], :g => Any[2, 5, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 851.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1, 1], :p => 3, :n => Any[215, 1240, 342, 147, 970, 379.0], :g => Any[1, 4, 6, 7, 3, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1123.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any       Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  851.0   469.0   0.003438  1040.6  OPTIMAL
+   2 │ 1    3    3    6.0  1123.0  1098.0  1.82382   1040.6  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1], :p => 3, :n => Any[215, 1240, 342, 147, 970], :g => Any[1, 4, 6, 7, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 987.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[463, 842, 99, 2.0, 2.0], :g => Any[2, 5, 8, 4, 6], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 854.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any         Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  987.0  982.0   0.38646     1040.6  OPTIMAL
+   2 │ 1    3    3    4.0  854.0  474.0   0.00606394  1040.6  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1592.0, 1836.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 3/100 - Best: 1592.0, Current: 1592.0, Alternative: 1592.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 3.4228360652923584 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 6 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 6
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[463, 842, 99, 342], :g => Any[2, 5, 8, 6], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 854.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1], :p => 3, :n => Any[215, 1240, 147, 970, 379.0], :g => Any[1, 4, 7, 3, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1009.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any       Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  854.0   472.0   0.029444  1040.6  OPTIMAL
+   2 │ 1    3    3    6.0  1009.0  1005.0  0.493491  1040.6  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1], :p => 3, :n => Any[215, 1240, 147, 970], :g => Any[1, 4, 7, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1], :p => 3, :n => Any[463, 842, 99, 342, 338.0, 338.0], :g => Any[2, 5, 8, 6, 4, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 857.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0  641.0   0.0595169  1040.6  OPTIMAL
+   2 │ 1    3    3    5.0  857.0  813.0   0.078362   1040.6  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1481.0, 1498.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 4/100 - Best: 1481.0, Current: 1481.0, Alternative: 1481.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 4.118764162063599 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 5 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 5
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[463, 99, 342], :g => Any[2, 8, 6], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 472.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1, 1], :p => 3, :n => Any[215, 1240, 147, 970, 842, 22.0], :g => Any[1, 4, 7, 3, 5, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1170.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 7.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any         Any     Any
+─────┼─────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  472.0   447.0   0.00327086  1040.6  OPTIMAL
+   2 │ 1    3    3    7.0  1170.0  1157.0  1.2709      1040.6  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1], :p => 3, :n => Any[215, 1240, 147, 970, 842], :g => Any[1, 4, 7, 3, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1167.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[463, 99, 342, 1.0], :g => Any[2, 8, 6, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 475.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any         Any     Any
+─────┼─────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    6.0  1167.0  1163.0  1.56697     1042.5  OPTIMAL
+   2 │ 1    3    3    4.0  475.0   451.0   0.00391793  1042.5  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1617.0, 1638.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 5/100 - Best: 1481.0, Current: 1481.0, Alternative: 1617.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 6.988959312438965 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 4 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 4
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 2], :p => 3, :n => Any[463, 99, 342, 1240], :g => Any[2, 8, 6, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 803.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[215, 147, 970, 842], :g => Any[1, 7, 3, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  803.0  701.0   0.273099  1047.1  OPTIMAL
+   2 │ 1    3    3    4.0  982.0  832.0   0.023582  1049.6  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[215, 147, 970, 842], :g => Any[1, 7, 3, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 2], :p => 3, :n => Any[463, 99, 342, 1240], :g => Any[2, 8, 6, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 803.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0  832.0   0.0230811  1052.4  OPTIMAL
+   2 │ 1    3    3    4.0  803.0  701.0   0.276457   1056.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1785.0, 1785.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 6/100 - Best: 1481.0, Current: 1481.0, Alternative: 1785.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 7.608585357666016 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 8 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 8
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2], :p => 3, :n => Any[463, 342, 1240], :g => Any[2, 6, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 800.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1, 1], :p => 3, :n => Any[215, 147, 970, 842, 99, 328.0, 328.0], :g => Any[1, 7, 3, 5, 8, 6, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1188.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any        Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  800.0   469.0   0.0519431  1058.9  OPTIMAL
+   2 │ 1    3    3    6.0  1188.0  1084.0  0.351386   1067.6  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[215, 147, 970, 842, 99], :g => Any[1, 7, 3, 5, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1], :p => 3, :n => Any[463, 342, 1240, 128.0], :g => Any[2, 6, 4, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 803.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  985.0  854.0   0.109258  1069.9  OPTIMAL
+   2 │ 1    3    3    4.0  803.0  600.0   0.12882   1072.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1657.0, 1657.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 7/100 - Best: 1481.0, Current: 1481.0, Alternative: 1657.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 8.277437448501587 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 1 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 1
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1], :p => 3, :n => Any[463, 342, 1240, 215], :g => Any[2, 6, 4, 1], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 803.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 2], :p => 3, :n => Any[147, 970, 842, 99, 226.0], :g => Any[7, 3, 5, 8, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  803.0  687.0   0.236987  1075.1  OPTIMAL
+   2 │ 1    3    3    5.0  985.0  967.0   0.095299  1078.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[147, 970, 842, 99], :g => Any[7, 3, 5, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1, 1], :p => 3, :n => Any[463, 342, 1240, 215, 29.0], :g => Any[2, 6, 4, 1, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 806.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0  950.0   0.0350041  1081.1  OPTIMAL
+   2 │ 1    3    3    5.0  806.0  719.0   0.35561    1085.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1672.0, 1756.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 8/100 - Best: 1481.0, Current: 1481.0, Alternative: 1672.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 9.025805473327637 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 1 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 1
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2], :p => 3, :n => Any[463, 342, 1240], :g => Any[2, 6, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 800.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1, 1], :p => 3, :n => Any[147, 970, 842, 99, 215, 328.0, 328.0], :g => Any[7, 3, 5, 8, 1, 6, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1188.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any        Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  800.0   469.0   0.0539589  1087.1  OPTIMAL
+   2 │ 1    3    3    6.0  1188.0  1132.0  0.315419   1094.9  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[147, 970, 842, 99, 215], :g => Any[7, 3, 5, 8, 1], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1], :p => 3, :n => Any[463, 342, 1240, 128.0], :g => Any[2, 6, 4, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 803.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  985.0  854.0   0.110093  1097.2  OPTIMAL
+   2 │ 1    3    3    4.0  803.0  600.0   0.132086  1099.9  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1657.0, 1657.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 9/100 - Best: 1481.0, Current: 1481.0, Alternative: 1657.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 9.663485527038574 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 1 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 1
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1], :p => 3, :n => Any[463, 342, 1240, 215], :g => Any[2, 6, 4, 1], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 803.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 2], :p => 3, :n => Any[147, 970, 842, 99, 226.0], :g => Any[7, 3, 5, 8, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  803.0  687.0   0.195967  1103.4  OPTIMAL
+   2 │ 1    3    3    5.0  985.0  967.0   0.09268   1106.7  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[147, 970, 842, 99], :g => Any[7, 3, 5, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1, 1], :p => 3, :n => Any[463, 342, 1240, 215, 29.0], :g => Any[2, 6, 4, 1, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 806.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0  950.0   0.0311    1109.7  OPTIMAL
+   2 │ 1    3    3    5.0  806.0  719.0   0.392372  1114.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1672.0, 1756.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 10/100 - Best: 1481.0, Current: 1481.0, Alternative: 1672.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 10.400776624679565 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 1 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 1
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2], :p => 3, :n => Any[463, 342, 1240], :g => Any[2, 6, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 800.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1, 1], :p => 3, :n => Any[147, 970, 842, 99, 215, 328.0, 328.0], :g => Any[7, 3, 5, 8, 1, 6, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1188.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any        Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  800.0   469.0   0.0471032  1115.9  OPTIMAL
+   2 │ 1    3    3    6.0  1188.0  1132.0  0.278341   1123.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[147, 970, 842, 99, 215], :g => Any[7, 3, 5, 8, 1], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1], :p => 3, :n => Any[463, 342, 1240, 128.0], :g => Any[2, 6, 4, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 803.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  985.0  854.0   0.108124  1125.9  OPTIMAL
+   2 │ 1    3    3    4.0  803.0  600.0   0.12849   1129.2  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1657.0, 1657.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 11/100 - Best: 1481.0, Current: 1481.0, Alternative: 1657.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 10.987825632095337 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 2 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 2
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2], :p => 3, :n => Any[342, 1240], :g => Any[6, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 626.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 2.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1], :p => 3, :n => Any[147, 970, 842, 99, 215, 463], :g => Any[7, 3, 5, 8, 1, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 988.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any         Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    2.0  626.0  281.0   0.00487208  1130.7  OPTIMAL
+   2 │ 1    3    3    6.0  988.0  886.0   0.411729    1137.9  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1], :p => 3, :n => Any[147, 970, 842, 99, 215, 463], :g => Any[7, 3, 5, 8, 1, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 988.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1], :p => 3, :n => Any[342, 1240, 99.0, 99.0], :g => Any[6, 4, 3, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 682.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    6.0  988.0  886.0   0.469564   1142.7  OPTIMAL
+   2 │ 1    3    3    4.0  682.0  678.0   0.0617862  1145.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1614.0, 1568.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 12/100 - Best: 1481.0, Current: 1481.0, Alternative: 1568.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 11.960636615753174 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 5 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 5
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1], :p => 3, :n => Any[342, 1240, 842], :g => Any[6, 4, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 851.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1], :p => 3, :n => Any[147, 970, 99, 215, 463, 51.0], :g => Any[7, 3, 8, 1, 2, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 988.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any         Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  851.0  797.0   0.00909901  1147.7  OPTIMAL
+   2 │ 1    3    3    6.0  988.0  770.0   0.135728    1151.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[147, 970, 99, 215, 463], :g => Any[7, 3, 8, 1, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1], :p => 3, :n => Any[342, 1240, 842, 463.0, 463.0], :g => Any[6, 4, 5, 3, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1196.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any       Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  985.0   519.0   0.070091  1154.7  OPTIMAL
+   2 │ 1    3    3    4.0  1196.0  1092.0  0.229709  1158.7  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1785.0, 1715.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 13/100 - Best: 1481.0, Current: 1481.0, Alternative: 1715.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 12.430711507797241 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 3 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 3
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1], :p => 3, :n => Any[342, 1240, 842, 970], :g => Any[6, 4, 5, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1196.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[147, 99, 215, 463], :g => Any[7, 8, 1, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 475.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any       Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  1196.0  851.0   0.163599  1161.9  OPTIMAL
+   2 │ 1    3    3    4.0  475.0   373.0   0.024585  1163.9  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[147, 99, 215, 463], :g => Any[7, 8, 1, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 475.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1, 1], :p => 3, :n => Any[342, 1240, 842, 970, 99.0, 99.0], :g => Any[6, 4, 5, 3, 8, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1219.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any        Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  475.0   373.0   0.0225081  1166.7  OPTIMAL
+   2 │ 1    3    3    5.0  1219.0  1196.0  0.776535   1177.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1671.0, 1592.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 14/100 - Best: 1481.0, Current: 1481.0, Alternative: 1592.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 13.442894697189331 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 6 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 6
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1], :p => 3, :n => Any[1240, 842, 970], :g => Any[4, 5, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1050.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1, 1], :p => 3, :n => Any[147, 99, 215, 463, 342, 71.0, 71.0], :g => Any[7, 8, 1, 2, 6, 4, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 530.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any       Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  1050.0  976.0   0.069483  1179.2  OPTIMAL
+   2 │ 1    3    3    6.0  530.0   478.0   0.626812  1187.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[147, 99, 215, 463, 342], :g => Any[7, 8, 1, 2, 6], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 478.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1], :p => 3, :n => Any[1240, 842, 970, 2.0], :g => Any[4, 5, 3, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1053.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any        Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  478.0   473.0   0.0785949  1187.4  OPTIMAL
+   2 │ 1    3    3    4.0  1053.0  981.0   0.060358   1187.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1506.0, 1526.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 15/100 - Best: 1481.0, Current: 1481.0, Alternative: 1506.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 14.530238628387451 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 1 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 1
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1], :p => 3, :n => Any[1240, 842, 970, 215], :g => Any[4, 5, 3, 1], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1117.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[147, 99, 463, 342], :g => Any[7, 8, 2, 6], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 475.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any       Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  1117.0  272.0   0.30915   1187.4  OPTIMAL
+   2 │ 1    3    3    4.0  475.0   373.0   0.023474  1187.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[147, 99, 463, 342], :g => Any[7, 8, 2, 6], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 475.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1, 1, 1], :p => 3, :n => Any[1240, 842, 970, 215, 99.0, 99.0], :g => Any[4, 5, 3, 1, 8, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1171.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any        Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  475.0   373.0   0.0203421  1187.4  OPTIMAL
+   2 │ 1    3    3    5.0  1171.0  1081.0  0.744427   1187.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1592.0, 1544.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 16/100 - Best: 1481.0, Current: 1481.0, Alternative: 1544.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 15.654119491577148 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 6 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 6
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1, 1], :p => 3, :n => Any[1240, 842, 970, 215, 342], :g => Any[4, 5, 3, 1, 6], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1227.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[147, 99, 463, 27.0, 27.0], :g => Any[7, 8, 2, 4, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 475.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any         Any     Any
+─────┼─────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  1227.0  1197.0  1.44521     1187.4  OPTIMAL
+   2 │ 1    3    3    4.0  475.0   183.0   0.00807095  1187.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[147, 99, 463], :g => Any[7, 8, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 472.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1, 1, 1], :p => 3, :n => Any[1240, 842, 970, 215, 342, 316.0], :g => Any[4, 5, 3, 1, 6, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1330.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any         Any     Any
+─────┼─────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  472.0   153.0   0.00568795  1187.4  OPTIMAL
+   2 │ 1    3    3    6.0  1330.0  1316.0  3.35266     1187.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1672.0, 1483.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 17/100 - Best: 1481.0, Current: 1481.0, Alternative: 1483.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 20.496902465820312 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[380] | Jobs switched between instances
+[Debug] Main.SimulatedAnnealing:[637] | Switched job 7 with dest job at index 3
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 7
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1, 1], :p => 3, :n => Any[1240, 842, 147, 215, 342], :g => Any[4, 5, 7, 1, 6], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 987.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[970, 99, 463], :g => Any[3, 8, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 979.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any         Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  987.0  837.0   1.25752     1187.4  OPTIMAL
+   2 │ 1    3    3    3.0  979.0  877.0   0.00356293  1187.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[970, 99, 463], :g => Any[3, 8, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 979.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1, 1, 1, 1], :p => 3, :n => Any[1240, 842, 147, 215, 342, 99.0, 99.0], :g => Any[4, 5, 7, 1, 6, 3, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1019.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 7.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any         Any     Any
+─────┼─────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  979.0   877.0   0.00360489  1187.4  OPTIMAL
+   2 │ 1    3    3    7.0  1019.0  1007.0  7.66105     1203.3  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1966.0, 1896.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 18/100 - Best: 1481.0, Current: 1481.0, Alternative: 1896.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 29.56648349761963 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[380] | Jobs switched between instances
+[Debug] Main.SimulatedAnnealing:[637] | Switched job 3 with dest job at index 5
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 3
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1, 1], :p => 3, :n => Any[1240, 842, 147, 215, 970], :g => Any[4, 5, 7, 1, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1167.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[342, 99, 463, 1.0], :g => Any[6, 8, 2, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 475.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any         Any     Any
+─────┼─────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    6.0  1167.0  1163.0  1.41967     1203.3  OPTIMAL
+   2 │ 1    3    3    4.0  475.0   352.0   0.00567603  1203.3  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[342, 99, 463], :g => Any[6, 8, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 472.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1, 1, 1], :p => 3, :n => Any[1240, 842, 147, 215, 970, 22.0], :g => Any[4, 5, 7, 1, 3, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1170.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 7.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any         Any     Any
+─────┼─────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  472.0   447.0   0.00399804  1203.3  OPTIMAL
+   2 │ 1    3    3    7.0  1170.0  1075.0  2.11012     1203.3  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1638.0, 1617.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 19/100 - Best: 1481.0, Current: 1481.0, Alternative: 1617.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 33.13354849815369 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 4 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 4
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[842, 147, 215, 970], :g => Any[5, 7, 1, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 2, 1], :p => 3, :n => Any[342, 99, 463, 1240, 128.0], :g => Any[6, 8, 2, 4, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 806.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0  851.0   0.0317361  1203.3  OPTIMAL
+   2 │ 1    3    3    5.0  806.0  702.0   0.411105   1203.3  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 2], :p => 3, :n => Any[342, 99, 463, 1240], :g => Any[6, 8, 2, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 803.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1], :p => 3, :n => Any[842, 147, 215, 970, 229.0, 229.0], :g => Any[5, 7, 1, 3, 6, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1086.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any       Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  803.0   571.0   0.194131  1203.3  OPTIMAL
+   2 │ 1    3    3    5.0  1086.0  982.0   0.149757  1203.3  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1657.0, 1657.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 20/100 - Best: 1481.0, Current: 1481.0, Alternative: 1657.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 33.948161602020264 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 8 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 8
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[842, 147, 215, 970, 99], :g => Any[5, 7, 1, 3, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1], :p => 3, :n => Any[342, 463, 1240, 128.0], :g => Any[6, 2, 4, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 803.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  985.0  854.0   0.0841961  1203.3  OPTIMAL
+   2 │ 1    3    3    4.0  803.0  600.0   0.137865   1203.3  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2], :p => 3, :n => Any[342, 463, 1240], :g => Any[6, 2, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 800.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[842, 147, 215, 970, 99], :g => Any[5, 7, 1, 3, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  800.0  455.0   0.0407758  1203.3  OPTIMAL
+   2 │ 1    3    3    5.0  985.0  854.0   0.081239   1203.3  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1657.0, 1785.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 21/100 - Best: 1481.0, Current: 1481.0, Alternative: 1657.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 34.317028522491455 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 7 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 7
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[842, 215, 970, 99], :g => Any[5, 1, 3, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1, 1, 1], :p => 3, :n => Any[342, 463, 1240, 147, 99.0, 99.0], :g => Any[6, 2, 4, 7, 3, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 820.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0  880.0   0.0147681  1203.3  OPTIMAL
+   2 │ 1    3    3    5.0  820.0  670.0   0.933529   1204.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1], :p => 3, :n => Any[342, 463, 1240, 147], :g => Any[6, 2, 4, 7], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 803.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[842, 215, 970, 99], :g => Any[5, 1, 3, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  803.0  653.0   0.327837   1204.4  OPTIMAL
+   2 │ 1    3    3    4.0  982.0  880.0   0.0127349  1204.7  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1700.0, 1785.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 22/100 - Best: 1481.0, Current: 1481.0, Alternative: 1700.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 35.63212752342224 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 5 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 5
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[215, 970, 99], :g => Any[1, 3, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 979.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1, 1, 1], :p => 3, :n => Any[342, 463, 1240, 147, 842, 755.0], :g => Any[6, 2, 4, 7, 5, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1294.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 7.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any        Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  979.0   221.0   0.0040791  1204.7  OPTIMAL
+   2 │ 1    3    3    7.0  1294.0  1290.0  2.74985    1213.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1, 1], :p => 3, :n => Any[342, 463, 1240, 147, 842], :g => Any[6, 2, 4, 7, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1041.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[215, 970, 99, 1.0], :g => Any[1, 3, 8, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any         Any     Any
+─────┼─────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    6.0  1041.0  1037.0  1.52758     1215.7  OPTIMAL
+   2 │ 1    3    3    4.0  982.0   880.0   0.00371289  1215.7  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1515.0, 2019.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 23/100 - Best: 1481.0, Current: 1481.0, Alternative: 1515.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 39.94256663322449 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 2 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 2
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[215, 970, 99, 463], :g => Any[1, 3, 8, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1, 1], :p => 3, :n => Any[342, 1240, 147, 842, 215.0, 215.0], :g => Any[6, 4, 7, 5, 1, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1021.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any       Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0   764.0   0.014806  1215.7  OPTIMAL
+   2 │ 1    3    3    5.0  1021.0  871.0   1.02246   1221.7  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1], :p => 3, :n => Any[342, 1240, 147, 842], :g => Any[6, 4, 7, 5], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 880.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 2], :p => 3, :n => Any[215, 970, 99, 463, 46.0], :g => Any[1, 3, 8, 2, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  880.0  854.0   0.209722   1222.2  OPTIMAL
+   2 │ 1    3    3    5.0  985.0  713.0   0.0258651  1222.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1785.0, 1839.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 24/100 - Best: 1481.0, Current: 1481.0, Alternative: 1785.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 41.24288058280945 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 3 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 3
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[215, 99, 463], :g => Any[1, 8, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 472.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1, 1], :p => 3, :n => Any[342, 1240, 147, 842, 970, 248.0], :g => Any[6, 4, 7, 5, 3, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1294.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any         Any     Any
+─────┼─────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  472.0   221.0   0.00482798  1222.4  OPTIMAL
+   2 │ 1    3    3    6.0  1294.0  1252.0  3.52309     1234.2  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1], :p => 3, :n => Any[342, 1240, 147, 842, 970], :g => Any[6, 4, 7, 5, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1199.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[215, 99, 463], :g => Any[1, 8, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 472.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any         Any     Any
+─────┼─────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  1199.0  993.0   0.732942    1236.4  OPTIMAL
+   2 │ 1    3    3    3.0  472.0   221.0   0.00594592  1236.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1515.0, 1671.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 25/100 - Best: 1481.0, Current: 1481.0, Alternative: 1515.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 45.539971590042114 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 4 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 4
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 2], :p => 3, :n => Any[215, 99, 463, 1240], :g => Any[1, 8, 2, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 690.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1], :p => 3, :n => Any[342, 147, 842, 970, 17.0, 17.0], :g => Any[6, 7, 5, 3, 8, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  690.0  670.0   0.231435  1237.4  OPTIMAL
+   2 │ 1    3    3    5.0  985.0  518.0   0.054734  1237.7  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[342, 147, 842, 970], :g => Any[6, 7, 5, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 2, 1], :p => 3, :n => Any[215, 99, 463, 1240, 128.0], :g => Any[1, 8, 2, 4, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 746.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0  851.0   0.0103791  1237.7  OPTIMAL
+   2 │ 1    3    3    6.0  746.0  742.0   0.350732   1239.4  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1655.0, 1597.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 26/100 - Best: 1481.0, Current: 1481.0, Alternative: 1597.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 46.218220710754395 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 2 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 2
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2], :p => 3, :n => Any[215, 99, 1240], :g => Any[1, 8, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 629.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 2], :p => 3, :n => Any[342, 147, 842, 970, 463, 612.0], :g => Any[6, 7, 5, 3, 2, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 1151.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 7.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any        Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  629.0   320.0   0.0112371  1239.4  OPTIMAL
+   2 │ 1    3    3    7.0  1151.0  1001.0  1.28314    1246.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[342, 147, 842, 970, 463], :g => Any[6, 7, 5, 3, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1], :p => 3, :n => Any[215, 99, 1240, 18.0], :g => Any[1, 8, 4, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 632.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  985.0  964.0   0.080277   1246.4  OPTIMAL
+   2 │ 1    3    3    4.0  632.0  341.0   0.0113661  1246.6  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1471.0, 1596.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 27/100 - Best: 1471.0, Current: 1471.0, Alternative: 1471.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 47.63612985610962 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 2 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 2
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1], :p => 3, :n => Any[215, 99, 1240, 463], :g => Any[1, 8, 4, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 690.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 1], :p => 3, :n => Any[342, 147, 842, 970, 17.0, 17.0], :g => Any[6, 7, 5, 3, 1, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  690.0  670.0   0.153217   1248.1  OPTIMAL
+   2 │ 1    3    3    5.0  985.0  518.0   0.0423481  1248.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[342, 147, 842, 970], :g => Any[6, 7, 5, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1, 1], :p => 3, :n => Any[215, 99, 1240, 463, 128.0], :g => Any[1, 8, 4, 2, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 746.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0  851.0   0.009624  1248.1  OPTIMAL
+   2 │ 1    3    3    6.0  746.0  280.0   0.449729  1248.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1655.0, 1597.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 28/100 - Best: 1471.0, Current: 1471.0, Alternative: 1597.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 48.36455965042114 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 1 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 1
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1], :p => 3, :n => Any[99, 1240, 463], :g => Any[8, 4, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 629.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1, 2], :p => 3, :n => Any[342, 147, 842, 970, 215, 116.0], :g => Any[6, 7, 5, 3, 1, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 988.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any         Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  629.0  568.0   0.00970602  1248.1  OPTIMAL
+   2 │ 1    3    3    6.0  988.0  915.0   0.174805    1248.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[342, 147, 842, 970, 215], :g => Any[6, 7, 5, 3, 1], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1], :p => 3, :n => Any[99, 1240, 463, 128.0], :g => Any[8, 4, 2, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 685.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  985.0  854.0   0.179988  1248.1  OPTIMAL
+   2 │ 1    3    3    5.0  685.0  603.0   0.105666  1248.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1556.0, 1539.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 29/100 - Best: 1471.0, Current: 1471.0, Alternative: 1539.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 48.86433267593384 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[608] | Rebalanced and moved job 4
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 4
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1], :p => 3, :n => Any[99, 1240, 463, 147], :g => Any[8, 4, 2, 7], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 685.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 2], :p => 3, :n => Any[342, 842, 970, 215, 120.0], :g => Any[6, 5, 3, 1, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  685.0  622.0   0.159345   1248.1  OPTIMAL
+   2 │ 1    3    3    5.0  985.0  914.0   0.0491111  1248.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[342, 842, 970, 215], :g => Any[6, 5, 3, 1], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1, 1], :p => 3, :n => Any[99, 1240, 463, 147, 128.0, 128.0], :g => Any[8, 4, 2, 7, 3, 1], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 753.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0  851.0   0.0160661  1248.1  OPTIMAL
+   2 │ 1    3    3    5.0  753.0  287.0   0.706052   1248.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1607.0, 1604.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 30/100 - Best: 1471.0, Current: 1471.0, Alternative: 1604.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 49.887473821640015 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 6 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 6
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1], :p => 3, :n => Any[99, 1240, 463, 147, 342], :g => Any[8, 4, 2, 7, 6], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 806.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[842, 970, 215], :g => Any[5, 3, 1], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 979.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any         Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  806.0  704.0   0.471938    1248.1  OPTIMAL
+   2 │ 1    3    3    3.0  979.0  848.0   0.00384784  1248.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[842, 970, 215], :g => Any[5, 3, 1], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 979.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1, 1, 1], :p => 3, :n => Any[99, 1240, 463, 147, 342, 128.0], :g => Any[8, 4, 2, 7, 6, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 825.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 6.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    3.0  979.0  848.0   0.0037992  1248.1  OPTIMAL
+   2 │ 1    3    3    6.0  825.0  820.0   2.50611    1248.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1785.0, 1673.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 31/100 - Best: 1471.0, Current: 1471.0, Alternative: 1673.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 52.90162992477417 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 8 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 8
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1], :p => 3, :n => Any[1240, 463, 147, 342], :g => Any[4, 2, 7, 6], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 803.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 2], :p => 3, :n => Any[842, 970, 215, 99, 362.0], :g => Any[5, 3, 1, 8, 4], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 985.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any        Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  803.0  619.0   0.21992    1248.1  OPTIMAL
+   2 │ 1    3    3    5.0  985.0  883.0   0.0841651  1248.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[842, 970, 215, 99], :g => Any[5, 3, 1, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1, 1], :p => 3, :n => Any[1240, 463, 147, 342, 128.0], :g => Any[4, 2, 7, 6, 3], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 806.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any       Any     Any
+─────┼──────────────────────────────────────────────────────────────
+   1 │ 1    3    3    4.0  982.0  851.0   0.030829  1248.1  OPTIMAL
+   2 │ 1    3    3    5.0  806.0  750.0   0.46128   1248.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[689] | Alternative costs  Any[1604.0, 1657.0]
+[Debug] Main.SimulatedAnnealing:[724] | Iteration 32/100 - Best: 1471.0, Current: 1471.0, Alternative: 1604.0
+[Debug] Main.SimulatedAnnealing:[728] | Simulated Annealing Elapsed time 53.728598833084106 seconds
+[Debug] Main.SimulatedAnnealing:[560] | Counter 1 for neighbour_partition
+[Debug] Main.SimulatedAnnealing:[359] | Job moved
+[Debug] Main.SimulatedAnnealing:[589] | Moved job 1 from src to dest
+[Debug] Main.SimulatedAnnealing:[684] | Selected job to switch: 1
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1, 1], :p => 3, :n => Any[1240, 463, 147, 342, 215], :g => Any[4, 2, 7, 6, 1], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 820.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 5.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[842, 970, 99, 4.0], :g => Any[5, 3, 8, 2], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 982.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 4.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[296] | Jobs transferred to stages: Any[2]
+[Debug] Main.SimulatedAnnealing:[298] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost   cost_p  stime       MiB     status
+     │ Any  Any  Any  Any  Any    Any     Any         Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    3    3    5.0  820.0  813.0   0.919158    1248.1  OPTIMAL
+   2 │ 1    3    3    4.0  982.0  950.0   0.00603795  1248.1  OPTIMAL
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[842, 970, 99], :g => Any[5, 3, 8], :β => 3) 
+[Debug] Main.SimulatedAnnealing:[125] | ("  objective value = ", 979.0)
+[Debug] Main.SimulatedAnnealing:[128] | ("  m value = ", 3.0)
+[Debug] Main.SimulatedAnnealing:[163] | Solver done
+[Debug] Main.SimulatedAnnealing:[224] |  Instance solved and stored
+[Debug] Main.SimulatedAnnealing:[193] | Indexes to transfer
+[Debug] Main.SimulatedAnnealing:[339] | Indexes transfered
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[2, 1, 1, 1, 1, 1], :p => 3, :n => Any[1240, 463, 147, 342, 215, 128.0], :g => Any[4, 2, 7, 6, 1, 3], :β => 3) 

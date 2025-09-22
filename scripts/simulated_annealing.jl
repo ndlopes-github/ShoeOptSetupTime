@@ -62,10 +62,6 @@ function model_builder(instance; x_cnst_indxs = [], order_dict = order_dict)
 	@constraint(model, [i ∈ Is, j ∈ Js, k ∈ Ks[j]], t[i, j, k] ≤ n[j] * x[i, j, k])
 	@constraint(model, [i ∈ Is, j ∈ Js, k ∈ Ks[j]], t[i, j, k] ≥ x[i, j, k])
 
-	#@constraint(model,
-	#    [i ∈ Is, j ∈ Js, l ∈ Js, u ∈ Ks[j], v ∈ Ks[l]],
-	#    t[i, j, u] ≤ t[i, l, v] + n[j] * (1 - x[i, l, v]))
-
 	@constraint(model,
 		[i ∈ Is, l ∈ Js, v ∈ Ks[l]],
 		tbar[i] ≤ t[i, l, v] + maximum(n) * (1 - x[i, l, v]))

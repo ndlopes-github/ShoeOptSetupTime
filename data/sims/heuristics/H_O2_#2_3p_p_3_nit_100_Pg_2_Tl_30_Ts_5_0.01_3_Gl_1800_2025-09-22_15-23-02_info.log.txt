@@ -1,0 +1,62 @@
+[Info] Main.SimulatedAnnealing:[764] | Simulation date  2025-09-22T15:23:02.521
+[Info] Main.SimulatedAnnealing:[765] | Order Dictionary Dict{Symbol, Any}(:o => [1 1 1 2 1 1 1 1], :α => 1, :p => 3, :n => [215 463 970 1240 842 342 147 99], :Tf => 0.01, :Pg => 2, :Tj => 3, :Oid => "_p_3_nit_100_Pg_2_Tl_30_Ts_5_0.01_3_Gl_1800", :T0 => 5, :Tl => 30, :g => [1 2 3 4 5 6 7 8], :β => 3, :gitcommit => "6104a6e68e290526d9ab5e692047af659bb364b0", :Gl => 1800, :script => "data/settings/H_O2_#2_3p.jl#56", :Nit => 100)
+[Info] Main.SimulatedAnnealing:[459] | Instances group length 2
+[Info] Main.SimulatedAnnealing:[464] | Costs  Any[1592.0, 1836.0]
+[Info] Main.SimulatedAnnealing:[466] | Best cost 1592.0 at instances 1
+[Info] Main.SimulatedAnnealing:[769] | Simulated Annealing Init
+[Info] Main.SimulatedAnnealing:[770] | Initial instances: Any[Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[463, 842, 99], :g => Any[2, 5, 8], :β => 3), Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 2, 1, 1], :p => 3, :n => Any[215, 970, 1240, 342, 147], :g => Any[1, 3, 4, 6, 7], :β => 3)]
+[Info] Main.SimulatedAnnealing:[771] | Initial cost: 1592.0
+[Info] Main.SimulatedAnnealing:[772] | Initial Solutions (ts) and m values:
+[Info] Main.SimulatedAnnealing:[774] | 3×3 DataFrame
+ Row │ Job2,1   Job5,1   Job8,1
+     │ Float64  Float64  Float64
+─────┼───────────────────────────
+   1 │   364.0    364.0      0.0
+   2 │    99.0     99.0     99.0
+   3 │     0.0    379.0      0.0
+[Info] Main.SimulatedAnnealing:[775] | m value = 3.0
+[Info] Main.SimulatedAnnealing:[774] | 7×7 DataFrame
+ Row │ Job1,1   Job3,1   Job4,1   Job4,2   Job6,1   Job7,1   Job5,1
+     │ Float64  Float64  Float64  Float64  Float64  Float64  Float64
+─────┼───────────────────────────────────────────────────────────────
+   1 │     0.0    379.0      0.0    379.0      0.0      0.0    379.0
+   2 │     0.0    342.0      0.0    342.0    342.0      0.0      0.0
+   3 │   215.0    215.0      0.0    215.0      0.0      0.0      0.0
+   4 │     0.0     22.0      0.0     22.0      0.0      0.0      0.0
+   5 │     0.0     12.0      0.0     12.0      0.0     12.0      0.0
+   6 │     0.0      0.0    135.0    135.0      0.0    135.0      0.0
+   7 │     0.0      0.0      0.0      0.0      0.0      0.0      0.0
+[Info] Main.SimulatedAnnealing:[775] | m value = 6.0
+[Info] Main.SimulatedAnnealing:[785] | Elapsed time 10.754404604 seconds
+[Info] Main.SimulatedAnnealing:[668] | Simulated Annealing with 100 iterations
+[Info] Main.SimulatedAnnealing:[709] | Iter 0002 | cur  1592.0 | alt 1662.0 | best 1592.0 | Temp  05.000000 | Δ -1.40000e+01 | exp(Δ)  8.31529e-07| sa_timer 00000.0 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0003 | cur  1592.0 | alt 1592.0 | best 1592.0 | Temp  04.149549 | Δ +0.00000e+00 | exp(Δ)  1.00000e+00| sa_timer 00001.2 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0004 | cur  1592.0 | alt 1481.0 | best 1592.0 | Temp  04.149549 | Δ +2.67499e+01 | exp(Δ)  4.14316e+11| sa_timer 00003.4 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0005 | cur  1481.0 | alt 1617.0 | best 1481.0 | Temp  04.149549 | Δ -3.27746e+01 | exp(Δ)  5.83650e-15| sa_timer 00004.1 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0006 | cur  1481.0 | alt 1785.0 | best 1481.0 | Temp  03.443751 | Δ -8.82758e+01 | exp(Δ)  4.59512e-39| sa_timer 00007.0 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0007 | cur  1481.0 | alt 1657.0 | best 1481.0 | Temp  03.443751 | Δ -5.11071e+01 | exp(Δ)  6.37511e-23| sa_timer 00007.6 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0008 | cur  1481.0 | alt 1672.0 | best 1481.0 | Temp  03.443751 | Δ -5.54628e+01 | exp(Δ)  8.18134e-25| sa_timer 00008.3 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0009 | cur  1481.0 | alt 1657.0 | best 1481.0 | Temp  02.858003 | Δ -6.15815e+01 | exp(Δ)  1.80100e-27| sa_timer 00009.0 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0010 | cur  1481.0 | alt 1672.0 | best 1481.0 | Temp  02.858003 | Δ -6.68299e+01 | exp(Δ)  9.46571e-30| sa_timer 00009.7 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0011 | cur  1481.0 | alt 1657.0 | best 1481.0 | Temp  02.858003 | Δ -6.15815e+01 | exp(Δ)  1.80100e-27| sa_timer 00010.4 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0012 | cur  1481.0 | alt 1568.0 | best 1481.0 | Temp  02.371885 | Δ -3.66797e+01 | exp(Δ)  1.17547e-16| sa_timer 00011.0 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0013 | cur  1481.0 | alt 1715.0 | best 1481.0 | Temp  02.371885 | Δ -9.86557e+01 | exp(Δ)  1.42681e-43| sa_timer 00012.0 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0014 | cur  1481.0 | alt 1592.0 | best 1481.0 | Temp  02.371885 | Δ -4.67982e+01 | exp(Δ)  4.74012e-21| sa_timer 00012.4 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0015 | cur  1481.0 | alt 1506.0 | best 1481.0 | Temp  01.968451 | Δ -1.27003e+01 | exp(Δ)  3.05007e-06| sa_timer 00013.4 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0016 | cur  1481.0 | alt 1544.0 | best 1481.0 | Temp  01.968451 | Δ -3.20049e+01 | exp(Δ)  1.26027e-14| sa_timer 00014.5 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0017 | cur  1481.0 | alt 1483.0 | best 1481.0 | Temp  01.968451 | Δ -1.01603e+00 | exp(Δ)  3.62030e-01| sa_timer 00015.7 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0018 | cur  1481.0 | alt 1896.0 | best 1481.0 | Temp  01.633636 | Δ -2.54034e+02 | exp(Δ)  4.72303e-111| sa_timer 00020.5 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0019 | cur  1481.0 | alt 1617.0 | best 1481.0 | Temp  01.633636 | Δ -8.32499e+01 | exp(Δ)  6.99916e-37| sa_timer 00029.6 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0020 | cur  1481.0 | alt 1657.0 | best 1481.0 | Temp  01.633636 | Δ -1.07735e+02 | exp(Δ)  1.62643e-47| sa_timer 00033.1 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0021 | cur  1481.0 | alt 1657.0 | best 1481.0 | Temp  01.355771 | Δ -1.29815e+02 | exp(Δ)  4.18667e-57| sa_timer 00033.9 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0022 | cur  1481.0 | alt 1700.0 | best 1481.0 | Temp  01.355771 | Δ -1.61532e+02 | exp(Δ)  7.04152e-71| sa_timer 00034.3 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0023 | cur  1481.0 | alt 1515.0 | best 1481.0 | Temp  01.355771 | Δ -2.50780e+01 | exp(Δ)  1.28461e-11| sa_timer 00035.6 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0024 | cur  1481.0 | alt 1785.0 | best 1481.0 | Temp  01.125168 | Δ -2.70182e+02 | exp(Δ)  4.58624e-118| sa_timer 00039.9 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0025 | cur  1481.0 | alt 1515.0 | best 1481.0 | Temp  01.125168 | Δ -3.02177e+01 | exp(Δ)  7.52680e-14| sa_timer 00041.2 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0026 | cur  1481.0 | alt 1597.0 | best 1481.0 | Temp  01.125168 | Δ -1.03096e+02 | exp(Δ)  1.68299e-45| sa_timer 00045.5 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0027 | cur  1481.0 | alt 1471.0 | best 1481.0 | Temp  00.933788 | Δ +1.07091e+01 | exp(Δ)  4.47601e+04| sa_timer 00046.2 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0028 | cur  1471.0 | alt 1597.0 | best 1471.0 | Temp  00.933788 | Δ -1.34934e+02 | exp(Δ)  2.50477e-59| sa_timer 00047.6 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0029 | cur  1471.0 | alt 1539.0 | best 1471.0 | Temp  00.933788 | Δ -7.28217e+01 | exp(Δ)  2.36558e-32| sa_timer 00048.4 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0030 | cur  1471.0 | alt 1604.0 | best 1471.0 | Temp  00.774959 | Δ -1.71622e+02 | exp(Δ)  2.92124e-75| sa_timer 00048.9 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0031 | cur  1471.0 | alt 1673.0 | best 1471.0 | Temp  00.774959 | Δ -2.60659e+02 | exp(Δ)  6.27087e-114| sa_timer 00049.9 |
+[Info] Main.SimulatedAnnealing:[709] | Iter 0032 | cur  1471.0 | alt 1604.0 | best 1471.0 | Temp  00.774959 | Δ -1.71622e+02 | exp(Δ)  2.92124e-75| sa_timer 00052.9 |
