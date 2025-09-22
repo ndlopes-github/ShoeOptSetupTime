@@ -13,7 +13,7 @@ using DrWatson
 # Jobs ID
 g = [1 2 3 4 5 6 7 8]
 # Number of molds available per job
-o = [1 1 2 2 1 1 1 1]
+o = [1 1 1 2 1 1 1 1]
 # Job Quantities
 n = [215 463 970 1240 842 342 147 99]
 
@@ -43,7 +43,7 @@ Gl= 1800
 
 # Gurobi parameters
 # Time limit (seconds)
-Tl = 20
+Tl = 30
 ######################################
 
 #######################################
