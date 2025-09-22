@@ -1,0 +1,5 @@
+[Debug] Main.SimulatedAnnealing:[447] | Simulated Annealing Initialization Function
+[Debug] Main.SimulatedAnnealing:[414] | Partitioned jobs in 1 groups
+[Debug] Main.SimulatedAnnealing:[30 ] |  Optimization model builder 
+[Debug] Main.SimulatedAnnealing:[81 ] | Model built
+[Debug] Main.SimulatedAnnealing:[100] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 2, 1, 1, 1, 1], :p => 3, :n => Any[215, 463, 970, 1240, 842, 342, 147, 99], :g => Any[1, 2, 3, 4, 5, 6, 7, 8], :β => 3) 
