@@ -21,6 +21,9 @@ This repository implements an optimization algorithm based on a forthcoming pape
 
 The code in this repository aims to replicate the algorithm described in the forthcoming paper. Our intention is to provide a practical implementation that can be used and tested by the community. As such, please consider this code as a work in progress, subject to further modifications and improvements.
 
+# Installation
+
+## Julia and DrWatson 
 
 This code base is using the [Julia Language](https://julialang.org/) and
 [DrWatson](https://juliadynamics.github.io/DrWatson.jl/stable/)
