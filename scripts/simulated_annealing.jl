@@ -1,7 +1,7 @@
 #= Copyright (C) 2024
 Nuno David Lopes.
 Created:  2024/04/09
-Last changed - N. Lopes: 2025/09/22 14:57:23
+Last changed - N. Lopes:2025/07/26 16:32:21
 =#
 module SimulatedAnnealing
 export run_sim
@@ -9,6 +9,7 @@ export run_sim
 using DrWatson
 @quickactivate "SoftIdea"
 using Logging, Dates, DataFrames, Gurobi, Random, JuMP, Combinatorics, Printf
+
 include(srcdir("loggers.jl"))
 
 
@@ -50,7 +51,7 @@ function model_builder(instance; x_cnst_indxs = [], order_dict = order_dict)
 	Ks = [[i for i ∈ 1:o[j]] for j ∈ 1:NJ]
 
 	@variable(model, 0 ≤ x[i ∈ Is, j ∈ Js, k ∈ Ks[j]] ≤ 1, Int)
-	@variable(model, t[i ∈ Is, j ∈ Js, k ∈ Ks[j]], Int)
+	@variable(model, t[i ∈ Is, j ∈ Js, k ∈ Ks[j]] ≤ sum(n), Int)
 	@variable(model, tbar[i ∈ Is])
 	@variable(model, y[i ∈ Is])
 
@@ -60,9 +61,15 @@ function model_builder(instance; x_cnst_indxs = [], order_dict = order_dict)
 	@constraint(model, [i in Is], sum(x[i, j, k] for j in Js, k ∈ Ks[j]) ≤ p)
 	@constraint(model, [i ∈ Is, j ∈ Js, k ∈ Ks[j]], t[i, j, k] ≤ n[j] * x[i, j, k])
 	@constraint(model, [i ∈ Is, j ∈ Js, k ∈ Ks[j]], t[i, j, k] ≥ x[i, j, k])
+
+	#@constraint(model,
+	#    [i ∈ Is, j ∈ Js, l ∈ Js, u ∈ Ks[j], v ∈ Ks[l]],
+	#    t[i, j, u] ≤ t[i, l, v] + n[j] * (1 - x[i, l, v]))
+
 	@constraint(model,
-		[i ∈ Is, j ∈ Js, l ∈ Js, u ∈ Ks[j], v ∈ Ks[l]],
-		t[i, j, u] ≤ t[i, l, v] + n[j] * (1 - x[i, l, v]))
+		[i ∈ Is, l ∈ Js, v ∈ Ks[l]],
+		tbar[i] ≤ t[i, l, v] + maximum(n) * (1 - x[i, l, v]))
+
 	@constraint(model,
 		[j ∈ Js, k ∈ Ks[j], i ∈ Is[1:end-2], q ∈ Is[i+2:end], l ∈ Is[i+1:q-1]],
 		x[l, j, k] ≥ x[i, j, k] + x[q, j, k] - 1)
@@ -490,36 +497,152 @@ function neighbour_partition!(instances, g, p, Pg)
 
 	counter = 0
 	max_counter = length(g)
+	#=
+		while counter < max_counter
+			counter += 1
+			@debug "Counter $counter for neighbour_partition"
+			jobid = rand(g)
+			for partition ∈ collect(permutations(instances[1:Pg]))
+				src = partition[1]
+				if length(partition) < 2
+					@debug "Only one partition available, skipping"
+					continue
+				end
+				dest = rand(partition[2:end])  # Randomly pick one of the remaining destinations
+				# Warning: Some restrictions to avoid moving/swaping jobs when multiple molds are available
+				if jobid ∈ src[:g]
+					if sum(src[:o]) > p
+						jobsrcindex = findfirst(==(jobid), src[:g])
+						if jobsrcindex === nothing
+							continue  # Try another partition
+						end
+						neighdiff = sum(src[:o]) - src[:o][jobsrcindex]
+						if neighdiff ≥ p
+							move_job!(src, dest, jobsrcindex)
+							return jobid
+						elseif neighdiff < p
+							countdiff = p - neighdiff
+							while countdiff > 0
+								eligible_jobs = findall(x -> dest[:o][x] ≤ countdiff, 1:length(dest[:o]))
+								if !isempty(eligible_jobs)
+									chosen_idx = rand(eligible_jobs)
+									move_job!(dest, src, chosen_idx)
+									countdiff -= dest[:o][chosen_idx]
+									if countdiff == 0
+										return jobid
+									end
+								else
+									break
+								end
+							end
+						end
+					elseif sum(src[:o]) == p
+						jobsrcindex = findfirst(==(jobid), src[:g])
+						if jobsrcindex === nothing
+							continue  # Try another partition
+						end
+						# Find all jobs in dest such that dest[:o][jobdestindex] == src[:o][jobsrcindex]
+						matching_dest_indices = findall(x -> dest[:o][x] == src[:o][jobsrcindex], 1:length(dest[:o]))
+						if !isempty(matching_dest_indices)
+							# Choose randomly one of them
+							jobdestindex = rand(matching_dest_indices)
+							# Switch jobs
+							switch_jobs!(src, dest, jobsrcindex, jobdestindex)
+							return jobid
+						end
+					end
+				end
+			end
+			=#
 
 	while counter < max_counter
 		counter += 1
 		@debug "Counter $counter for neighbour_partition"
+
 		jobid = rand(g)
+
 		for partition ∈ collect(permutations(instances[1:Pg]))
+			if length(partition) < 2
+				continue  # not enough instances to consider a source and a destination
+			end
+
 			src = partition[1]
-			dest = rand(partition[2:end])  # Randomly pick one of the remaining destinations
-            
-            # Warning: Some restrictions to avoid moving/swaping jobs when multiple molds are available
-			if jobid ∈ src[:g]
-				if sum(src[:o]) > p
-					jobsrcindex = findfirst(==(jobid), src[:g])
-					if sum(src[:o]) - src[:o][jobsrcindex] ≥ p
-						move_job!(src, dest, jobsrcindex)
-						return jobid
-					end
-				elseif sum(src[:o]) == p
-					jobid_dest = rand(dest[:g])
-					jobsrcindex = findfirst(==(jobid), src[:g])
-					jobdestindex = findfirst(==(jobid_dest), dest[:g])
-					if src[:o][jobsrcindex] == dest[:o][jobdestindex]
-						switch_jobs!(src, dest, jobsrcindex, jobdestindex)
-						return jobid
+			dest_candidates = partition[2:end]
+			if isempty(dest_candidates)
+				continue
+			end
+
+			dest = rand(dest_candidates)
+
+			# Check that src has jobid
+			jobsrcindex = findfirst(==(jobid), src[:g])
+			if jobsrcindex === nothing
+				continue
+			end
+
+			# CASE 1: src has more than p subjobs → direct move
+			if sum(src[:o]) > p
+				neighdiff = sum(src[:o]) - src[:o][jobsrcindex]
+
+				if neighdiff ≥ p
+					move_job!(src, dest, jobsrcindex)
+					@debug "Moved job $jobid from src to dest"
+					return jobid
+				else
+					# Try to rebalance from dest to src
+					countdiff = p - neighdiff
+					while countdiff > 0
+						eligible_jobs = findall(x -> dest[:o][x] ≤ countdiff, 1:length(dest[:o]))
+						if isempty(eligible_jobs)
+							break
+						end
+
+						chosen_idx = rand(eligible_jobs)
+						if chosen_idx > length(dest[:o])
+							@debug "chosen_idx out of bounds: $chosen_idx for dest[:o] of length $(length(dest[:o]))"
+							break
+						end
+						countdiff -= dest[:o][chosen_idx]
+						move_job!(dest, src, chosen_idx)
+						if countdiff ≤ 0
+							@debug "Rebalanced and moved job $jobid"
+							return jobid
+						end
 					end
 				end
+
+			# CASE 2: src has exactly p subjobs → try swap
+			elseif sum(src[:o]) == p
+				# Ensure jobsrcindex is valid
+				if jobsrcindex > length(src[:o])
+					@debug "jobsrcindex $jobsrcindex out of bounds for src[:o] of length $(length(src[:o]))"
+					continue
+				end
+
+				src_job_o = src[:o][jobsrcindex]
+				matching_dest_indices = findall(x -> dest[:o][x] == src_job_o, 1:length(dest[:o]))
+
+				if isempty(matching_dest_indices)
+					continue
+				end
+
+				jobdestindex = rand(matching_dest_indices)
+
+				if jobdestindex > length(dest[:g])
+					@debug "jobdestindex $jobdestindex out of bounds for dest[:g] of length $(length(dest[:g]))"
+					continue
+				end
+
+				switch_jobs!(src, dest, jobsrcindex, jobdestindex)
+				@debug "Switched job $jobid with dest job at index $jobdestindex"
+				return jobid
 			end
 		end
+
+		# If after all permutations no move is possible
+
 		if counter == max_counter
-			error("No available neighbours: EXIT")
+			error("No available neighbours $max_counter attempts: EXIT")
 		end
 	end
 end
@@ -629,7 +752,12 @@ function run_sim(; order_file = nothing)
 	end
 
 	include(datadir("settings", order_file))
-	prefix = datadir("sims/heuristics", order_file[1:end-3] * order_dict[:Oid])
+	prefix = nothing
+	if order_dict[:Pg] > 1
+		prefix = datadir("sims/heuristics", order_file[1:end-3] * order_dict[:Oid])
+	else
+		prefix = datadir("sims/exact", order_file[1:end-3] * order_dict[:Oid])
+	end
 
 	with_logger(demux_logger(prefix)) do
 		elapsed_time = @elapsed begin
