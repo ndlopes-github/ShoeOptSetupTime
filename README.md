@@ -112,7 +112,7 @@ Gl= 1800
 
 # Gurobi parameters
 # Time limit (seconds)
-Tl = 20
+Tl = 30
 ```
 
 ### Output
