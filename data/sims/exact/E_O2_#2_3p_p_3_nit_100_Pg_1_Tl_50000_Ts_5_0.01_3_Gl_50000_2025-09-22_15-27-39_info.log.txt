@@ -1,3 +1,25 @@
 [Info] Main.SimulatedAnnealing:[764] | Simulation date  2025-09-22T15:27:39.379
 [Info] Main.SimulatedAnnealing:[765] | Order Dictionary Dict{Symbol, Any}(:o => [1 1 1 2 1 1 1 1], :α => 1, :p => 3, :n => [215 463 970 1240 842 342 147 99], :Tf => 0.01, :Pg => 1, :Tj => 3, :Oid => "_p_3_nit_100_Pg_1_Tl_50000_Ts_5_0.01_3_Gl_50000", :T0 => 5, :Tl => 50000, :g => [1 2 3 4 5 6 7 8], :β => 3, :gitcommit => "feaa82515f692e3fb683374f27c671dd4bf8f2b4-dirty", :Gl => 50000, :script => "data/settings/E_O2_#2_3p.jl#56", :Nit => 100)
 [Info] Main.SimulatedAnnealing:[459] | Instances group length 1
+[Info] Main.SimulatedAnnealing:[464] | Costs  Any[1468.0]
+[Info] Main.SimulatedAnnealing:[466] | Best cost 1468.0 at instances 1
+[Info] Main.SimulatedAnnealing:[769] | Simulated Annealing Init
+[Info] Main.SimulatedAnnealing:[770] | Initial instances: Any[Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 2, 1, 1, 1, 1], :p => 3, :n => Any[215, 463, 970, 1240, 842, 342, 147, 99], :g => Any[1, 2, 3, 4, 5, 6, 7, 8], :β => 3)]
+[Info] Main.SimulatedAnnealing:[771] | Initial cost: 1468.0
+[Info] Main.SimulatedAnnealing:[772] | Initial Solutions (ts) and m values:
+[Info] Main.SimulatedAnnealing:[774] | 9×9 DataFrame
+ Row │ Job1,1   Job2,1   Job3,1   Job4,1   Job4,2   Job5,1   Job6,1   Job7,1   Job8,1
+     │ Float64  Float64  Float64  Float64  Float64  Float64  Float64  Float64  Float64
+─────┼─────────────────────────────────────────────────────────────────────────────────
+   1 │     0.0    147.0    147.0      0.0      0.0      0.0      0.0    147.0      0.0
+   2 │     0.0     14.0     14.0      0.0      0.0      0.0      0.0      0.0      0.0
+   3 │     0.0    302.0    302.0      0.0      0.0    302.0      0.0      0.0      0.0
+   4 │     0.0      0.0    507.0    507.0      0.0    507.0      0.0      0.0      0.0
+   5 │    33.0      0.0      0.0     33.0      0.0     33.0      0.0      0.0      0.0
+   6 │   182.0      0.0      0.0    182.0      0.0      0.0    182.0      0.0      0.0
+   7 │     0.0      0.0      0.0    160.0    160.0      0.0    160.0      0.0      0.0
+   8 │     0.0      0.0      0.0     99.0     99.0      0.0      0.0      0.0     99.0
+   9 │     0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0
+[Info] Main.SimulatedAnnealing:[775] | m value = 8.0
+[Info] Main.SimulatedAnnealing:[781] | Partition size is 1, no need to run simulated annealing
+[Info] Main.SimulatedAnnealing:[782] | Elapsed time 1053.893045038 seconds

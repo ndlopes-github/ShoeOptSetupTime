@@ -6,10 +6,13 @@ This repository implements an optimization algorithm based on a forthcoming pape
 
    > Title: Optimizing Parallel Job Scheduling with Simultaneous Interruptions: A Case Study in Shoe Sole Production
 
-   > Authors: J. O. Cerdeira 1, R. Enguiça 2,  N. Lopes 2
-   > 1- CMA, Department of Mathematics, NOVA University Lisbon; 
-     2- ISEL, Polytechnic of Lisbon, and CEMAT, University of Lisboa;
-
+   > Authors: 
+   > J. O. Cerdeira,
+   > CMA, Department of Mathematics, NOVA University Lisbon;
+   > R. Enguiça and  N. Lopes 
+   > ISEL, Polytechnic of Lisbon, and CEMAT, University of Lisboa;
+    
+   
    > Journal: Submitted [To appear]
 
    > Publication Date: [To appear]
@@ -73,7 +76,7 @@ To run the model, follow the steps below:
    ```
    $julia scripts/run_sims.jl
    ```
-      >   This command executes instances described in the settings file "H_O2_#2_3p.jl" (heuristic algorithm) and "E_O2_#2_3p.jl" (exact algorithm)  in data/settings dir.
+      >   This command executes instances described in the settings file "H_O2_#2_3p.jl" in data/settings/heuristics dir.
 
 ## Settings File
 
@@ -114,13 +117,13 @@ Gl= 1800
 # Time limit (seconds)
 Tl = 30
 ```
-+ This settings correspond to "H_O2_#2_3p.jl", which calls the heuristic algorithm. Set the parameter *Pg* to 1 and adjust the time limits for the solver in order to call the exact algorithm (check out "E_O2_#2_3p.jl"). 
++ This settings correspond to "H_O2_#2_3p.jl".
 
 ### Output
 
 After running the model, you can expect the following outputs:
 
-+ An info (and debug/warning) log  files located at data/sims/heuristics and data/sims/exact reflecting the heuristic and the optimal(exact) solution for the instances, respectively.
++ An info (and debug/warning) log  files located at *data/sims/heuristics* reflecting the solution for the instance.
 
 
 ### Troubleshooting
