@@ -120,7 +120,7 @@ Tl = 30
 
 After running the model, you can expect the following outputs:
 
-+ An info/debug/warning log  files located at data/sims/heuristics and data/sims/exact reflecting the heuristic and the optimal(exact) solution for the instances, respectively.
++ An info (and debug/warning) log  files located at data/sims/heuristics and data/sims/exact reflecting the heuristic and the optimal(exact) solution for the instances, respectively.
 
 
 ### Troubleshooting
