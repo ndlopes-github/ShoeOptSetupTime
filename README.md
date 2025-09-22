@@ -30,7 +30,6 @@ This code base is using the [Julia Language](https://julialang.org/) and
 to make a reproducible scientific project named
 > ShoeOptSetupTime
 
-It is authored by N.Lopes.
 
 To (locally) reproduce this project, do the following:
 
@@ -58,6 +57,8 @@ using DrWatson
 @quickactivate "ShoeOptSetupTime"
 ```
 which auto-activate the project and enable local path handling from DrWatson.
+
++ Note: An active Gurobi license is required to run the code as is. However, you can replace Gurobi with HiGHS, an open-source optimization solver. To do this, install the HiGHS.jl package and modify the solver settings in the scripts accordingly. Refer to the HiGHS documentation for detailed instructions.
 
 # USAGE
 
