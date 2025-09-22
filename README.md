@@ -6,7 +6,7 @@ This repository implements an optimization algorithm based on a forthcoming pape
 
    > Title: Optimizing Parallel Job Scheduling with Simultaneous Interruptions: A Case Study in Shoe Sole Production
 
-   > Authors: 
+   > Authors:<br> 
    > J. O. Cerdeira: 
    > CMA, Department of Mathematics, NOVA University Lisbon;<br>
    > R. Enguiça and  N. Lopes:
