@@ -40,7 +40,7 @@ To (locally) reproduce this project, do the following:
    git-history and may need to be downloaded independently.
 
 ```
-git clone https://github.com/yourusername/ShoeOptSetupTime.git
+git clone https://github.com/ndlopes-github/ShoeOptSetupTime.git
 ```
 
 2. Open a Julia console and do:
