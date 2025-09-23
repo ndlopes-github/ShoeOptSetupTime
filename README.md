@@ -36,8 +36,7 @@ to make a reproducible scientific project named
 
 To (locally) reproduce this project, do the following:
 
-1. Download or clone this code base. Notice that raw data are typically not included in the
-   git-history and may need to be downloaded independently.
+1. Download or clone this code base. 
 
 ```
 git clone https://github.com/ndlopes-github/ShoeOptSetupTime.git
