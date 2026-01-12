@@ -1,6 +1,6 @@
 # Parallel Machine Scheduling with Simultaneous Interruptions: A Case Study in Shoe Sole Production
 
-[![Julia 1.11+](https://img.shields.io/badge/Julia-1.11+-9558B2?logo=julia&logoColor=white)](https://julialang.org/)
+[![Julia 1.12+](https://img.shields.io/badge/Julia-1.12+-9558B2?logo=julia&logoColor=white)](https://julialang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen.svg)](#)
 
@@ -97,7 +97,7 @@ For more detailed examples, see [Usage](#usage) section.
 
 ## Prerequisites
 
-- Julia 1.11.3 or later
+- Julia 1.12 or later
 - Git
 
 ## Solver Requirements
@@ -371,4 +371,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ## 📧 Contact
 
 For questions or inquiries about this codebase or the associated paper, please contact:
-- **Nuno Lopes:** nuno.lopes@isel.pt
+- **Nuno Lopes:** nuno(one dot)lopes(at@)isel(one dot)pt
