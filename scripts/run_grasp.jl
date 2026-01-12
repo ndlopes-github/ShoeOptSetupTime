@@ -20,9 +20,6 @@ println("Running GRASP Algorithm")
 println("=" ^ 80)
 
 # Run GRASP with timing
-# HACK TO REMOVE OVERHEAD COMPILATION TIMES
-Grasp.run(order_dict);
-
 elapsed_time = @elapsed begin
     result = Grasp.run(order_dict);
 end

@@ -1,7 +1,7 @@
 #= Copyright (C) 2024
 Nuno David Lopes.
 Created:  2024/04/09
-Last changed - N. Lopes: 2026/01/08 12:29:57
+Last changed - N. Lopes: 2026/01/12 15:52:06
 =#
 
 using DrWatson
@@ -31,9 +31,6 @@ best_overall_max_sum = 0
 best_run_idx = 0
 total_time = 0.0
 run_times = Float64[]
-
-# HACK TO REMOVE COMPILATION TIMES OVERHEAD
-SimulatedAnnealing.run(order_dict; log_every=10)
 
 
 for run_idx in 1:NUM_RUNS

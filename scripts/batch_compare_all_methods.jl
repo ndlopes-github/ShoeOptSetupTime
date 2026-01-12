@@ -7,7 +7,8 @@ Comprehensive batch script to compare all methods:
 3. Simulated Annealing (E_* files, 100 runs)
 4. GRASP (E_* files, single run)
 
-Output: One LaTeX table per scenario (#1, #2, etc.)
+Output: One CSV table per scenario (#1, #2, etc.)
+Output: One CSV table with all scenarios
 =#
 
 using DrWatson
