@@ -63,6 +63,7 @@ julia --project scripts/run_sa.jl
 ```bash
 julia --project scripts/batch_compare_all_methods.jl --skip-milp --limit=1
 ```
+> Note: `--skip-milp` skips the exact MILP solver as it may take a long time for larger instances. See [Usage](#-usage) section for running MILP and other options.
 
 ### 3. Custom Instance
 
