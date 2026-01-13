@@ -148,7 +148,7 @@ Key packages include:
 
 The main scripts are located in the `scripts/` directory. Each algorithm has its own entry point.
 
-### 1️⃣ Split-Solve-Merge Algorithm (Novel Heuristic)
+### 1️⃣ MILP and Split-Solve-Merge Algorithm 
 
 Run the Split-Solve-Merge algorithm:
 
