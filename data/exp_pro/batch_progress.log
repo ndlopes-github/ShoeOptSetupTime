@@ -1,0 +1,5 @@
+# Batch comparison progress log
+# Format: Order,Scenario,P
+# Each line represents a completed instance
+# To restart from scratch, delete this file
+O2,2,3

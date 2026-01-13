@@ -1,0 +1,5 @@
+# Batch Comparison Error Log
+# Created: 2026-01-13 12:09:15
+# This file contains detailed error information for debugging
+# Each error entry includes timestamp, method, instance, error type, message, and stacktrace
+
