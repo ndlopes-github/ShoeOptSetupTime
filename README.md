@@ -148,73 +148,75 @@ Key packages include:
 
 The main scripts are located in the `scripts/` directory. Each algorithm has its own entry point.
 
-### 1️⃣ MILP Solver (Exact Solution)
+### 1️⃣ Split-Solve-Merge Algorithm (Novel Heuristic)
 
-Run the exact MILP formulation using an existing settings file:
+Run the Split-Solve-Merge algorithm:
 
 ```bash
-julia scripts/run_ssm_milp.jl
+# Default: runs heuristic instance (H_O2_#2_3p.jl)
+julia --project scripts/run_ssm_milp.jl
+
+# Run exact instance
+julia --project scripts/run_ssm_milp.jl exact
+
+# Run custom instance
+julia --project scripts/run_ssm_milp.jl --file=E_O1_#1_2p.jl
+
+# Show available options
+julia --project scripts/run_ssm_milp.jl --help
 ```
 
-This uses the settings from `data/settings/E_O2_#2_3p.jl` and provides optimal solutions (though may require significant computation time for large instances).
+The Split-Solve-Merge algorithm is a novel heuristic designed for large-scale instances. It partitions the problem, solves sub-problems independently using MILP, and merges the solutions.
 
-### 2️⃣ Split-Solve-Merge Algorithm (Novel Heuristic)
-
-```bash
-julia scripts/split_solve_merge_milp.jl
-```
-
-This runs the novel Split-Solve-Merge algorithm using settings from `data/settings/H_O2_#2_3p.jl`.
-
-### 3️⃣ Simulated Annealing
+### 2️⃣ Simulated Annealing
 
 ```bash
-julia scripts/run_sa.jl
+julia --project scripts/run_sa.jl
 ```
 
 Runs 100 independent simulated annealing trials and reports the best solution found.
 
-### 4️⃣ GRASP Algorithm
+### 3️⃣ GRASP Algorithm
 
 ```bash
-julia scripts/run_grasp.jl
+julia --project scripts/run_grasp.jl
 ```
 
 Runs the GRASP algorithm with parameters from the settings file.
 
-### 5️⃣ Greedy Algorithm
+### 4️⃣ Greedy Algorithm
 
 ```bash
-julia scripts/run_greedy.jl
+julia --project scripts/run_greedy.jl
 ```
 
 Runs a simple greedy constructive heuristic for quick baseline solutions.
 
-### 6️⃣ Comprehensive Batch Comparison
+### 5️⃣ Comprehensive Batch Comparison
 
 Compare all solution methods on all instances:
 
 ```bash
-julia scripts/batch_compare_all_methods.jl
+julia --project scripts/batch_compare_all_methods.jl
 ```
 
 **With options:**
 
 ```bash
 # Skip MILP (computationally expensive)
-julia scripts/batch_compare_all_methods.jl --skip-milp
+julia --project scripts/batch_compare_all_methods.jl --skip-milp
 
 # Process only first 5 instances (for testing)
-julia scripts/batch_compare_all_methods.jl --limit=5
+julia --project scripts/batch_compare_all_methods.jl --limit=5
 
 # Skip multiple methods
-julia scripts/batch_compare_all_methods.jl --skip-milp --skip-ssm
+julia --project scripts/batch_compare_all_methods.jl --skip-milp --skip-ssm
 
 # Override beta parameter
-julia scripts/batch_compare_all_methods.jl --beta=3
+julia --project scripts/batch_compare_all_methods.jl --beta=3
 
 # Show available options
-julia scripts/batch_compare_all_methods.jl --help
+julia --project scripts/batch_compare_all_methods.jl --help
 ```
 
 Output is saved to `data/exp_pro/` as CSV files with detailed comparisons.
