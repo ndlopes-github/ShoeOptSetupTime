@@ -144,82 +144,161 @@ Key packages include:
 
 # 📖 Usage
 
+All scripts include comprehensive built-in help and command-line options. Use `--help` to see available options for each script.
+
 ## Quick Start: Running Individual Algorithms
 
-The main scripts are located in the `scripts/` directory. Each algorithm has its own entry point.
+The main scripts are located in the `scripts/` directory. Each algorithm has its own entry point with flexible command-line options.
 
-### 1️⃣ MILP and Split-Solve-Merge Algorithm 
+### 1️⃣ Split-Solve-Merge Algorithm (Novel Heuristic)
 
-Run the Split-Solve-Merge algorithm:
+The Split-Solve-Merge algorithm is the **primary contribution** of this work - a novel heuristic specifically designed for large-scale instances.
 
 ```bash
-# Default: runs heuristic instance (H_O2_#2_3p.jl)
+# Show all available options
+julia --project scripts/run_ssm_milp.jl --help
+
+# Run with default heuristic instance (H_O2_#2_3p.jl)
 julia --project scripts/run_ssm_milp.jl
 
-# Run exact instance
+# Or explicitly specify heuristic mode
+julia --project scripts/run_ssm_milp.jl heuristic
+
+# Run exact MILP instance (E_O2_#2_3p.jl) - may take longer
 julia --project scripts/run_ssm_milp.jl exact
 
 # Run custom instance
-julia --project scripts/run_ssm_milp.jl --file=E_O1_#1_2p.jl
-
-# Show available options
-julia --project scripts/run_ssm_milp.jl --help
+julia --project scripts/run_ssm_milp.jl --file=custom_instance.jl
 ```
 
-The Split-Solve-Merge algorithm is a novel heuristic designed for large-scale instances. It partitions the problem, solves sub-problems independently using MILP, and merges the solutions.
+**When to use:**
+- Large instances where exact MILP is too slow
+- When `Pg > 1` (multi-stage partitioning)
+- For production-scale problems requiring good solutions quickly
 
 ### 2️⃣ Simulated Annealing
 
+Multiple independent SA runs provide statistical evidence of solution quality.
+
 ```bash
+# Show all available options
+julia --project scripts/run_sa.jl --help
+
+# Run with defaults (100 independent runs)
 julia --project scripts/run_sa.jl
+
+# Run with fewer trials for faster testing
+julia --project scripts/run_sa.jl --runs=20
+
+# Custom instance with specific configuration
+julia --project scripts/run_sa.jl --file=test_single_mold.jl --runs=50
+
+# Silent mode (no iteration logging, only final results)
+julia --project scripts/run_sa.jl --runs=10 --log-every=0
+
+# Frequent logging (every iteration)
+julia --project scripts/run_sa.jl --runs=5 --log-every=1
 ```
 
-Runs 100 independent simulated annealing trials and reports the best solution found.
+**Options:**
+- `--runs=N`: Number of independent SA trials (default: 100)
+- `--log-every=N`: Logging frequency per run (default: 10, use 0 for silent mode)
+- `--file=PATH`: Load custom instance from `data/settings/`
 
 ### 3️⃣ GRASP Algorithm
 
+Greedy Randomized Adaptive Search Procedure with local search.
+
 ```bash
+# Show all available options
+julia --project scripts/run_grasp.jl --help
+
+# Run with default settings from instance file
 julia --project scripts/run_grasp.jl
+
+# Override iteration count from command line
+julia --project scripts/run_grasp.jl --iterations=50
+
+# Custom instance with iteration override
+julia --project scripts/run_grasp.jl --file=custom_instance.jl --iterations=100
 ```
 
-Runs the GRASP algorithm with parameters from the settings file.
+**Options:**
+- `--iterations=N`: Override number of GRASP iterations from settings file
+- `--file=PATH`: Load custom instance from `data/settings/`
 
 ### 4️⃣ Greedy Algorithm
 
+Fast deterministic baseline heuristic - **only supports single-mold instances** (all `o[j] == 1`).
+
 ```bash
-julia --project scripts/run_greedy.jl
+# Show all available options
+julia --project scripts/run_greedy.jl --help
+
+# Run on single-mold instance
+julia --project scripts/run_greedy.jl --file=test_single_mold.jl
 ```
 
-Runs a simple greedy constructive heuristic for quick baseline solutions.
+**Important:** Greedy validates input and exits with clear error if multi-mold jobs are detected.
 
 ### 5️⃣ Comprehensive Batch Comparison
 
-Compare all solution methods on all instances:
+Compare all solution methods across all instances with detailed CSV output.
 
 ```bash
+# Show all available options
+julia --project scripts/batch_compare_all_methods.jl --help
+
+# Run all methods on all instances (WARNING: may take hours!)
 julia --project scripts/batch_compare_all_methods.jl
-```
 
-**With options:**
-
-```bash
-# Skip MILP (computationally expensive)
+# Skip computationally expensive exact MILP
 julia --project scripts/batch_compare_all_methods.jl --skip-milp
 
 # Process only first 5 instances (for testing)
 julia --project scripts/batch_compare_all_methods.jl --limit=5
 
-# Skip multiple methods
+# Skip multiple methods for faster comparison
 julia --project scripts/batch_compare_all_methods.jl --skip-milp --skip-ssm
 
-# Override beta parameter
+# Run only SA and GRASP
+julia --project scripts/batch_compare_all_methods.jl --skip-milp --skip-ssm
+
+# Override beta parameter for all instances
 julia --project scripts/batch_compare_all_methods.jl --beta=3
 
-# Show available options
-julia --project scripts/batch_compare_all_methods.jl --help
+# Test run: 1 instance, fast methods only
+julia --project scripts/batch_compare_all_methods.jl --limit=1 --skip-milp --skip-ssm
 ```
 
-Output is saved to `data/exp_pro/` as CSV files with detailed comparisons.
+**Options:**
+- `--limit=N, -l=N`: Process only first N instances
+- `--beta=VALUE, -b=VALUE`: Override β coefficient from settings files
+- `--only-file=PATH`: Run only instances listed in file (Order,Scenario,P format)
+- `--skip-milp`: Skip exact MILP solver
+- `--skip-ssm`: Skip Split-Solve-Merge algorithm
+- `--skip-sa`: Skip Simulated Annealing
+- `--skip-grasp`: Skip GRASP algorithm
+
+**Output:** Results saved to `data/exp_pro/` as CSV files with detailed method comparisons.
+
+## 📚 Algorithm Documentation
+
+All algorithm modules include comprehensive docstrings following Julia conventions:
+
+- **Function signatures** with type information
+- **Algorithm descriptions** with mathematical formulations where applicable
+- **Parameter explanations** with units and constraints
+- **Return value specifications** with types
+- **Usage examples** demonstrating typical use cases
+- **Cross-references** to related functions using `@ref`
+
+To view documentation for any function in the Julia REPL:
+```julia
+julia> include("scripts/split_solve_merge_milp.jl")
+julia> using .SplitSolveMergeMILP
+julia> ?SplitSolveMergeMILP.run
+```
 
 ## ⚙️ Configuration: Creating Settings Files
 
@@ -295,8 +374,41 @@ julia> SplitSolveMergeMILP.run(order_dict)
 ## 📊 Data and Instances
 
 The `data/exp_pro/` directory contains two real-world instances from the paper:
-- **E_O2_#2_3p.jl** - Instance used for exact/metaheuristic testing
-- **H_O2_#2_3p.jl** - Instance used for heuristic algorithm testing
+- **E_O2_#2_3p.jl** - Exact solver instance (Pg=1, longer time limits)
+- **H_O2_#2_3p.jl** - Heuristic instance (Pg=2, multi-stage partitioning)
+
+### Creating Test Instances
+
+For testing single-mold scenarios (required for Greedy algorithm):
+
+```julia
+# data/settings/test_single_mold.jl
+using DrWatson
+@quickactivate "ShoeOptSetupTime"
+
+g = [1 2 3 4 5]
+o = [1 1 1 1 1]  # All single mold
+n = [100 200 150 80 120]
+
+p = 3
+α = 1
+β = 6
+
+Pg = 1
+Nit = 10
+Tl = 30
+T0 = 5
+Tf = 0.01
+Tj = 3
+Gl = 1800
+solver_name = "Gurobi"
+
+# Create order_dict
+order_dict = @dict g n o p α β T0 Tf Tj Pg Nit Gl Tl solver_name
+const FILEBASENAME = splitext(basename(@__FILE__()))[1]
+order_dict[:Oid] = "$(FILEBASENAME)_p_$(p)_nit_$(Nit)_Pg_$(Pg)_Tl_$(Tl)_Ts_$(T0)_$(Tf)_$(Tj)_Gl_$(Gl)"
+@tag!(order_dict)
+```
 
 Results from experiments are saved in:
 - CSV comparison tables
@@ -329,21 +441,30 @@ Each run produces:
 ```
 ShoeOptSetupTime/
 ├── scripts/                          # Algorithm implementations
-│   ├── run_milp.jl                   # Exact MILP solver
-│   ├── split_solve_merge_milp.jl     # Novel Split-Solve-Merge algorithm
-│   ├── run_sa.jl                     # Simulated Annealing
-│   ├── run_grasp.jl                  # GRASP algorithm
-│   ├── run_greedy.jl                 # Greedy heuristic
-│   └── batch_compare_all_methods.jl  # Comprehensive comparison
+│   ├── run_ssm_milp.jl              # Split-Solve-Merge runner (with --help)
+│   ├── split_solve_merge_milp.jl    # Novel SSM algorithm module
+│   ├── run_sa.jl                    # Simulated Annealing runner (with --help)
+│   ├── simulated_annealing.jl       # SA algorithm module
+│   ├── run_grasp.jl                 # GRASP runner (with --help)
+│   ├── grasp.jl                     # GRASP algorithm module
+│   ├── run_greedy.jl                # Greedy runner (with --help)
+│   ├── batch_compare_all_methods.jl # Comprehensive comparison (with --help)
+│   └── run_milp.jl                  # Direct MILP solver
 ├── src/
-│   └── loggers.jl                    # Logging utilities
+│   └── loggers.jl                   # Logging utilities
 ├── data/
-│   ├── settings/                     # Problem instance definitions
-│   │   ├── E_O2_#2_3p.jl            # Exact solver instance
-│   │   └── H_O2_#2_3p.jl            # Heuristic solver instance
-│   └── exp_pro/                      # Experimental results
-├── Project.toml                      # Julia project manifest
-└── README.md                         # This file
+│   ├── settings/                    # Problem instance definitions
+│   │   ├── E_O2_#2_3p.jl           # Exact solver instance (Pg=1)
+│   │   ├── H_O2_#2_3p.jl           # Heuristic instance (Pg=2)
+│   │   └── test_single_mold.jl     # Example single-mold instance
+│   ├── exp_pro/                     # Experimental results (CSV files)
+│   └── sims/                        # Simulation logs
+│       ├── exact/                   # Logs for Pg=1 runs
+│       └── heuristics/              # Logs for Pg>1 runs
+├── Project.toml                     # Julia project dependencies
+├── Manifest.toml                    # Locked dependency versions
+├── LICENSE                          # MIT License
+└── README.md                        # This file
 ```
 
 ## 📚 Citation
