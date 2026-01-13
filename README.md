@@ -153,7 +153,7 @@ The main scripts are located in the `scripts/` directory. Each algorithm has its
 Run the exact MILP formulation using an existing settings file:
 
 ```bash
-julia scripts/run_milp.jl
+julia scripts/run_ssm_milp.jl
 ```
 
 This uses the settings from `data/settings/E_O2_#2_3p.jl` and provides optimal solutions (though may require significant computation time for large instances).
