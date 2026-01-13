@@ -12,7 +12,7 @@ This repository contains the implementation of novel optimization algorithms for
 
 **Authors:** J. Orestes Cerdeira, Ricardo Enguiça, and Nuno Lopes
 
-**Status:** To appear
+**Status:** Submitted
 
 ## 🏭 Problem Description
 
