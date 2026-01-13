@@ -14,20 +14,58 @@ using Logging, Dates, DataFrames, Gurobi, HiGHS, Random, JuMP, Combinatorics, Pr
 
 include(srcdir("loggers.jl"))
 
-
-
 """
-	model_builder(instance; x_cnst_indxs = [], order_dict)
+    model_builder(instance; x_cnst_indxs=[], order_dict)::Model
 
-Builds the optimization model using the given instance and optional constraints.
+Build a Mixed-Integer Linear Programming (MILP) model for the parallel machine scheduling problem.
 
 # Arguments
-- `instance`: The instance data for the model.
-- `x_cnst_indxs`: Optional constraints for the model.
-- `order_dict`: The dictionary with the order data.
+- `instance::Dict`: Instance data containing:
+  - `:g` - Job identifiers
+  - `:n` - Job quantities
+  - `:o` - Number of molds per job
+- `x_cnst_indxs::Vector=[]`: Constraint indices to fix specific x variables (used for sequential solving)
+- `order_dict::Dict`: Configuration dictionary with:
+  - `:α` - Penalty coefficient for maximum shelf load
+  - `:β` - Penalty coefficient for number of shelf levels
+  - `:p` - Number of parallel shelves (machines)
+  - `:Tl` - Time limit for solver (seconds)
+  - `:solver_name` - Solver to use ("Gurobi" or "HiGHS")
 
 # Returns
-- `model`: The built optimization model.
+- `Model`: Configured JuMP optimization model ready to be solved
+
+# Model Formulation
+
+## Decision Variables
+- `x[i,j,k]` ∈ {0,1}: Binary indicator if subjob (j,k) is assigned to shelf i
+- `t[i,j,k]` ∈ ℤ₊: Quantity of job j, mold k assigned to shelf i
+- `tbar[i]` ∈ ℝ₊: Maximum cumulative quantity on shelf i
+- `y[i]` ∈ {0,1}: Indicator if shelf i is used
+
+## Objective
+Minimize: Σᵢ (α × tbar[i] + β × y[i])
+
+## Constraints
+1. Job completion: Sum of quantities equals total requirement
+2. Shelf capacity: At most p subjobs per shelf
+3. Assignment consistency: Quantity constraints based on x
+4. Cumulative tracking: tbar captures maximum load
+5. Continuity: No gaps in shelf usage
+6. Fixed assignments: Optional x_cnst_indxs constraints
+
+# Solver Configuration
+
+## Gurobi
+- Time limit, threads, memory management
+- Presolve and sparsification enabled
+
+## HiGHS
+- Time limit and console logging
+
+# See Also
+- [`solver`](@ref) for solving the model
+- [`solve_and_store`](@ref) for combined build and solve
 """
 function model_builder(instance; x_cnst_indxs=[], order_dict)
     @debug " Optimization model builder "
@@ -101,16 +139,44 @@ end
 """
 	solver(model, instance; order_dict)
 
-Solves the given optimization model and returns the solution.
+Solves the JuMP optimization model and extracts solution details.
+
+This function optimizes the MILP formulation using the configured solver (Gurobi or HiGHS),
+extracts decision variables, computes objective values, and formats results for analysis.
+It handles both optimal and feasible solutions, providing appropriate warnings for suboptimal terminations.
 
 # Arguments
-- `model`: The optimization model to solve.
-- `instance`: The instance data for the model.
-- `order_dict`: The dictionary with the order data.
+- `model::JuMP.Model`: The built optimization model with variables and constraints.
+- `instance::Dict`: Instance data containing keys `:n` (job quantities), `:o` (molds per job), `:g` (job IDs).
+- `order_dict::Dict`: Configuration with keys `:α` (setup cost weight), `:β` (machine cost weight), `:p` (available shelves).
 
 # Returns
-- `table_dict`: A dictionary with the solution summary.
-- `sol_dict`: A dictionary with the detailed solution.
+- `table_dict::Dict`: Solution summary with keys:
+  - `:cost` - Total objective value
+  - `:cost_p` - Partial cost excluding last machine's setup
+  - `:m` - Number of machines used
+  - `:stime` - Solve time in seconds
+  - `:MiB` - Memory usage in MiB
+  - `:status` - Solver termination status
+- `sol_dict::Dict`: Detailed solution with keys:
+  - `:Dxf` - DataFrame of assignment variables (machines × job-molds)
+  - `:Dtf` - DataFrame of quantity variables (machines × job-molds)
+  - `:Idxs` - Tuple array of (job_id, mold) pairs
+  - `:m` - Number of machines as integer
+
+# Notes
+- Generates warnings if model terminates with suboptimal status
+- Memory usage measured via `Sys.maxrss()`
+- Uses `@debug` macros for detailed logging during solve process
+- See also: [`model_builder`](@ref)
+
+# Examples
+```julia
+instance = Dict(:n => [100, 80], :o => [2, 3], :g => [1, 2], ...)
+model = model_builder(instance; order_dict=order_dict)
+table_dict, sol_dict = solver(model, instance; order_dict=order_dict)
+println("Machines used: ", sol_dict[:m])
+```
 """
 function solver(model, instance; order_dict)
     @debug "Solver for Instance:  $instance "
@@ -185,18 +251,38 @@ end
 """
 	determine_transfer_indexes(df, sols_dict, i2, step, nshelves; order_dict)
 
-Determines the indexes of jobs to transfer based on the solution.
+Determines which jobs should be transferred from the current stage to the next.
+
+In the Split-Solve-Merge algorithm, when a machine in the current stage solution has unfilled
+shelves (i.e., fewer than `p` job-mold assignments), those jobs are transferred to the next stage
+to continue processing. This function identifies such jobs based on the last machine's assignments.
 
 # Arguments
-- `df`: The DataFrame with the solution summary.
-- `sols_dict`: The dictionary with the detailed solution.
-- `i2`: The instance to transfer jobs to.
-- `step`: The current step.
-- `nshelves`: The number of available shelves.
-- `order_dict`: The dictionary with the order data.
+- `df::DataFrame`: Solution summary table with cost and machine count per stage.
+- `sols_dict::Vector`: Detailed solutions for each stage, containing assignment and quantity matrices.
+- `i2::Dict`: Next stage instance to which jobs will be transferred.
+- `step::Int`: Current stage number (1-indexed).
+- `nshelves::Int`: Number of available shelves (`:p` parameter).
+- `order_dict::Dict`: Configuration parameters.
 
 # Returns
-- `indexes`: The indexes of jobs to transfer.
+- `indexes::Vector{Tuple{Int,Int}}`: List of (job_id, mold_number) pairs to transfer, or empty vector if no transfer needed.
+
+# Algorithm
+1. Extract last machine (row `m`) from assignment matrix `xᵢⱼ`
+2. If `sum(x[m,:]) < p`, collect jobs assigned to that machine
+3. Call `transfer_reminder_jobs!` to modify `i2` instance in-place
+4. Return constraint indexes for the next stage's model
+
+# Notes
+- Transfer only occurs when last machine is underutilized
+- See also: [`transfer_reminder_jobs!`](@ref), [`process_instances_group`](@ref)
+
+# Examples
+```julia
+indexes = determine_transfer_indexes(df, sols_dict, next_instance, 1, 15; order_dict=od)
+# Returns: [(1,1), (1,2), (3,1)] if these jobs need transfer
+```
 """
 function determine_transfer_indexes(df, sols_dict, i2, step, nshelves; order_dict)
     @unpack p = order_dict
@@ -219,18 +305,39 @@ end
 """
 	solve_and_store(instance, df, sols_dict, x_cnst_indxs = []; order_dict)
 
-Solves the given instance and stores the solution in the provided DataFrame and dictionary.
+Solves a single instance and stores results in the provided data structures.
+
+This is a convenience wrapper that builds the model, solves it, and appends results to the 
+tracking DataFrame and solutions dictionary. It also handles memory cleanup for large-scale runs.
 
 # Arguments
-- `instance`: The instance data for the model.
-- `df`: The DataFrame to store the solution summary.
-- `sols_dict`: The dictionary to store the detailed solution.
-- `x_cnst_indxs`: Optional constraints for the model.
-- `order_dict`: The dictionary with the order data.
+- `instance::Dict`: Instance data with keys `:n`, `:o`, `:g`, `:α`, `:β`, `:p`.
+- `df::DataFrame`: Accumulator for solution summaries (modified in-place).
+- `sols_dict::Vector`: Accumulator for detailed solutions (modified in-place).
+- `x_cnst_indxs::Vector{Tuple{Int,Int}}`: Optional. Assignment constraints from previous stage transfers (default: `[]`).
+- `order_dict::Dict`: Configuration parameters.
 
 # Returns
-- `df`: The updated DataFrame with the solution summary.
-- `sols_dict`: The updated dictionary with the detailed solution.
+- `df::DataFrame`: Updated with new row containing cost, machines, solve time, status.
+- `sols_dict::Vector`: Updated with new solution dictionary containing `Dxf`, `Dtf`, `Idxs`, `m`.
+
+# Side Effects
+- Calls [`model_builder`](@ref) to create JuMP model
+- Calls [`solver`](@ref) to optimize and extract results
+- Explicitly frees model memory via `empty!(model)` for memory efficiency
+
+# Notes
+- The `x_cnst_indxs` parameter enforces specific assignments (e.g., transferred jobs must be assigned to machine 1)
+- Used extensively in [`process_instances_group`](@ref) for multi-stage solves
+- See also: [`model_builder`](@ref), [`solver`](@ref)
+
+# Examples
+```julia
+df = DataFrame(:cost => [], :m => [], ...)
+sols = []
+df, sols = solve_and_store(instance, df, sols; order_dict=od)
+println("Total cost: ", df[end, :cost])
+```
 """
 function solve_and_store(instance, df, sols_dict, x_cnst_indxs=[]; order_dict)
     model = model_builder(instance; x_cnst_indxs=x_cnst_indxs, order_dict=order_dict)
@@ -258,15 +365,48 @@ end
 """
 	process_instances_group(instances_group; order_dict)
 
-Processes a group of instances and returns the costs and solutions.
+Processes a group of instances representing different stage permutations in the Split-Solve-Merge algorithm.
+
+For each permutation of instances (representing different processing stage orders), this function:
+1. Solves the first stage normally
+2. For subsequent stages (if `Pg > 1`), determines job transfers and solves with transfer constraints
+3. Computes total cost accounting for partial costs when jobs are transferred between stages
+
+The Split-Solve-Merge algorithm partitions jobs into stages and solves each stage sequentially,
+transferring underutilized jobs from one stage to the next for optimal resource usage.
 
 # Arguments
-- `instances_group`: The group of instances to process.
-- `order_dict`: The dictionary with the order data.
+- `instances_group::Vector{Vector{Dict}}`: Collection of instance permutations, where each permutation is a sequence of stage instances.
+- `order_dict::Dict`: Configuration with keys:
+  - `:p` - Available shelves per machine
+  - `:Pg` - Number of processing stages (partition groups)
 
 # Returns
-- `costs`: The list of costs for each instance.
-- `sols_dict_group`: The list of solution dictionaries for each instance.
+- `costs::Vector{Float64}`: Total cost for each permutation in `instances_group`.
+- `sols_dict_group::Vector{Vector{Dict}}`: Detailed solutions for each permutation (nested: permutation → stage → solution).
+
+# Algorithm
+- **Stage 1**: Solve normally without constraints
+- **Stages 2 to Pg**: 
+  1. Determine transferred jobs from previous stage
+  2. Add assignment constraints for transferred jobs
+  3. Solve current stage
+- **Cost Calculation**: Use `:cost_p` (partial) if jobs transferred to next stage, otherwise use `:cost`
+
+# Notes
+- If `Pg == 1`, only solves a single stage (exact MILP, no merging)
+- Transfer decisions based on shelf utilization in last machine of each stage
+- See also: [`determine_transfer_indexes`](@ref), [`solve_and_store`](@ref), [`simulated_annealing_init`](@ref)
+
+# Examples
+```julia
+instances_group = [
+    [inst1_perm1, inst2_perm1, inst3_perm1],
+    [inst2_perm2, inst1_perm2, inst3_perm2]
+]
+costs, sols = process_instances_group(instances_group; order_dict=od)
+best_cost, best_idx = findmin(costs)
+```
 """
 function process_instances_group(instances_group; order_dict)
     @unpack p, Pg = order_dict
@@ -335,15 +475,45 @@ end
 """
 	transfer_reminder_jobs!(dest, indexes, val)
 
-Transfers reminder jobs, if any, to the destination instance.
+Transfers reminder jobs to the destination instance, modifying it in-place.
+
+When a stage's last machine has underutilized shelves, jobs assigned to it are transferred
+to the next stage for continued processing. This function adds those jobs to the destination
+instance's job lists and returns constraint indexes to enforce their assignment in the next solve.
 
 # Arguments
-- `dest`: The destination instance.
-- `indexes`: The indexes of jobs to transfer.
-- `val`: The value to assign to the transferred jobs.
+- `dest::Dict`: Destination instance to be modified. Must have keys `:g`, `:o`, `:n` (all vectors).
+- `indexes::Vector{Tuple{Int,Int}}`: List of (job_id, mold_number) pairs to transfer.
+- `val::Float64`: Quantity value to assign to each transferred job in `:n`.
 
 # Returns
-- `x_indxs`: The updated list of indexes.
+- `x_indxs::Vector{Tuple{Int,Int}}`: Constraint indexes `(j, k)` for the destination model, ensuring transferred jobs are assigned to machine 1.
+
+# Side Effects
+- Modifies `dest[:g]` by appending unique job IDs from `indexes`
+- Modifies `dest[:o]` by appending mold counts per transferred job
+- Modifies `dest[:n]` by appending quantities (based on `val` and mold counts)
+
+# Algorithm
+1. Extract unique job IDs from `indexes`
+2. Count mold occurrences per job ID
+3. Compute transfer quantities: `val × mold_count`
+4. Append to `dest[:g]`, `dest[:o]`, `dest[:n]`
+5. Generate constraint indexes for all transferred job-molds
+
+# Notes
+- The `!` suffix indicates in-place modification
+- Transfer constraints force transferred jobs onto machine 1 in the next stage
+- See also: [`determine_transfer_indexes`](@ref), [`process_instances_group`](@ref)
+
+# Examples
+```julia
+dest_instance = Dict(:g => [1], :o => [2], :n => [50.0])
+indexes = [(2,1), (2,2), (3,1)]  # Jobs 2 and 3 with molds
+x_indxs = transfer_reminder_jobs!(dest_instance, indexes, 30.0)
+# dest_instance now has jobs [1, 2, 3] with updated :o and :n
+# x_indxs: [(2,1), (2,2), (3,1)] for constraint enforcement
+```
 """
 function transfer_reminder_jobs!(dest, indexes, val)
     x_indxs = []
@@ -373,12 +543,35 @@ end
 """
 	move_job!(src, dest, jobindex)
 
-Moves a job from the source instance to the destination instance.
+Moves a job from source instance to destination instance (in-place).
+
+Transfers all job attributes (`:g`, `:n`, `:o`) from the source instance to the destination,
+removing it from the source. Used during neighborhood generation in simulated annealing to
+rebalance job allocations across stages.
 
 # Arguments
-- `src`: The source instance.
-- `dest`: The destination instance.
-- `jobindex`: The index of the job to move.
+- `src::Dict`: Source instance with keys `:g`, `:o`, `:n` (all vectors).
+- `dest::Dict`: Destination instance with keys `:g`, `:o`, `:n` (all vectors).
+- `jobindex::Int`: Index of the job in `src` vectors to move (1-based).
+
+# Side Effects
+- Appends `src[:g][jobindex]`, `src[:o][jobindex]`, `src[:n][jobindex]` to `dest` vectors
+- Removes elements at `jobindex` from all `src` vectors
+
+# Notes
+- The `!` suffix indicates in-place modification
+- Used by [`neighbour_partition!`](@ref) during simulated annealing
+- Ensures job counts remain consistent: `length(src[:g]) == length(src[:o]) == length(src[:n])`
+- See also: [`switch_jobs!`](@ref), [`neighbour_partition!`](@ref)
+
+# Examples
+```julia
+src = Dict(:g => [1, 2, 3], :o => [2, 3, 1], :n => [100, 80, 50])
+dest = Dict(:g => [4], :o => [2], :n => [60])
+move_job!(src, dest, 2)  # Move job 2 from src to dest
+# src: :g => [1, 3], :o => [2, 1], :n => [100, 50]
+# dest: :g => [4, 2], :o => [2, 3], :n => [60, 80]
+```
 """
 function move_job!(src, dest, jobindex)
     for key in [:g, :n, :o]
@@ -393,13 +586,38 @@ end
 """
 	switch_jobs!(inst1, inst2, jobindex1, jobindex2)
 
-Swaps the jobs at `jobindex1` in `inst1` with `jobindex2` in `inst2`.
+Swaps jobs between two instances (in-place).
+
+Exchanges all job attributes (`:g`, `:n`, `:o`) at specified indices between two instances.
+Used during neighborhood generation when direct job moves would violate the minimum shelf
+constraint (`sum(o) ≥ p`).
 
 # Arguments
-- `inst1`: The first instance.
-- `inst2`: The second instance.
-- `jobindex1`: The index of the job in `inst1` to be swapped.
-- `jobindex2`: The index of the job in `inst2` to be swapped.
+- `inst1::Dict`: First instance with keys `:g`, `:o`, `:n` (all vectors).
+- `inst2::Dict`: Second instance with keys `:g`, `:o`, `:n` (all vectors).
+- `jobindex1::Int`: Index of the job in `inst1` to swap (1-based).
+- `jobindex2::Int`: Index of the job in `inst2` to swap (1-based).
+
+# Side Effects
+- Exchanges `inst1[:g][jobindex1] ↔ inst2[:g][jobindex2]`
+- Exchanges `inst1[:o][jobindex1] ↔ inst2[:o][jobindex2]`
+- Exchanges `inst1[:n][jobindex1] ↔ inst2[:n][jobindex2]`
+
+# Notes
+- The `!` suffix indicates in-place modification
+- Used by [`neighbour_partition!`](@ref) when `sum(src[:o]) == p` (exact shelf match)
+- Swaps preserve job counts in both instances
+- Typically swaps jobs with matching mold counts to maintain shelf feasibility
+- See also: [`move_job!`](@ref), [`neighbour_partition!`](@ref)
+
+# Examples
+```julia
+inst1 = Dict(:g => [1, 2], :o => [2, 3], :n => [100, 80])
+inst2 = Dict(:g => [3, 4], :o => [2, 2], :n => [60, 50])
+switch_jobs!(inst1, inst2, 2, 1)  # Swap job 2 in inst1 with job 3 in inst2
+# inst1: :g => [1, 3], :o => [2, 2], :n => [100, 60]
+# inst2: :g => [2, 4], :o => [3, 2], :n => [80, 50]
+```
 """
 function switch_jobs!(inst1, inst2, jobindex1, jobindex2)
     for key in [:g, :n, :o]
@@ -413,22 +631,46 @@ end
 """
 	partition_jobs(n, o, g, p, Pg)
 
-Partitions the jobs into groups such that each group has at least `p` subjobs.
+Randomly partitions jobs into `Pg` groups, each satisfying the minimum shelf constraint.
+
+Each group must contain at least `p` subjobs (molds) to meet the shelf availability constraint.
+Jobs are assigned randomly to groups until a valid partition is found. This is the initial
+partitioning step before the Split-Solve-Merge algorithm begins.
 
 # Arguments
-- `n`: A list of job sizes.
-- `o`: A list of subjob sizes corresponding to each job.
-- `g`: A list of job identifiers.
-- `p`: The minimum number of subjobs required in each group. (number of available shelves)
-- `Pg`: The number of groups
+- `n::Vector{Int}`: Job quantities (number of items to produce per job).
+- `o::Vector{Int}`: Number of molds per job.
+- `g::Vector{Int}`: Job identifiers.
+- `p::Int`: Minimum number of subjobs (molds) required per group (number of available shelves).
+- `Pg::Int`: Number of groups to create (partition count).
 
 # Returns
-- `ns`: A tuple containing lists of job sizes, one for each group.
-- `os`: A tuple containing lists of subjob sizes, one for each group.
-- `gs`: A tuple containing lists of job identifiers, one for each group.
+- `ns::Tuple{Vector{Int},...}`: Tuple of `Pg` vectors, each containing job quantities for one group.
+- `os::Tuple{Vector{Int},...}`: Tuple of `Pg` vectors, each containing mold counts for one group.
+- `gs::Tuple{Vector{Int},...}`: Tuple of `Pg` vectors, each containing job IDs for one group.
 
 # Throws
-- `error`: If partition is impossible (not enough subjobs)
+- `error`: If `sum(o) < p × Pg`, partition is infeasible (not enough total molds).
+
+# Algorithm
+1. Verify total molds ≥ required molds (`sum(o) ≥ p × Pg`)
+2. Randomly assign each job to one of `Pg` groups
+3. Check if all groups have ≥ `p` molds
+4. Repeat steps 2-3 until valid partition found
+
+# Notes
+- Uses random assignment, so results vary between calls
+- Used by [`simulated_annealing_init`](@ref) to create initial partition
+- See also: [`generate_instance_groups`](@ref), [`simulated_annealing_init`](@ref)
+
+# Examples
+```julia
+n = [100, 80, 60, 50]
+o = [2, 3, 2, 1]  # Total molds: 8
+g = [1, 2, 3, 4]
+ns, os, gs = partition_jobs(n, o, g, 3, 2)  # 2 groups, each ≥ 3 molds
+# Possible result: Group 1 has jobs [1,3], Group 2 has jobs [2,4]
+```
 """
 function partition_jobs(n, o, g, p, Pg)
     total_subjobs = sum(o)
@@ -474,15 +716,46 @@ end
 """
 	simulated_annealing_init(; order_dict)
 
-Initializes the simulated annealing process.
+Initializes the simulated annealing process for Split-Solve-Merge optimization.
+
+Creates an initial job partition, generates all permutations of processing stage orders,
+solves each permutation using the Split-Solve-Merge algorithm, and returns the best
+initial solution as the starting point for simulated annealing.
 
 # Arguments
-- `order_dict`: The dictionary with the order data.
+- `order_dict::Dict`: Configuration parameters with keys:
+  - `:g` - Job identifiers
+  - `:n` - Job quantities
+  - `:o` - Molds per job
+  - `:p` - Available shelves
+  - `:α`, `:β` - Cost weights
+  - `:Nit` - SA iterations
+  - `:Pg` - Number of partition groups (stages)
 
 # Returns
-- `instances`: The initialized instances.
-- `cost`: The initial cost.
-- `sols_dict`: The initial solutions dictionary.
+- `instances::Vector{Dict}`: Best instance partition (one dict per stage).
+- `cost::Float64`: Best total cost among all initial permutations.
+- `sols_dict::Vector{Dict}`: Detailed solutions for the best permutation.
+
+# Algorithm
+1. Call [`partition_jobs`](@ref) to create initial random partition
+2. Generate all permutations of stages via [`generate_instance_groups`](@ref)
+3. Solve each permutation with [`process_instances_group`](@ref)
+4. Return permutation with minimum total cost
+
+# Notes
+- For `Pg = 1`: Only one instance, no permutations (exact MILP solve)
+- For `Pg = 2`: 2 permutations (A→B, B→A)
+- For `Pg = 3`: 6 permutations (all orderings of 3 stages)
+- Logs all permutation costs via `@info` for debugging
+- See also: [`partition_jobs`](@ref), [`generate_instance_groups`](@ref), [`simulated_annealing`](@ref)
+
+# Examples
+```julia
+order_dict = Dict(:g => [1,2,3], :n => [100,80,60], :o => [2,3,2], :p => 4, :Pg => 2, ...)
+instances, cost, sols = simulated_annealing_init(; order_dict=order_dict)
+println("Initial cost: ", cost)
+```
 """
 function simulated_annealing_init(; order_dict)
     @unpack g, n, o, p, α, β, Nit, Pg = order_dict
@@ -521,15 +794,52 @@ end
 
 
 """
-Finds a valid job partition and moves it.
+	neighbour_partition!(instances, g, p, Pg)
+
+Generates a neighboring job partition by moving or swapping jobs between stages.
+
+This function implements the neighborhood structure for simulated annealing optimization.
+It modifies the current partition in-place by attempting to move or swap jobs while
+preserving the constraint that each stage must have at least `p` molds.
 
 # Arguments
-- `instances`: The current job instances.
-- `g`: Set of possible job IDs.
-- `p`: Partition size limit.
+- `instances::Vector{Dict}`: Current partition (one dict per stage), modified in-place.
+- `g::Vector{Int}`: Set of all possible job IDs in the problem.
+- `p::Int`: Minimum molds required per stage (shelf constraint).
+- `Pg::Int`: Number of partition groups (must be 2 or 3).
 
 # Returns
-- `jobid`: The selected job ID.
+- `jobid::Int`: The job ID that was moved or swapped.
+
+# Throws
+- `error`: If no valid neighbor found after `length(g)` attempts (partition is stuck).
+- `error`: If `Pg < 2` or `Pg > length(instances)` (unsupported partition size).
+
+# Algorithm
+For each job ID sampled randomly from `g`:
+1. Try all permutations of stages as (source, destination) pairs
+2. **Move Strategy** (if `sum(src[:o]) > p`):
+   - If removing job leaves ≥ `p` molds in source, move job to destination
+   - Otherwise, rebalance by moving jobs from destination to source until feasible
+3. **Swap Strategy** (if `sum(src[:o]) == p`):
+   - Find matching job in destination with same mold count
+   - Swap jobs to maintain feasibility in both stages
+
+# Notes
+- The `!` suffix indicates in-place modification of `instances`
+- Maximum attempts: `length(g)` (one try per job)
+- Uses [`move_job!`](@ref) and [`switch_jobs!`](@ref) for partition modifications
+- See also: [`simulated_annealing`](@ref), [`move_job!`](@ref), [`switch_jobs!`](@ref)
+
+# Examples
+```julia
+instances = [
+    Dict(:g => [1,2], :o => [2,3], :n => [100,80]),
+    Dict(:g => [3,4], :o => [2,2], :n => [60,50])
+]
+jobid = neighbour_partition!(instances, [1,2,3,4], 4, 2)
+# instances modified: job moved/swapped between stages
+```
 """
 function neighbour_partition!(instances, g, p, Pg)
 
@@ -693,19 +1003,53 @@ end
 """
 	simulated_annealing(input_instances, input_cost, input_sols_dict; order_dict)
 
-Performs an iteration of the simulated annealing process.
+Performs simulated annealing to optimize job partitioning in the Split-Solve-Merge algorithm.
+
+This function iteratively explores the solution space by generating neighboring partitions,
+evaluating their costs via the Split-Solve-Merge algorithm, and accepting or rejecting them
+based on the Metropolis criterion with exponential cooling.
 
 # Arguments
-- `input_instances`: The initial instances.
-- `input_cost`: The initial cost.
-- `input_sols_dict`: The initial solutions dictionary.
-- `order_dict`: The dictionary with the order data.
+- `input_instances::Vector{Dict}`: Initial partition from [`simulated_annealing_init`](@ref).
+- `input_cost::Float64`: Initial total cost.
+- `input_sols_dict::Vector{Dict}`: Initial detailed solutions.
+- `order_dict::Dict`: Configuration with keys:
+  - `:g`, `:p`, `:Pg` - Job parameters
+  - `:Nit` - Number of SA iterations
+  - `:T0`, `:Tf`, `:Tj` - Temperature parameters (initial, final, jump frequency)
+  - `:Gl` - Global time limit in seconds
 
 # Returns
-- `best_instances`: The best instances found.
-- `best_cost`: The best cost found.
-- `best_sols_dict`: The best solutions dictionary found.
-- `cur_costs_list`: The list of current costs after each iteration.
+- `best_instances::Vector{Dict}`: Best partition found during search.
+- `best_cost::Float64`: Best total cost achieved.
+- `best_sols_dict::Vector{Dict}`: Detailed solutions for best partition.
+- `cur_costs_list::Vector{Float64}`: Cost trajectory over iterations (for convergence analysis).
+
+# Algorithm
+1. **Cooling Schedule**: Exponential cooling `T = T₀ × γⁱ` where `γ = (Tf/T₀)^(1/Nit)`, updated every `Tj` iterations
+2. **Iteration Loop**:
+   - Generate neighbor via [`neighbour_partition!`](@ref)
+   - Evaluate all permutations via [`process_instances_group`](@ref)
+   - Compute Δ = (cur_cost - alt_cost) / T
+   - **Accept** if alt_cost ≤ cur_cost
+   - **Metropolis Accept** if exp(Δ) > rand() (uphill moves)
+   - Update best if improvement found
+3. **Termination**: After `Nit` iterations or `Gl` seconds elapsed
+
+# Notes
+- Uses deep copies to preserve solution history
+- Logs detailed iteration info: costs, temperature, acceptance probability
+- Tracks elapsed time and stops early if global time limit exceeded
+- See also: [`simulated_annealing_init`](@ref), [`neighbour_partition!`](@ref), [`run`](@ref)
+
+# Examples
+```julia
+init_inst, init_cost, init_sols = simulated_annealing_init(; order_dict=od)
+best_inst, best_cost, best_sols, costs = simulated_annealing(
+    init_inst, init_cost, init_sols; order_dict=od
+)
+println("Improvement: ", init_cost - best_cost)
+```
 """
 function simulated_annealing(input_instances, input_cost, input_sols_dict; order_dict)
     @unpack g, p, Nit, Pg, Gl = order_dict
@@ -786,10 +1130,53 @@ end
 """
 	run(order_dict)
 
-Run the algorithm. Receives order_dict as a parameter.
+Main entry point for the Split-Solve-Merge algorithm with simulated annealing optimization.
+
+Executes the complete Split-Solve-Merge workflow: initializes job partitioning, runs simulated
+annealing to optimize partition ordering (if `Pg > 1`), and logs all results to disk with
+appropriate directory structure based on solution method (exact vs. heuristic).
 
 # Arguments
-- `order_dict`: The dictionary with the order data.
+- `order_dict::Dict`: Complete configuration dictionary with keys:
+  - `:g`, `:n`, `:o` - Job data (IDs, quantities, molds)
+  - `:p`, `:α`, `:β` - Problem parameters
+  - `:Pg` - Partition groups (1 = exact MILP, >1 = heuristic Split-Solve-Merge)
+  - `:Nit`, `:T0`, `:Tf`, `:Tj`, `:Gl` - SA parameters
+  - `:Oid` - Order identifier for file naming
+
+# Returns
+- `cost::Float64`: Final optimized total cost.
+- `m::Int`: Total number of machines used across all stages.
+- `elapsed_time::Float64`: Total execution time in seconds.
+
+# Algorithm
+1. **Initialization**: Call [`simulated_annealing_init`](@ref) to create initial partition and evaluate permutations
+2. **Single Stage (Pg = 1)**: Return immediately (exact MILP, no SA needed)
+3. **Multi-Stage (Pg > 1)**: Run [`simulated_annealing`](@ref) to optimize partition
+4. **Cost Aggregation**: Sum costs across stages, accounting for job transfers (use `:cost_p` when jobs transferred)
+5. **Logging**: Save all results to `data/sims/exact/` or `data/sims/heuristics/` via demux logger
+
+# Side Effects
+- Creates log files in `datadir("sims/heuristics", Oid)` or `datadir("sims/exact", Oid)`
+- Logs include: order parameters, partition details, solution matrices, costs, timings
+
+# Notes
+- Uses DrWatson's `datadir()` for reproducible directory structure
+- Logs via `demux_logger()` for multiple output streams
+- Machine count `m` calculated by checking shelf utilization in last machines
+- See also: [`simulated_annealing_init`](@ref), [`simulated_annealing`](@ref)
+
+# Examples
+```julia
+order_dict = Dict(
+    :g => [1,2,3], :n => [100,80,60], :o => [2,3,2],
+    :p => 4, :α => 1.0, :β => 10.0, :Pg => 2, :Nit => 100,
+    :T0 => 100.0, :Tf => 0.01, :Tj => 5, :Gl => 3600.0,
+    :Oid => "order_001"
+)
+cost, machines, time = run(order_dict)
+println("Total cost: \$cost using \$machines machines in \$time seconds")
+```
 """
 function run(order_dict)
     prefix = nothing

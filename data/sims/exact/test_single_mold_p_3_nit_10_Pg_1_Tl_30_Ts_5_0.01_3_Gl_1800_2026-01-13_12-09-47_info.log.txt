@@ -1,0 +1,21 @@
+[Info] Main.SplitSolveMergeMILP:[1191] | Simulation date  2026-01-13T12:09:47.970
+[Info] Main.SplitSolveMergeMILP:[1192] | Order Dictionary Dict{Symbol, Any}(:o => [1 1 1 1 1], :α => 1, :p => 3, :n => [100 200 150 80 120], :Tf => 0.01, :Pg => 1, :Tj => 3, :Oid => "test_single_mold_p_3_nit_10_Pg_1_Tl_30_Ts_5_0.01_3_Gl_1800", :T0 => 5, :Tl => 30, :g => [1 2 3 4 5], :β => 6, :gitcommit => "4ce654d246cf5d3cc1dbe9812e4e81729efce3bb-dirty", :Gl => 1800, :script => "data/settings/test_single_mold.jl#42", :Nit => 10, :solver_name => "Gurobi")
+[Info] Main.SplitSolveMergeMILP:[774] | Instances group length 1
+[Info] Main.SplitSolveMergeMILP:[779] | Costs  Any[260.0]
+[Info] Main.SplitSolveMergeMILP:[781] | Best cost 260.0 at instances 1
+[Info] Main.SplitSolveMergeMILP:[1196] | Simulated Annealing Init
+[Info] Main.SplitSolveMergeMILP:[1197] | Initial instances: Dict{Symbol, Any}[Dict(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[100, 200, 150, 80, 120], :g => Any[1, 2, 3, 4, 5], :β => 6)]
+[Info] Main.SplitSolveMergeMILP:[1198] | Initial cost: 260.0
+[Info] Main.SplitSolveMergeMILP:[1199] | Initial Solutions (ts) and m values:
+[Info] Main.SplitSolveMergeMILP:[1201] | 5×5 DataFrame
+ Row │ Job1,1   Job2,1   Job3,1   Job4,1   Job5,1
+     │ Float64  Float64  Float64  Float64  Float64
+─────┼─────────────────────────────────────────────
+   1 │    80.0     80.0     -0.0     80.0     -0.0
+   2 │    20.0     20.0     20.0     -0.0     -0.0
+   3 │    -0.0    100.0    100.0     -0.0    100.0
+   4 │    -0.0      0.0     20.0     -0.0     20.0
+   5 │    -0.0     -0.0     10.0     -0.0     -0.0
+[Info] Main.SplitSolveMergeMILP:[1202] | m value = 5.0
+[Info] Main.SplitSolveMergeMILP:[1208] | Partition size is 1, no need to run simulated annealing
+[Info] Main.SplitSolveMergeMILP:[1209] | Elapsed time 10.778654837 seconds

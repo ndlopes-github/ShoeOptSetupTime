@@ -1,0 +1,6 @@
+[Warn] Main.SplitSolveMergeMILP:[194] | The model was not solved correctly:
+termination_status : INTERRUPTED
+primal_status      : FEASIBLE_POINT
+dual_status        : NO_SOLUTION
+raw_status         : Optimization was terminated by the user.
+

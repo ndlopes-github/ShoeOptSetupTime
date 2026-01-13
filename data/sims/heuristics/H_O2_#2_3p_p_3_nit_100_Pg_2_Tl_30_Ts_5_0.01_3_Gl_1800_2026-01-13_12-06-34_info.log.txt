@@ -1,0 +1,5 @@
+[Info] Main.SplitSolveMergeMILP:[1191] | Simulation date  2026-01-13T12:06:34.727
+[Info] Main.SplitSolveMergeMILP:[1192] | Order Dictionary Dict{Symbol, Any}(:o => [1 1 1 2 1 1 1 1], :α => 1, :p => 3, :n => [215 463 970 1240 842 342 147 99], :Tf => 0.01, :Pg => 2, :Tj => 3, :Oid => "H_O2_#2_3p_p_3_nit_100_Pg_2_Tl_30_Ts_5_0.01_3_Gl_1800", :T0 => 5, :Tl => 30, :g => [1 2 3 4 5 6 7 8], :β => 6, :gitcommit => "4ce654d246cf5d3cc1dbe9812e4e81729efce3bb-dirty", :Gl => 1800, :script => "data/settings/H_O2_#2_3p.jl#58", :Nit => 100, :solver_name => "Gurobi")
+[Info] Main.SplitSolveMergeMILP:[774] | Instances group length 2
+[Info] Main.SplitSolveMergeMILP:[779] | Costs  Any[1860.0, 1842.0]
+[Info] Main.SplitSolveMergeMILP:[781] | Best cost 1842.0 at instances 2

@@ -1,0 +1,2 @@
+Order,Scenario,P,MILP_Cost,MILP_Slots,MILP_Time,SSM_Cost,SSM_Slots,SSM_Time,SA_Cost,SA_Slots,SA_Time,GRASP_Cost,GRASP_Slots,GRASP_Time
+O2,2,3,Skipped,Skipped,Skipped,Skipped,Skipped,Skipped,1497,9,3.3920644870000016,1504,9,0.986014297

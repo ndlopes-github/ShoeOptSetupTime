@@ -1,0 +1,47 @@
+[Debug] Main.SplitSolveMergeMILP:[762] | Simulated Annealing Initialization Function
+[Debug] Main.SplitSolveMergeMILP:[698] | Group sizes (subjobs): [4.0, 5.0]
+[Debug] Main.SplitSolveMergeMILP:[71 ] |  Optimization model builder 
+[Debug] Main.SplitSolveMergeMILP:[134] | Model built
+[Debug] Main.SplitSolveMergeMILP:[182] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1], :p => 3, :n => Any[215, 1240, 842], :g => Any[1, 4, 5], :β => 6) 
+[Debug] Main.SplitSolveMergeMILP:[207] | ("  objective value = ", 860.0)
+[Debug] Main.SplitSolveMergeMILP:[210] | ("  m value = ", 3.0)
+[Debug] Main.SplitSolveMergeMILP:[245] | Solver done
+[Debug] Main.SplitSolveMergeMILP:[359] |  Instance solved and stored
+[Debug] Main.SplitSolveMergeMILP:[71 ] |  Optimization model builder 
+[Debug] Main.SplitSolveMergeMILP:[134] | Model built
+[Debug] Main.SplitSolveMergeMILP:[182] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[463, 970, 342, 147, 99], :g => Any[2, 3, 6, 7, 8], :β => 6) 
+[Debug] Main.SplitSolveMergeMILP:[207] | ("  objective value = ", 1000.0)
+[Debug] Main.SplitSolveMergeMILP:[210] | ("  m value = ", 5.0)
+[Debug] Main.SplitSolveMergeMILP:[245] | Solver done
+[Debug] Main.SplitSolveMergeMILP:[359] |  Instance solved and stored
+[Debug] Main.SplitSolveMergeMILP:[467] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime     MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any       Any     Any
+─────┼───────────────────────────────────────────────────────────────
+   1 │ 1    6    3    3.0  860.0   234.0   0.012521  960.9   OPTIMAL
+   2 │ 1    6    3    5.0  1000.0  976.0   0.065048  1004.2  OPTIMAL
+[Debug] Main.SplitSolveMergeMILP:[71 ] |  Optimization model builder 
+[Debug] Main.SplitSolveMergeMILP:[134] | Model built
+[Debug] Main.SplitSolveMergeMILP:[182] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[463, 970, 342, 147, 99], :g => Any[2, 3, 6, 7, 8], :β => 6) 
+[Debug] Main.SplitSolveMergeMILP:[207] | ("  objective value = ", 1000.0)
+[Debug] Main.SplitSolveMergeMILP:[210] | ("  m value = ", 5.0)
+[Debug] Main.SplitSolveMergeMILP:[245] | Solver done
+[Debug] Main.SplitSolveMergeMILP:[359] |  Instance solved and stored
+[Debug] Main.SplitSolveMergeMILP:[298] | Indexes to transfer
+[Debug] Main.SplitSolveMergeMILP:[538] | Indexes transfered
+[Debug] Main.SplitSolveMergeMILP:[71 ] |  Optimization model builder 
+[Debug] Main.SplitSolveMergeMILP:[134] | Model built
+[Debug] Main.SplitSolveMergeMILP:[182] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1, 1], :p => 3, :n => Any[215, 1240, 842, 18.0], :g => Any[1, 4, 5, 3], :β => 6) 
+[Debug] Main.SplitSolveMergeMILP:[207] | ("  objective value = ", 866.0)
+[Debug] Main.SplitSolveMergeMILP:[210] | ("  m value = ", 4.0)
+[Debug] Main.SplitSolveMergeMILP:[245] | Solver done
+[Debug] Main.SplitSolveMergeMILP:[359] |  Instance solved and stored
+[Debug] Main.SplitSolveMergeMILP:[465] | Jobs transferred to stages: Any[2]
+[Debug] Main.SplitSolveMergeMILP:[467] | Solution Summary 2×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime      MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any        Any     Any
+─────┼────────────────────────────────────────────────────────────────
+   1 │ 1    6    3    5.0  1000.0  976.0   0.0615151  1025.3  OPTIMAL
+   2 │ 1    6    3    4.0  866.0   645.0   0.012145   1025.3  OPTIMAL
+[Debug] Main.SplitSolveMergeMILP:[783] | Instances  Any[Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[463, 970, 342, 147, 99], :g => Any[2, 3, 6, 7, 8], :β => 6), Dict{Symbol, Any}(:α => 1, :o => Any[1, 2, 1], :p => 3, :n => Any[215, 1240, 842], :g => Any[1, 4, 5], :β => 6)]
+[Debug] Main.SplitSolveMergeMILP:[787] | Instance permutation 1

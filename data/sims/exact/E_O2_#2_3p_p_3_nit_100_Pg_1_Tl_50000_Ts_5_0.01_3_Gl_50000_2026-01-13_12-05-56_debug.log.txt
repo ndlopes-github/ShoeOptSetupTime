@@ -1,0 +1,14 @@
+[Debug] Main.SplitSolveMergeMILP:[762] | Simulated Annealing Initialization Function
+[Debug] Main.SplitSolveMergeMILP:[698] | Group sizes (subjobs): [9.0]
+[Debug] Main.SplitSolveMergeMILP:[71 ] |  Optimization model builder 
+[Debug] Main.SplitSolveMergeMILP:[134] | Model built
+[Debug] Main.SplitSolveMergeMILP:[182] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 2, 1, 1, 1, 1], :p => 3, :n => Any[215, 463, 970, 1240, 842, 342, 147, 99], :g => Any[1, 2, 3, 4, 5, 6, 7, 8], :β => 6) 
+[Debug] Main.SplitSolveMergeMILP:[207] | ("  objective value = ", 1492.0)
+[Debug] Main.SplitSolveMergeMILP:[210] | ("  m value = ", 8.0)
+[Debug] Main.SplitSolveMergeMILP:[245] | Solver done
+[Debug] Main.SplitSolveMergeMILP:[359] |  Instance solved and stored
+[Debug] Main.SplitSolveMergeMILP:[432] | Solution Summary 1×9 DataFrame
+ Row │ α    β    p    m    cost    cost_p  stime    MiB     status
+     │ Any  Any  Any  Any  Any     Any     Any      Any     Any
+─────┼──────────────────────────────────────────────────────────────────
+   1 │ 1    6    3    8.0  1492.0  1144.0  11.5343  1168.2  INTERRUPTED
