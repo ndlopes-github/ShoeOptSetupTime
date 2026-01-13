@@ -30,6 +30,34 @@ include(scriptsdir("split_solve_merge_milp.jl"))
 using .SplitSolveMergeMILP
 
 # Parse command-line arguments
+"""
+    parse_arguments()::Tuple
+
+Parse command-line arguments for batch comparison script.
+
+# Supported Arguments
+- `--limit=N, -l=N`: Process only first N instances (for testing/dry runs)
+- `--beta=VALUE, -b=VALUE`: Override beta penalty value from settings files
+- `--only-file=PATH`: Run only instances listed in file (Order,Scenario,P format)
+- `--skip-milp`: Skip MILP solver (mark as Skipped in output)
+- `--skip-ssm`: Skip Split-Solve-Merge heuristic (mark as Skipped in output)
+- `--skip-sa`: Skip Simulated Annealing (mark as Skipped in output)
+- `--skip-grasp`: Skip GRASP (mark as Skipped in output)
+- `--help, -h`: Display help message and exit
+
+# Returns
+- `(dry_run_limit, skip_methods, beta_override, only_file)` tuple:
+  - `dry_run_limit::Union{Int, Nothing}`: Instance limit or nothing if not set
+  - `skip_methods::Set{String}`: Set of method names to skip
+  - `beta_override::Union{Float64, Nothing}`: Beta value override or nothing
+  - `only_file::Union{String, Nothing}`: Path to whitelist file or nothing
+
+# Examples
+```julia
+# julia batch_compare_all_methods.jl --limit=5 --skip-milp
+# Process only first 5 instances, skipping MILP solver
+```
+"""
 function parse_arguments()
     dry_run_limit = nothing
     skip_methods = Set{String}()
@@ -59,7 +87,7 @@ function parse_arguments()
             println("Usage: julia batch_compare_all_methods.jl [OPTIONS]")
             println("Options:")
             println("  --limit=N, -l=N    Process only first N instances (for testing)")
-            println("  --beta=VALUE, -b=VALUE  Override beta value from settings files")
+            println("  --beta=VALUE, -b=VALUE  Override beta valuComplete with a help system if e from settings files")
             println("  --only-file=PATH   Run only instances listed in file (Order,Scenario,P format)")
             println("  --skip-milp        Skip MILP solver (mark as Skipped in output)")
             println("  --skip-ssm         Skip Split-Solve-Merge (mark as Skipped in output)")
@@ -80,8 +108,24 @@ const PROGRESS_LOG = joinpath(OUTPUT_DIR, "batch_progress.log")
 const ERROR_LOG = joinpath(OUTPUT_DIR, "batch_errors.log")
 const DRY_RUN_LIMIT, SKIP_METHODS, BETA_OVERRIDE, ONLY_FILE = parse_arguments()  # Limit instances and methods to skip
 
-"""     
-Format time for display - use appropriate precision based on magnitude
+"""
+    format_time(t::Float64)::String
+
+Format elapsed time for display with adaptive precision based on magnitude.
+
+# Arguments
+- `t::Float64`: Time in seconds
+
+# Returns
+- `String`: Formatted time with appropriate decimal places
+
+# Examples
+```julia
+format_time(0.005)   # "0.005"
+format_time(0.5)     # "0.50"
+format_time(50.5)    # "50.5"
+format_time(150.0)   # "150"
+```
 """
 function format_time(t::Float64)
     if t < 0.01
@@ -96,7 +140,20 @@ function format_time(t::Float64)
 end
 
 """
-Log detailed error information for debugging
+    log_error(log_file::String, method::String, instance_id::String, error_obj, stacktrace_info=nothing)
+
+Log detailed error information including timestamp, error type, message, and optional stacktrace.
+Appends to existing log file maintaining session history.
+
+# Arguments
+- `log_file::String`: Path to error log file
+- `method::String`: Name of the algorithm/method that failed
+- `instance_id::String`: Unique identifier for the instance being processed
+- `error_obj`: The exception object
+- `stacktrace_info=nothing`: Optional stacktrace frames for debugging
+
+# Side Effects
+- Appends formatted error entry to `log_file`
 """
 function log_error(log_file::String, method::String, instance_id::String, error_obj, stacktrace_info=nothing)
     timestamp = Dates.format(now(), "yyyy-mm-dd HH:MM:SS")
@@ -118,7 +175,23 @@ function log_error(log_file::String, method::String, instance_id::String, error_
 end
 
 """
-Parse instance name to extract order, scenario, and p values
+    parse_instance_name(filename::String)::Union{NamedTuple, Nothing}
+
+Parse instance filename to extract configuration parameters.
+Expected format: `[E|H]_O<order>_#<scenario>_<p>p.jl`
+
+# Arguments
+- `filename::String`: Instance filename, e.g., "E_O1_#2_2p.jl" or "H_O1_#2_2p.jl"
+
+# Returns
+- `NamedTuple` with fields: `(type, order, scenario, p)` if match successful
+- `nothing` if filename does not match expected pattern
+
+# Examples
+```julia
+parse_instance_name("E_O1_#2_2p.jl")
+# (type="E", order="O1", scenario=2, p=2)
+```
 """
 function parse_instance_name(filename::String)
     # E_O1_#2_2p.jl or H_O1_#2_2p.jl -> type=E/H, order=O1, scenario=2, p=2
@@ -130,7 +203,23 @@ function parse_instance_name(filename::String)
 end
 
 """
-Run MILP solver and return solution info
+    run_milp(order_dict::Dict)::NamedTuple
+
+Run the exact MILP solver on a given instance via Split-Solve-Merge module.
+Catches and logs errors gracefully.
+
+# Arguments
+- `order_dict::Dict`: Instance configuration dictionary with keys including `:Oid`, `:α`, `:β`
+
+# Returns
+- `NamedTuple` with fields: `(cost, m, time, error)`
+  - `cost`: Objective value (numeric or "Err")
+  - `m`: Number of shelf levels (integer or "Err")
+  - `time`: Execution time in seconds (numeric or "Err")
+  - `error::Bool`: Whether an error occurred
+
+# Side Effects
+- Logs errors to ERROR_LOG if solver fails
 """
 function run_milp(order_dict::Dict)
     @unpack α, β = order_dict
@@ -147,7 +236,23 @@ function run_milp(order_dict::Dict)
 end
 
 """
-Run Split-Solve-Merge heuristic and return solution info
+    run_split_solve_merge(order_dict::Dict)::NamedTuple
+
+Run the Split-Solve-Merge heuristic on a given instance for large-scale problems.
+Designed for instances with Pg > 1.
+
+# Arguments
+- `order_dict::Dict`: Instance configuration dictionary with keys including `:Oid`, `:α`, `:β`
+
+# Returns
+- `NamedTuple` with fields: `(cost, m, time, error)`
+  - `cost`: Objective value (numeric or "Err")
+  - `m`: Number of shelf levels (integer or "Err")
+  - `time`: Execution time in seconds (numeric or "Err")
+  - `error::Bool`: Whether an error occurred
+
+# Side Effects
+- Logs errors to ERROR_LOG if heuristic fails
 """
 function run_split_solve_merge(order_dict::Dict)
     @unpack α, β = order_dict
@@ -164,7 +269,25 @@ function run_split_solve_merge(order_dict::Dict)
 end
 
 """
-Run SA multiple times and return best solution info
+    run_sa_multiple(order_dict::Dict, num_runs::Int)::NamedTuple
+
+Run Simulated Annealing multiple times and track the best solution found.
+Useful for assessing consistency and variability of the metaheuristic.
+
+# Arguments
+- `order_dict::Dict`: Instance configuration dictionary with keys including `:Oid`, `:α`, `:β`
+- `num_runs::Int`: Number of independent SA runs to execute
+
+# Returns
+- `NamedTuple` with fields: `(cost, m, time, error)`
+  - `cost`: Best objective value across all runs (numeric or "Err")
+  - `m`: Shelf levels for best solution (integer or "Err")
+  - `time`: Total cumulative time across all runs (numeric or "Err")
+  - `error::Bool`: Whether an error occurred
+
+# Side Effects
+- Logs errors to ERROR_LOG if any run fails
+- Time includes all runs, useful for comparing total computational budget
 """
 function run_sa_multiple(order_dict::Dict, num_runs::Int)
     @unpack α, β = order_dict
@@ -198,7 +321,23 @@ function run_sa_multiple(order_dict::Dict, num_runs::Int)
 end
 
 """
-Run GRASP once and return solution info
+    run_grasp_once(order_dict::Dict)::NamedTuple
+
+Run the Greedy Randomized Adaptive Search Procedure (GRASP) once on a given instance.
+Provides a single-run deterministic comparison point.
+
+# Arguments
+- `order_dict::Dict`: Instance configuration dictionary with keys including `:Oid`, `:α`, `:β`
+
+# Returns
+- `NamedTuple` with fields: `(cost, m, time, error)`
+  - `cost`: Objective value (numeric or "Err")
+  - `m`: Number of shelf levels (integer or "Err")
+  - `time`: Execution time in seconds (numeric or "Err")
+  - `error::Bool`: Whether an error occurred
+
+# Side Effects
+- Logs errors to ERROR_LOG if GRASP fails
 """
 function run_grasp_once(order_dict::Dict)
     @unpack α, β = order_dict
@@ -220,7 +359,20 @@ function run_grasp_once(order_dict::Dict)
 end
 
 """
-Load completed instances from progress log
+    load_completed_instances(log_file::String)::Set
+
+Read progress log to identify instances already processed.
+Enables resuming batch runs without recomputing completed instances.
+
+# Arguments
+- `log_file::String`: Path to progress log file (format: "Order,Scenario,P" per line)
+
+# Returns
+- `Set{Tuple{String,Int,Int}}`: Set of (order, scenario, p) tuples representing completed instances
+- Empty set if log file does not exist
+
+# Log File Format
+Comments start with '#'. Data lines have format: `Order,Scenario,P` (comma-separated)
 """
 function load_completed_instances(log_file::String)
     completed = Set{Tuple{String,Int,Int}}()
@@ -249,7 +401,20 @@ function load_completed_instances(log_file::String)
 end
 
 """
-Load instances to run from a file (whitelist)
+    load_only_instances(only_file::String)::Set
+
+Read a whitelist file to filter which instances should be processed.
+Useful for running specific instances or retrying failed cases.
+
+# Arguments
+- `only_file::String`: Path to file containing allowed instances (format: "Order,Scenario,P" per line)
+
+# Returns
+- `Set{Tuple{String,Int,Int}}`: Set of (order, scenario, p) tuples to process
+- Empty set if file does not exist or cannot be read
+
+# Log File Format
+Comments start with '#'. Data lines have format: `Order,Scenario,P` (comma-separated)
 """
 function load_only_instances(only_file::String)
     only_instances = Set{Tuple{String,Int,Int}}()
@@ -280,7 +445,20 @@ function load_only_instances(only_file::String)
 end
 
 """
-Mark instance as completed in progress log
+    mark_instance_completed(log_file::String, order::String, scenario::Int, p::Int)
+
+Append a completed instance record to the progress log.
+Creates log file with appropriate header if not already present.
+
+# Arguments
+- `log_file::String`: Path to progress log file
+- `order::String`: Order identifier, e.g., "O1"
+- `scenario::Int`: Scenario number
+- `p::Int`: Number of parallel machines
+
+# Side Effects
+- Creates `log_file` with header comment if it doesn't exist
+- Appends new line: `order,scenario,p`
 """
 function mark_instance_completed(log_file::String, order::String, scenario::Int, p::Int)
     # Add header if file is new
@@ -394,6 +572,26 @@ for f in h_files
     instances[key]["H"] = f
 end
 
+"""
+    order_index(order::String)::Int
+
+Extract numeric order index from order identifier string.
+Used for sorting instances by order number.
+
+# Arguments
+- `order::String`: Order identifier, e.g., "O1", "O2", "O10"
+
+# Returns
+- `Int`: The numeric value extracted (e.g., 1, 2, 10)
+- `0`: If order string does not match pattern "O<number>"
+
+# Examples
+```julia
+order_index("O1")   # 1
+order_index("O10")  # 10
+order_index("invalid")  # 0
+```
+"""
 function order_index(order::String)
     m = match(r"O(\d+)", order)
     return m !== nothing ? parse(Int, m.captures[1]) : 0
@@ -415,6 +613,24 @@ if only_instances !== nothing
 end
 
 # incremental CSV writer helper
+"""
+    write_row_incremental(csv_path::String, row_df::DataFrame)
+
+Append a single row (DataFrame) to an existing CSV file or create it if missing.
+
+# Arguments
+- `csv_path::String`: Path to CSV file
+- `row_df::DataFrame`: Single-row DataFrame to append
+
+# Side Effects
+- Creates CSV file if it doesn't exist (overwrites header)
+- Appends row to existing CSV file
+- Logs warning if write fails
+
+# Behavior
+- First call creates file with header from `row_df` column names
+- Subsequent calls append row to end of file
+"""
 function write_row_incremental(csv_path::String, row_df::DataFrame)
     try
         if isfile(csv_path)

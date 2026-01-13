@@ -1,7 +1,7 @@
 #= Copyright (C) 2024
 Nuno David Lopes.
 Created:  2025/11/21
-Last changed - N. Lopes: 2026/01/12 16:20:27
+Last changed - N. Lopes: 2026/01/13 11:28:06
 Run script for Split-Solve-Merge MILP algorithm
 =#
 
@@ -10,7 +10,12 @@ using DrWatson
 using Printf
 
 # Load settings FIRST, before including the module
+# SSM Algorithm
 include(datadir("settings", "H_O2_#2_3p.jl"))
+
+# EXACT MILP Algorithm
+# include(datadir("settings", "E_O2_#2_3p.jl"))
+
 
 # Now include and use the module
 include(scriptsdir("split_solve_merge_milp.jl"))
