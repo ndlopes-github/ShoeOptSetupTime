@@ -150,9 +150,9 @@ All scripts include comprehensive built-in help and command-line options. Use `-
 
 The main scripts are located in the `scripts/` directory. Each algorithm has its own entry point with flexible command-line options.
 
-### 1️⃣ Split-Solve-Merge Algorithm (Novel Heuristic)
+### 1️⃣ Exact MILP and Split-Solve-Merge Algorithm (Novel Heuristic)
 
-The Split-Solve-Merge algorithm is the **primary contribution** of this work - a novel heuristic specifically designed for large-scale instances.
+The Exact MILP  and the Split-Solve-Merge algorithms are the **primary contribution** of this work.
 
 ```bash
 # Show all available options
@@ -164,7 +164,7 @@ julia --project scripts/run_ssm_milp.jl
 # Or explicitly specify heuristic mode
 julia --project scripts/run_ssm_milp.jl heuristic
 
-# Run exact MILP instance (E_O2_#2_3p.jl) - may take longer
+# Run exact MILP instance (E_O2_#2_3p.jl) - takes longer
 julia --project scripts/run_ssm_milp.jl exact
 
 # Run custom instance
@@ -173,7 +173,7 @@ julia --project scripts/run_ssm_milp.jl --file=custom_instance.jl
 
 **When to use:**
 - Large instances where exact MILP is too slow
-- When `Pg > 1` (multi-stage partitioning)
+- When option `Pg > 1` (multi-stage partitioning)
 - For production-scale problems requiring good solutions quickly
 
 ### 2️⃣ Simulated Annealing
@@ -441,15 +441,14 @@ Each run produces:
 ```
 ShoeOptSetupTime/
 ├── scripts/                          # Algorithm implementations
-│   ├── run_ssm_milp.jl              # Split-Solve-Merge runner (with --help)
+│   ├── run_ssm_milp.jl              # MILP and Split-Solve-Merge runner (with --help)
 │   ├── split_solve_merge_milp.jl    # Novel SSM algorithm module
 │   ├── run_sa.jl                    # Simulated Annealing runner (with --help)
 │   ├── simulated_annealing.jl       # SA algorithm module
 │   ├── run_grasp.jl                 # GRASP runner (with --help)
 │   ├── grasp.jl                     # GRASP algorithm module
 │   ├── run_greedy.jl                # Greedy runner (with --help)
-│   ├── batch_compare_all_methods.jl # Comprehensive comparison (with --help)
-│   └── run_milp.jl                  # Direct MILP solver
+│   └── batch_compare_all_methods.jl # Comprehensive comparison (with --help)
 ├── src/
 │   └── loggers.jl                   # Logging utilities
 ├── data/
