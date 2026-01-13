@@ -1,10 +1,10 @@
-# Parallel Machine Scheduling with Simultaneous Interruptions: A Case Study in Shoe Sole Production
+# Parallel Machine Scheduling with Simultaneous Interruptions
 
 [![Julia 1.12+](https://img.shields.io/badge/Julia-1.12+-9558B2?logo=julia&logoColor=white)](https://julialang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen.svg)](#)
 
-This repository contains the implementation of novel optimization algorithms for a real-world parallel machine scheduling problem in footwear manufacturing. The code accompanies a forthcoming paper and provides both exact and heuristic solution methods.
+This repository contains a **Julia implementation** of novel optimization algorithms for a real-world parallel machine scheduling problem in footwear manufacturing. The code accompanies a forthcoming paper and provides both exact and heuristic solution methods.
 
 ## 📄 Paper Details
 
