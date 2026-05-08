@@ -191,6 +191,6 @@ All six pairwise comparisons are statistically significant after Bonferroni corr
 
 ### RPD Boxplot
 A boxplot of RPD distributions across the four heuristics is available is
-[![Boxplot](./rpd_boxplot.png)]
+![Boxplot](./rpd_boxplot.png)
 
 
