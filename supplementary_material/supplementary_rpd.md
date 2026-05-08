@@ -190,6 +190,7 @@ All four RPD distributions are non-normal, justifying the use of nonparametric t
 All six pairwise comparisons are statistically significant after Bonferroni correction. Effect sizes are large for all pairs except GA vs SSM-SA (medium, r = 0.42), indicating that while GA and SSM-SA differ significantly, the practical difference is smaller than the other pairs.
 
 ### RPD Boxplot
+A boxplot of RPD distributions across the four heuristics is available is
+[![Boxplot](./rpd_boxplot.pdf)]
 
-A boxplot of RPD distributions across the four heuristics is available as `aux_temp/scripts/rpd_boxplot.pdf` in the repository.
 
