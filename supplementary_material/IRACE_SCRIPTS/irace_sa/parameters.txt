@@ -1,0 +1,13 @@
+# irace parameter space for pure Simulated Annealing
+# Format: <name> <flag> <type> <range>
+# Types: r=real, i=integer, c=categorical
+
+T0    "--T0 "    r    (0.5, 50.0)
+Tf    "--Tf "    r    (0.0001, 1.0)
+Nit   "--Nit "   i    (50, 2000)
+Tj    "--Tj "    i    (1, 20)
+Nruns "--Nruns " i    (1, 200)
+
+[forbidden]
+# Tf must be strictly less than T0 (cooling schedule requires T0 > Tf)
+(Tf >= T0)

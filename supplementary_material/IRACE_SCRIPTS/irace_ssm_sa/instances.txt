@@ -1,0 +1,5 @@
+/home/nuno/DrWatsonProjects/SoftIdea/irace_ssm_sa/instances/H_O1_n1_4p.jl
+/home/nuno/DrWatsonProjects/SoftIdea/irace_ssm_sa/instances/H_O1_n2_2p.jl
+/home/nuno/DrWatsonProjects/SoftIdea/irace_ssm_sa/instances/H_O2_n3_2p.jl
+/home/nuno/DrWatsonProjects/SoftIdea/irace_ssm_sa/instances/H_O3_n1_2p.jl
+/home/nuno/DrWatsonProjects/SoftIdea/irace_ssm_sa/instances/H_O3_n2_3p.jl

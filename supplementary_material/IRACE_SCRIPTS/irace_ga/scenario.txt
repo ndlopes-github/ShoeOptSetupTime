@@ -1,0 +1,28 @@
+## Irace scenario configuration for GA hyperparameter tuning.
+## Run from inside irace_ga/ directory:
+##   cd irace_ga && Rscript -e "library(irace); irace.cmdline()"
+
+# Training instances file (one absolute path per line)
+trainInstancesFile = "./instances.txt"
+
+# Target runner script (must be executable)
+targetRunner = "./target-runner"
+
+# Parameter space definition
+parameterFile = "./parameters.txt"
+
+
+# Total budget: number of target-runner calls
+maxExperiments = 10000
+
+# Reproducibility seed
+seed = 12345
+
+# Parallelism: 0 = auto-detect all available cores
+parallel = 0
+
+# Output log file
+logFile = "./irace.Rdata"
+
+# Irace verbosity (0=quiet, 1=normal, 2=verbose, 3=debug)
+debugLevel = 1

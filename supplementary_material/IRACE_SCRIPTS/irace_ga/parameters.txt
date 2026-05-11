@@ -1,0 +1,13 @@
+# irace parameter space for Genetic Algorithm
+# Format: <name> <flag> <type> <domain>
+# Types: r=real (continuous), i=integer (continuous), o=ordinal (discrete ordered set)
+#
+# Nit             : number of generations per GA run
+# pop_size        : number of individuals in the population; n_parents is fixed to pop_size/2
+# clone_threshold : fraction of pop_size clones allowed before excess are randomised
+# Nruns           : number of independent GA restarts (best result reported)
+
+Nit             "--Nit "              o   (50, 75, 100)
+pop_size        "--pop_size "         o   (50, 75, 100)
+clone_threshold "--clone_threshold "  o   (0.05, 0.1)
+Nruns           "--Nruns "            o   (30, 50, 75, 100)

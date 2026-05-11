@@ -1,0 +1,7 @@
+# irace parameter space for GRASP
+# Format: <name> <flag> <type> <range>
+# Types: i=integer
+#
+# Nit: number of independent GRASP construction iterations (best is reported)
+
+Nit   "--Nit "   i  (1, 200)

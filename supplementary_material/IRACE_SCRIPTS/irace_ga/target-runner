@@ -1,0 +1,71 @@
+#!/bin/bash
+# Irace target-runner for Genetic Algorithm via DaemonMode.jl
+#
+# Irace calls: target-runner <candidate_id> <instance_id> <seed> <instance> [params...]
+# This script forwards to the Julia runner via the DaemonMode client.
+#
+# Usage with daemon (recommended, eliminates Julia startup overhead):
+#   Terminal A (start once, keep alive):
+#     julia --startup-file=no --project=/home/nuno/DrWatsonProjects/SoftIdea \
+#           -t auto -e 'using DaemonMode; serve()'
+#   Terminal B (run irace):
+#     cd /home/nuno/DrWatsonProjects/SoftIdea/irace_ga
+#     Rscript -e "library(irace); irace.cmdline()"
+#
+# Usage without daemon (slower, ~5s Julia startup per call):
+#   Set USE_DAEMON=0 below.
+
+set -u
+set -o pipefail
+
+USE_DAEMON=${USE_DAEMON:-1}
+PENALTY_COST=${PENALTY_COST:-1000000000000}
+
+PROJECT="/home/nuno/DrWatsonProjects/SoftIdea"
+RUNNER="${PROJECT}/scripts/irace_ga_runner.jl"
+
+# Irace positional arguments
+CANDIDATE_ID="$1"
+INSTANCE_ID="$2"
+SEED="$3"
+INSTANCE="$4"
+shift 4
+# Remaining args are parameter name-value pairs:
+#   --Nit 200 --pop_size 100 --clone_threshold 0.1 --Nruns 3
+
+run_plain() {
+    julia --startup-file=no --project="$PROJECT" \
+        "$RUNNER" "$INSTANCE" "$SEED" "$@" 2>/dev/null
+}
+
+run_daemon() {
+    julia --startup-file=no --project="$PROJECT" \
+        -e 'using DaemonMode; runargs()' \
+        "$RUNNER" "$INSTANCE" "$SEED" "$@" 2>/dev/null
+}
+
+RESULT=""
+STATUS=1
+
+if [[ "$USE_DAEMON" -eq 1 ]]; then
+    RESULT=$(run_daemon "$@")
+    STATUS=$?
+    if [[ $STATUS -ne 0 || -z "${RESULT// /}" ]]; then
+        RESULT=$(run_plain "$@")
+        STATUS=$?
+    fi
+else
+    RESULT=$(run_plain "$@")
+    STATUS=$?
+fi
+
+# Keep only the first token; irace expects at most one (or two) numbers.
+RESULT=$(echo "$RESULT" | awk 'NF {print $1; exit}')
+
+if [[ $STATUS -ne 0 || -z "${RESULT:-}" ]]; then
+    echo "$PENALTY_COST"
+elif [[ "$RESULT" =~ ^[-+]?[0-9]+([.][0-9]+)?([eE][-+]?[0-9]+)?$ ]]; then
+    echo "$RESULT"
+else
+    echo "$PENALTY_COST"
+fi

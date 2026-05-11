@@ -1,0 +1,42 @@
+#!/bin/bash
+# Irace target-runner for pure Simulated Annealing via DaemonMode.jl
+#
+# Irace calls: target-runner <candidate_id> <instance_id> <seed> <instance> [params...]
+# This script forwards to the Julia runner via the DaemonMode client.
+#
+# Usage with daemon (recommended, eliminates Julia startup overhead):
+#   Terminal A (start once, keep alive):
+#     julia --startup-file=no --project=/home/nuno/DrWatsonProjects/SoftIdea \
+#           -t auto -e 'using DaemonMode; serve()'
+#   Terminal B (run irace):
+#     cd /home/nuno/DrWatsonProjects/SoftIdea/irace_sa
+#     Rscript -e "library(irace); irace.cmdline()"
+#
+# Usage without daemon (slower, ~5s Julia startup per call):
+#   Set USE_DAEMON=0 below.
+
+set -e
+
+USE_DAEMON=1
+
+PROJECT="/home/nuno/DrWatsonProjects/SoftIdea"
+RUNNER="${PROJECT}/scripts/irace_sa_runner.jl"
+
+# Irace positional arguments
+CANDIDATE_ID="$1"
+INSTANCE_ID="$2"
+SEED="$3"
+INSTANCE="$4"
+shift 4
+# Remaining args are parameter name-value pairs: --T0 5.0 --Tf 0.01 ...
+
+if [[ "$USE_DAEMON" -eq 1 ]]; then
+    RESULT=$(julia --startup-file=no --project="$PROJECT" \
+                   -e 'using DaemonMode; runargs()' \
+                   "$RUNNER" "$INSTANCE" "$SEED" "$@" 2>/dev/null)
+else
+    RESULT=$(julia --startup-file=no --project="$PROJECT" \
+                   "$RUNNER" "$INSTANCE" "$SEED" "$@" 2>/dev/null)
+fi
+
+echo "$RESULT"

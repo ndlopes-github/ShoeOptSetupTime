@@ -1,0 +1,4 @@
+# Forbidden parameter combinations for SA irace tuning.
+# Tf must be strictly less than T0 (cooling schedule requires T0 > Tf).
+
+[Tf] >= [T0]

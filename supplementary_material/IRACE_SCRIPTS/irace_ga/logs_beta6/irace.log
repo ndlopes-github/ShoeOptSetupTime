@@ -1,0 +1,312 @@
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.1.ccb6607
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/nuno/R/libs/irace
+# called with: 
+# 2026-05-04 15:40:53 WEST: Reading parameter file '/home/nuno/DrWatsonProjects/SoftIdea/irace_ga/parameters.txt'.
+# --- Parameters Hierarchy ---
+        Parameter Level      Depends.on
+1             Nit     1             Nit
+2        pop_size     1        pop_size
+3 clone_threshold     1 clone_threshold
+4           Nruns     1           Nruns
+# ------------------------
+## irace scenario:
+scenarioFile = "/home/nuno/DrWatsonProjects/SoftIdea/irace_ga/scenario.txt"
+execDir = "/home/nuno/DrWatsonProjects/SoftIdea/irace_ga"
+parameterFile = "/home/nuno/DrWatsonProjects/SoftIdea/irace_ga/parameters.txt"
+parameters = <environment>
+initConfigurations = NULL
+configurationsFile = ""
+logFile = "/home/nuno/DrWatsonProjects/SoftIdea/irace_ga/irace.Rdata"
+recoveryFile = ""
+instances = c("/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n1_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n1_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n1_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n1_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n2_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n2_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n2_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n2_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n3_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n3_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n3_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n3_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n4_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n4_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n4_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n4_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n5_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n5_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n5_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n5_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n1_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n1_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n1_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n1_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n2_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n2_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n2_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n2_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n3_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n3_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n3_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n3_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n4_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n4_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n4_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n4_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n5_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n5_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n5_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n5_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n1_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n1_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n1_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n1_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n2_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n2_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n2_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n2_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n3_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n3_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n3_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n3_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n4_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n4_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n4_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n4_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n5_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n5_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n5_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n5_5p.jl")
+trainInstancesDir = ""
+trainInstancesFile = "/home/nuno/DrWatsonProjects/SoftIdea/irace_ga/instances.txt"
+sampleInstances = TRUE
+testInstancesDir = ""
+testInstancesFile = ""
+testInstances = NULL
+testNbElites = 1L
+testIterationElites = FALSE
+testType = "friedman"
+firstTest = 5L
+blockSize = 1L
+eachTest = 1L
+targetRunner = "/home/nuno/DrWatsonProjects/SoftIdea/irace_ga/target-runner"
+targetRunnerLauncher = ""
+targetCmdline = "{configurationID} {instanceID} {seed} {instance} {bound} {targetRunnerArgs}"
+targetRunnerRetries = 0L
+targetRunnerTimeout = 0L
+targetRunnerData = ""
+targetRunnerParallel = NULL
+targetEvaluator = NULL
+deterministic = FALSE
+maxExperiments = 10000L
+minExperiments = NA_character_
+maxTime = 0L
+budgetEstimation = 0.05
+minMeasurableTime = 0.01
+parallel = 0L
+loadBalancing = TRUE
+mpi = FALSE
+batchmode = "0"
+quiet = FALSE
+debugLevel = 1L
+seed = 12345L
+softRestart = TRUE
+softRestartThreshold = 1e-04
+elitist = TRUE
+elitistNewInstances = 1L
+elitistLimit = 2L
+repairConfiguration = NULL
+capping = FALSE
+cappingAfterFirstTest = FALSE
+cappingType = "median"
+boundType = "candidate"
+boundMax = NULL
+boundDigits = 0L
+boundPar = 1L
+boundAsTimeout = TRUE
+postselection = TRUE
+aclib = FALSE
+nbIterations = 0L
+nbExperimentsPerIteration = 0L
+minNbSurvival = 0L
+nbConfigurations = 0L
+mu = 5L
+confidence = 0.95
+## end of irace scenario
+# 2026-05-04 15:40:53 WEST: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 4
+# minNbSurvival: 4
+# nbParameters: 4
+# seed: 12345
+# confidence level: 0.95
+# budget: 10000
+# mu: 5
+# deterministic: FALSE
+
+# 2026-05-04 15:40:53 WEST: Iteration 1 of 4
+# experimentsUsed: 0
+# remainingBudget: 10000
+# currentBudget: 2500
+# nbConfigurations: 416
+# 2026-05-04 15:40:53 WEST: Sample 416 configurations from Sobol distribution
+# 2026-05-04 15:40:53 WEST: Launch race
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          1|         72|          1|     164.0000000|         72|00:13:12|   NA|  NA|    NA|
+|x|          2|         72|         17|     257.0000000|        144|00:15:18|+0.25|0.63|0.6419|
+|x|          3|         72|         17|     210.0000000|        216|00:14:27|+0.31|0.54|0.6503|
+|x|          4|         72|         17|     530.5000000|        288|00:15:17|+0.27|0.45|0.7297|
+|-|          5|         42|         22|     626.8000000|        360|00:16:15|-0.07|0.15|0.8508|
+|=|          6|         42|         22|     737.0000000|        402|00:10:10|-0.05|0.12|0.6974|
+|=|          7|         42|         22|     947.0000000|        444|00:11:04|-0.03|0.12|0.7221|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+# Stopped because tests without elimination (2) >= elitistLimit (2)
+Best-so-far configuration:          22    mean value:      947.0000000
+Description of the best-so-far configuration:
+   .ID. Nit pop_size clone_threshold Nruns .PARENT.
+22   22 100       50            0.05    75       NA
+
+# 2026-05-04 17:16:40 WEST: Extracting elites
+# 2026-05-04 17:16:40 WEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   .ID. Nit pop_size clone_threshold Nruns .PARENT. .RANK. .WEIGHT.
+22   22 100       50            0.05    75       NA    113      0.4
+27   27 100      100             0.1   100       NA    113      0.3
+36   36 100      100             0.1    75       NA    113      0.2
+54   54 100       50            0.05   100       NA    113      0.1
+# 2026-05-04 17:16:40 WEST: Initialise model
+# 2026-05-04 17:16:40 WEST: End of iteration 1
+# 2026-05-04 17:16:40 WEST: Iteration 2 of 4
+# experimentsUsed: 444
+# remainingBudget: 9556
+# currentBudget: 3185
+# nbConfigurations: 401
+# 2026-05-04 17:16:40 WEST: Update model
+# 2026-05-04 17:16:40 WEST: Sample 397 configurations from model
+# 2026-05-04 17:16:40 WEST: Computing similarity of configurations . DONE
+# 2026-05-04 17:16:40 WEST: Soft restart: 77 85 87 95 97 98 102 106 113 114 115 118 123 125 130 141 143 150 151 156 159 166 172 177 178 186 191 195 196 200 201 203 204 206 207 210 211 214 221 222 227 232 233 238 249 254 257 259 264 272 275 299 305 309 312 314 315 328 329 334 336 342 352 354 356 361 364 365 379 383 386 394 396 400 412 420 423 430 437 439 445 457 459 461 469 74 79 81 83 86 91 104 109 110 111 112 116 120 127 132 136 137 139 142 147 149 152 160 163 164 169 170 171 179 180 181 185 188 192 193 208 216 228 230 234 237 239 240 242 244 256 260 263 266 267 273 279 282 289 290 292 297 298 300 304 306 308 320 321 325 326 330 331 332 333 335 341 344 350 353 357 358 369 371 372 376 380 381 389 392 398 401 404 409 425 428 434 435 440 441 442 443 447 448 449 450 452 454 458 460 463 93 94 126 138 148 158 173 202 213 246 255 258 261 283 286 294 295 296 302 307 318 322 338 340 346 359 362 368 374 403 407 411 414 416 421 431 456 462 73 75 76 78 80 82 84 88 89 90 92 96 99 100 101 103 105 107 108 117 119 121 122 124 128 129 131 133 134 135 140 144 145 146 153 154 155 157 161 162 165 167 168 174 175 176 182 183 184 187 189 190 194 197 198 199 205 209 212 215 217 218 219 220 223 224 225 226 229 231 235 236 241 243 245 247 248 250 251 252 253 262 265 268 269 270 271 274 276 277 278 280 281 284 285 287 288 291 293 301 303 310 311 313 316 317 319 323 324 327 337 339 343 345 347 348 349 351 355 360 363 366 367 370 373 375 377 378 382 384 385 387 388 390 391 393 395 397 399 402 405 406 408 410 413 415 417 418 419 422 424 426 427 429 432 433 436 438 444 446 451 453 455 464 465 466 467 468 !
+# 2026-05-04 17:16:40 WEST: Launch race
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          8|        401|         27|     134.0000000|        401|01:13:48|   NA|  NA|    NA|
+|x|          7|        401|         27|     1170.500000|        798|01:19:44|+0.00|0.50|0.4988|
+|x|          3|        401|         27|     819.0000000|       1195|01:15:34|+0.33|0.56|0.4305|
+|x|          5|        401|         27|     867.2500000|       1592|01:22:39|+0.03|0.28|0.5980|
+|=|          4|        401|         27|     992.2000000|       1989|01:18:55|-0.17|0.06|0.7695|
+|=|          1|        401|         27|     854.1666667|       2386|01:14:15|-0.14|0.05|0.6460|
+|=|          6|        401|         27|     916.1428571|       2783|01:16:58|-0.11|0.04|0.5564|
+|=|          2|        401|         27|     845.3750000|       3180|01:25:16|-0.02|0.11|0.5826|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+# Stopped because experiments for next test (3581) > max experiments (3185)
+Best-so-far configuration:          27    mean value:      845.3750000
+Description of the best-so-far configuration:
+   .ID. Nit pop_size clone_threshold Nruns .PARENT.
+27   27 100      100             0.1   100       NA
+
+# 2026-05-05 03:43:53 WEST: Extracting elites
+# 2026-05-05 03:43:53 WEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   .ID. Nit pop_size clone_threshold Nruns .PARENT. .RANK. .WEIGHT.
+27   27 100      100             0.1   100       NA  793.0      0.4
+36   36 100      100             0.1    75       NA  793.0      0.3
+22   22 100       50            0.05    75       NA  993.5      0.2
+54   54 100       50            0.05   100       NA  993.5      0.1
+# 2026-05-05 03:43:53 WEST: End of iteration 2
+# 2026-05-05 03:43:53 WEST: Iteration 3 of 4
+# experimentsUsed: 3624
+# remainingBudget: 6376
+# currentBudget: 3188
+# nbConfigurations: 357
+# 2026-05-05 03:43:53 WEST: Update model
+# 2026-05-05 03:43:53 WEST: Sample 353 configurations from model
+# 2026-05-05 03:43:53 WEST: Computing similarity of configurations . DONE
+# 2026-05-05 03:43:53 WEST: Soft restart: 476 486 501 506 523 524 531 532 557 579 589 606 608 610 621 644 651 656 668 682 685 690 701 732 736 741 747 761 775 781 792 805 812 471 478 480 482 487 503 527 528 533 544 550 552 554 555 559 560 562 563 570 571 572 576 577 583 588 592 594 597 598 603 607 615 617 620 628 630 635 637 639 652 654 663 664 665 667 673 681 692 697 700 704 705 717 718 720 722 727 728 734 739 742 746 753 757 768 770 780 783 787 802 804 473 477 485 494 498 505 508 510 517 539 546 549 551 565 568 573 575 590 599 619 622 625 645 646 669 688 691 694 696 709 714 723 730 738 743 752 754 756 762 763 777 782 786 789 791 798 800 801 806 810 811 814 819 821 470 472 474 475 479 481 483 484 488 489 490 491 492 493 495 496 497 499 500 502 504 507 509 511 512 513 514 515 516 518 519 520 521 522 525 526 529 530 534 535 536 537 538 540 541 542 543 545 547 548 553 556 558 561 564 566 567 569 574 578 580 581 582 584 585 586 587 591 593 595 596 600 601 602 604 605 609 611 612 613 614 616 618 623 624 626 627 629 631 632 633 634 636 638 640 641 642 643 647 648 649 650 653 655 657 658 659 660 661 662 666 670 671 672 674 675 676 677 678 679 680 683 684 686 687 689 693 695 698 699 702 703 706 707 708 710 711 712 713 715 716 719 721 724 725 726 729 731 733 735 737 740 744 745 748 749 750 751 755 758 759 760 764 765 766 767 769 771 772 773 774 776 778 779 784 785 788 790 793 794 795 796 797 799 803 807 808 809 813 815 816 817 818 820 822 !
+# 2026-05-05 03:43:53 WEST: Launch race
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          9|        357|         27|     1018.000000|        357|01:26:50|   NA|  NA|    NA|
+|x|          7|        357|         27|     1612.500000|        710|01:20:09|+1.00|1.00|0.0000|
+|x|          6|        357|         27|     1504.333333|       1063|01:17:31|+1.00|1.00|0.0000|
+|x|          8|        357|         27|     1161.750000|       1416|01:19:01|+0.00|0.25|0.2493|
+|=|          4|        357|         27|     1227.800000|       1769|01:18:57|+0.01|0.21|0.3878|
+|=|          5|        357|         27|     1191.833333|       2122|01:30:18|-0.14|0.05|0.5375|
+|=|          3|        357|         27|     1038.142857|       2475|01:27:07|-0.10|0.05|0.5524|
+|=|          1|        357|         27|     928.8750000|       2828|01:24:02|-0.09|0.05|0.4856|
+|=|          2|        357|         27|     864.5555556|       3181|01:35:07|-0.01|0.10|0.5150|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+# Stopped because experiments for next test (3538) > max experiments (3188)
+Best-so-far configuration:          27    mean value:      864.5555556
+Description of the best-so-far configuration:
+   .ID. Nit pop_size clone_threshold Nruns .PARENT.
+27   27 100      100             0.1   100       NA
+
+# 2026-05-05 16:23:00 WEST: Extracting elites
+# 2026-05-05 16:23:00 WEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   .ID. Nit pop_size clone_threshold Nruns .PARENT. .RANK. .WEIGHT.
+27   27 100      100             0.1   100       NA  884.5      0.4
+36   36 100      100             0.1    75       NA  884.5      0.3
+22   22 100       50            0.05    75       NA 1063.0      0.2
+54   54 100       50            0.05   100       NA 1063.0      0.1
+# 2026-05-05 16:23:00 WEST: End of iteration 3
+# 2026-05-05 16:23:00 WEST: Iteration 4 of 4
+# experimentsUsed: 6805
+# remainingBudget: 3195
+# currentBudget: 3195
+# nbConfigurations: 323
+# 2026-05-05 16:23:00 WEST: Update model
+# 2026-05-05 16:23:00 WEST: Sample 319 configurations from model
+# 2026-05-05 16:23:00 WEST: Computing similarity of configurations . DONE
+# 2026-05-05 16:23:00 WEST: Soft restart: 836 844 846 853 856 862 867 873 885 934 940 945 952 974 982 986 991 1024 1028 1031 1041 1056 1059 1064 1065 1066 1068 1076 1078 1100 1101 1106 1112 1116 1126 825 832 834 835 840 841 852 858 866 874 876 879 880 881 889 891 905 916 921 926 928 943 957 972 975 977 978 983 993 1000 1003 1006 1010 1016 1017 1020 1022 1039 1042 1045 1046 1051 1052 1054 1055 1057 1060 1071 1079 1084 1089 1090 1098 1118 1122 1128 1132 1135 1137 1139 843 847 860 868 870 887 888 892 894 895 897 915 938 939 953 956 965 968 971 973 992 1005 1007 1009 1015 1018 1030 1037 1070 1080 1086 1087 1088 1092 1102 1103 1107 1109 1113 1120 1124 1140 823 824 826 827 828 829 830 831 833 837 838 839 842 845 848 849 850 851 854 855 857 859 861 863 864 865 869 871 872 875 877 878 882 883 884 886 890 893 896 898 899 900 901 902 903 904 906 907 908 909 910 911 912 913 914 917 918 919 920 922 923 924 925 927 929 930 931 932 933 935 936 937 941 942 944 946 947 948 949 950 951 954 955 958 959 960 961 962 963 964 966 967 969 970 976 979 980 981 984 985 987 988 989 990 994 995 996 997 998 999 1001 1002 1004 1008 1011 1012 1013 1014 1019 1021 1023 1025 1026 1027 1029 1032 1033 1034 1035 1036 1038 1040 1043 1044 1047 1048 1049 1050 1053 1058 1061 1062 1063 1067 1069 1072 1073 1074 1075 1077 1081 1082 1083 1085 1091 1093 1094 1095 1096 1097 1099 1104 1105 1108 1110 1111 1114 1115 1117 1119 1121 1123 1125 1127 1129 1130 1131 1133 1134 1136 1138 1141 !
+# 2026-05-05 16:23:00 WEST: Launch race
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|         10|        323|         27|     350.0000000|        323|01:26:20|   NA|  NA|    NA|
+|x|          5|        323|         27|     681.0000000|        642|01:25:19|-0.72|0.14|1.6890|
+|x|          6|        323|         27|     883.3333333|        961|01:19:54|-0.36|0.09|0.8953|
+|x|          8|        323|         27|     696.0000000|       1280|01:20:37|-0.23|0.08|0.8072|
+|=|          2|        323|         27|     626.8000000|       1599|01:27:05|-0.02|0.18|0.7552|
+|=|          9|        323|         27|     692.0000000|       1918|01:31:15|-0.02|0.15|0.6364|
+|=|          1|        323|         27|     616.5714286|       2237|01:19:33|-0.02|0.13|0.5495|
+|=|          3|        323|         27|     554.0000000|       2556|01:28:55|+0.00|0.13|0.5573|
+|=|          7|        323|         27|     737.6666667|       2875|01:26:18|+0.00|0.11|0.5026|
+|-|          4|          4|         27|     813.1000000|       3194|01:25:32|+0.11|0.20|0.1333|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+# Stopped because number of alive configurations (4) <= minimum number of configurations (4)
+Best-so-far configuration:          27    mean value:      813.1000000
+Description of the best-so-far configuration:
+   .ID. Nit pop_size clone_threshold Nruns .PARENT.
+27   27 100      100             0.1   100       NA
+
+# 2026-05-06 06:33:53 WEST: Extracting elites
+# 2026-05-06 06:33:53 WEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   .ID. Nit pop_size clone_threshold Nruns .PARENT. .RANK. .WEIGHT.
+27   27 100      100             0.1   100       NA     23      0.4
+36   36 100      100             0.1    75       NA     23      0.3
+22   22 100       50            0.05    75       NA     27      0.2
+54   54 100       50            0.05   100       NA     27      0.1
+# 2026-05-06 06:33:53 WEST: End of iteration 4
+# 2026-05-06 06:33:53 WEST: Stopped because there is not enough budget left to race more than the minimum (4).
+# You may either increase the budget or set 'minNbSurvival' to a lower value.
+# Iteration: 5
+# nbIterations: 5
+# experimentsUsed: 9999
+# timeUsed: 0
+# remainingBudget: 1
+# currentBudget: 1
+# number of elites: 4
+# nbConfigurations: 4
+# Total CPU user time: 14472.13, CPU sys time: 1184.62, Wall-clock time: 139979.3
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   Nit pop_size clone_threshold Nruns
+27 100      100             0.1   100
+36 100      100             0.1    75
+22 100       50            0.05    75
+54 100       50            0.05   100
+# Best configurations as commandlines (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+27 --Nit 100 --pop_size 100 --clone_threshold 0.1 --Nruns 100
+36 --Nit 100 --pop_size 100 --clone_threshold 0.1 --Nruns 75
+22 --Nit 100 --pop_size 50 --clone_threshold 0.05 --Nruns 75
+54 --Nit 100 --pop_size 50 --clone_threshold 0.05 --Nruns 100
+
+
+# Testing of elite configurations: 1 
+# Testing iteration configurations: FALSE 
+# 2026-05-06 06:33:53 WEST: No test instances, skip testing

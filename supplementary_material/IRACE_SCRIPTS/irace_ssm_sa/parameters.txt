@@ -1,0 +1,21 @@
+# irace parameter space for Split-Solve-Merge Simulated Annealing (SSM-SA)
+# Format: <name> <flag> <type> <range>
+# Types: r=real, i=integer
+#
+# Only T0, Tf, Nit are tuned:
+#   - Tj: geometric cooling schedule is implied by T0/Tf/Nit; not an independent SA step
+#   - Nruns: SSM-SA runs one trajectory per irace call (MILP overhead is too high for multi-run)
+#   - Pg, Tl, Gl: structural parameters fixed in the paper (Pg=2, Tl=30, Gl=1800)
+#
+# Ranges aligned with the sensitivity analysis grid:
+#   T0  in [0.5, 20.0]  (grid tested {1, 5, 10, 20})
+#   Tf  in [0.001, 0.1] (grid tested {0.001, 0.01, 0.1})
+#   Nit in [50, 150]    (grid tested {50, 100, 150})
+
+T0  "--T0 "  r  (0.5, 20.0)
+Tf  "--Tf "  r  (0.001, 0.1)
+Nit "--Nit " i  (50, 150)
+
+[forbidden]
+# Cooling schedule requires T0 > Tf (with these ranges, rarely triggered but enforced)
+(Tf >= T0)

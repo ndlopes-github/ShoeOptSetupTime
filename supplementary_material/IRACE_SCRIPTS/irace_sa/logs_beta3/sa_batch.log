@@ -1,0 +1,250 @@
+=== Pure SA batch run ===
+Instances file  : /home/ndavid/SoftIdea/scripts/list_sa_all.txt
+Log directory   : /home/ndavid/SoftIdea/logs_sa_beta3
+Project dir     : /home/ndavid/SoftIdea
+Poll interval   : 60s
+Parameters      : T0=0.7724  Tf=0.1615  Nit=1885  Tj=11  Nruns=196  (irace best config for beta = 6)
+Parameters      : T0=48.2242 Tf=0.0791  Nit=1995  Tj=13  Nruns=181  (irace best config for beta = 3)
+Started at      : qua 22 abr 2026 14:37:06 WEST
+
+[2026-04-22 14:37:06] Starting  : H_O1_#1_2p
+[2026-04-22 14:37:06] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#1_2p.log
+[2026-04-22 14:38:06] Completed : H_O1_#1_2p
+
+[2026-04-22 14:38:06] Starting  : H_O1_#1_3p
+[2026-04-22 14:38:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#1_3p.log
+[2026-04-22 14:39:07] Completed : H_O1_#1_3p
+
+[2026-04-22 14:39:07] Starting  : H_O1_#1_4p
+[2026-04-22 14:39:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#1_4p.log
+[2026-04-22 14:40:07] Completed : H_O1_#1_4p
+
+[2026-04-22 14:40:07] Starting  : H_O1_#1_5p
+[2026-04-22 14:40:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#1_5p.log
+[2026-04-22 14:41:07] Completed : H_O1_#1_5p
+
+[2026-04-22 14:41:07] Starting  : H_O1_#2_2p
+[2026-04-22 14:41:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#2_2p.log
+[2026-04-22 14:42:07] Completed : H_O1_#2_2p
+
+[2026-04-22 14:42:07] Starting  : H_O1_#2_3p
+[2026-04-22 14:42:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#2_3p.log
+[2026-04-22 14:43:07] Completed : H_O1_#2_3p
+
+[2026-04-22 14:43:07] Starting  : H_O1_#2_4p
+[2026-04-22 14:43:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#2_4p.log
+[2026-04-22 14:44:07] Completed : H_O1_#2_4p
+
+[2026-04-22 14:44:07] Starting  : H_O1_#2_5p
+[2026-04-22 14:44:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#2_5p.log
+[2026-04-22 14:45:07] Completed : H_O1_#2_5p
+
+[2026-04-22 14:45:07] Starting  : H_O1_#3_2p
+[2026-04-22 14:45:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#3_2p.log
+[2026-04-22 14:46:07] Completed : H_O1_#3_2p
+
+[2026-04-22 14:46:07] Starting  : H_O1_#3_3p
+[2026-04-22 14:46:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#3_3p.log
+[2026-04-22 14:47:07] Completed : H_O1_#3_3p
+
+[2026-04-22 14:47:07] Starting  : H_O1_#3_4p
+[2026-04-22 14:47:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#3_4p.log
+[2026-04-22 14:48:07] Completed : H_O1_#3_4p
+
+[2026-04-22 14:48:07] Starting  : H_O1_#3_5p
+[2026-04-22 14:48:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#3_5p.log
+[2026-04-22 14:49:07] Completed : H_O1_#3_5p
+
+[2026-04-22 14:49:07] Starting  : H_O1_#4_2p
+[2026-04-22 14:49:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#4_2p.log
+[2026-04-22 14:50:07] Completed : H_O1_#4_2p
+
+[2026-04-22 14:50:07] Starting  : H_O1_#4_3p
+[2026-04-22 14:50:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#4_3p.log
+[2026-04-22 14:51:07] Completed : H_O1_#4_3p
+
+[2026-04-22 14:51:07] Starting  : H_O1_#4_4p
+[2026-04-22 14:51:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#4_4p.log
+[2026-04-22 14:52:07] Completed : H_O1_#4_4p
+
+[2026-04-22 14:52:07] Starting  : H_O1_#4_5p
+[2026-04-22 14:52:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#4_5p.log
+[2026-04-22 14:53:07] Completed : H_O1_#4_5p
+
+[2026-04-22 14:53:07] Starting  : H_O1_#5_2p
+[2026-04-22 14:53:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#5_2p.log
+[2026-04-22 14:54:07] Completed : H_O1_#5_2p
+
+[2026-04-22 14:54:07] Starting  : H_O1_#5_3p
+[2026-04-22 14:54:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#5_3p.log
+[2026-04-22 14:55:07] Completed : H_O1_#5_3p
+
+[2026-04-22 14:55:07] Starting  : H_O1_#5_4p
+[2026-04-22 14:55:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#5_4p.log
+[2026-04-22 14:56:07] Completed : H_O1_#5_4p
+
+[2026-04-22 14:56:07] Starting  : H_O1_#5_5p
+[2026-04-22 14:56:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O1_#5_5p.log
+[2026-04-22 14:57:07] Completed : H_O1_#5_5p
+
+[2026-04-22 14:57:07] Starting  : H_O2_#1_2p
+[2026-04-22 14:57:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#1_2p.log
+[2026-04-22 14:58:07] Completed : H_O2_#1_2p
+
+[2026-04-22 14:58:07] Starting  : H_O2_#1_3p
+[2026-04-22 14:58:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#1_3p.log
+[2026-04-22 14:59:07] Completed : H_O2_#1_3p
+
+[2026-04-22 14:59:07] Starting  : H_O2_#1_4p
+[2026-04-22 14:59:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#1_4p.log
+[2026-04-22 15:00:07] Completed : H_O2_#1_4p
+
+[2026-04-22 15:00:07] Starting  : H_O2_#1_5p
+[2026-04-22 15:00:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#1_5p.log
+[2026-04-22 15:01:07] Completed : H_O2_#1_5p
+
+[2026-04-22 15:01:07] Starting  : H_O2_#2_2p
+[2026-04-22 15:01:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#2_2p.log
+[2026-04-22 15:02:07] Completed : H_O2_#2_2p
+
+[2026-04-22 15:02:07] Starting  : H_O2_#2_3p
+[2026-04-22 15:02:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#2_3p.log
+[2026-04-22 15:03:07] Completed : H_O2_#2_3p
+
+[2026-04-22 15:03:07] Starting  : H_O2_#2_4p
+[2026-04-22 15:03:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#2_4p.log
+[2026-04-22 15:04:07] Completed : H_O2_#2_4p
+
+[2026-04-22 15:04:07] Starting  : H_O2_#2_5p
+[2026-04-22 15:04:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#2_5p.log
+[2026-04-22 15:05:07] Completed : H_O2_#2_5p
+
+[2026-04-22 15:05:07] Starting  : H_O2_#3_2p
+[2026-04-22 15:05:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#3_2p.log
+[2026-04-22 15:06:07] Completed : H_O2_#3_2p
+
+[2026-04-22 15:06:07] Starting  : H_O2_#3_3p
+[2026-04-22 15:06:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#3_3p.log
+[2026-04-22 15:07:07] Completed : H_O2_#3_3p
+
+[2026-04-22 15:07:07] Starting  : H_O2_#3_4p
+[2026-04-22 15:07:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#3_4p.log
+[2026-04-22 15:08:07] Completed : H_O2_#3_4p
+
+[2026-04-22 15:08:07] Starting  : H_O2_#3_5p
+[2026-04-22 15:08:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#3_5p.log
+[2026-04-22 15:09:07] Completed : H_O2_#3_5p
+
+[2026-04-22 15:09:07] Starting  : H_O2_#4_2p
+[2026-04-22 15:09:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#4_2p.log
+[2026-04-22 15:10:07] Completed : H_O2_#4_2p
+
+[2026-04-22 15:10:07] Starting  : H_O2_#4_3p
+[2026-04-22 15:10:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#4_3p.log
+[2026-04-22 15:11:07] Completed : H_O2_#4_3p
+
+[2026-04-22 15:11:07] Starting  : H_O2_#4_4p
+[2026-04-22 15:11:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#4_4p.log
+[2026-04-22 15:12:07] Completed : H_O2_#4_4p
+
+[2026-04-22 15:12:07] Starting  : H_O2_#4_5p
+[2026-04-22 15:12:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#4_5p.log
+[2026-04-22 15:13:07] Completed : H_O2_#4_5p
+
+[2026-04-22 15:13:07] Starting  : H_O2_#5_2p
+[2026-04-22 15:13:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#5_2p.log
+[2026-04-22 15:14:07] Completed : H_O2_#5_2p
+
+[2026-04-22 15:14:07] Starting  : H_O2_#5_3p
+[2026-04-22 15:14:07] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#5_3p.log
+[2026-04-22 15:15:07] Completed : H_O2_#5_3p
+
+[2026-04-22 15:15:08] Starting  : H_O2_#5_4p
+[2026-04-22 15:15:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#5_4p.log
+[2026-04-22 15:16:08] Completed : H_O2_#5_4p
+
+[2026-04-22 15:16:08] Starting  : H_O2_#5_5p
+[2026-04-22 15:16:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O2_#5_5p.log
+[2026-04-22 15:17:08] Completed : H_O2_#5_5p
+
+[2026-04-22 15:17:08] Starting  : H_O3_#1_2p
+[2026-04-22 15:17:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#1_2p.log
+[2026-04-22 15:18:08] Completed : H_O3_#1_2p
+
+[2026-04-22 15:18:08] Starting  : H_O3_#1_3p
+[2026-04-22 15:18:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#1_3p.log
+[2026-04-22 15:19:08] Completed : H_O3_#1_3p
+
+[2026-04-22 15:19:08] Starting  : H_O3_#1_4p
+[2026-04-22 15:19:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#1_4p.log
+[2026-04-22 15:20:08] Completed : H_O3_#1_4p
+
+[2026-04-22 15:20:08] Starting  : H_O3_#1_5p
+[2026-04-22 15:20:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#1_5p.log
+[2026-04-22 15:21:08] Completed : H_O3_#1_5p
+
+[2026-04-22 15:21:08] Starting  : H_O3_#2_2p
+[2026-04-22 15:21:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#2_2p.log
+[2026-04-22 15:22:08] Completed : H_O3_#2_2p
+
+[2026-04-22 15:22:08] Starting  : H_O3_#2_3p
+[2026-04-22 15:22:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#2_3p.log
+[2026-04-22 15:23:08] Completed : H_O3_#2_3p
+
+[2026-04-22 15:23:08] Starting  : H_O3_#2_4p
+[2026-04-22 15:23:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#2_4p.log
+[2026-04-22 15:24:08] Completed : H_O3_#2_4p
+
+[2026-04-22 15:24:08] Starting  : H_O3_#2_5p
+[2026-04-22 15:24:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#2_5p.log
+[2026-04-22 15:25:08] Completed : H_O3_#2_5p
+
+[2026-04-22 15:25:08] Starting  : H_O3_#3_2p
+[2026-04-22 15:25:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#3_2p.log
+[2026-04-22 15:26:08] Completed : H_O3_#3_2p
+
+[2026-04-22 15:26:08] Starting  : H_O3_#3_3p
+[2026-04-22 15:26:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#3_3p.log
+[2026-04-22 15:27:08] Completed : H_O3_#3_3p
+
+[2026-04-22 15:27:08] Starting  : H_O3_#3_4p
+[2026-04-22 15:27:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#3_4p.log
+[2026-04-22 15:28:08] Completed : H_O3_#3_4p
+
+[2026-04-22 15:28:08] Starting  : H_O3_#3_5p
+[2026-04-22 15:28:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#3_5p.log
+[2026-04-22 15:29:08] Completed : H_O3_#3_5p
+
+[2026-04-22 15:29:08] Starting  : H_O3_#4_2p
+[2026-04-22 15:29:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#4_2p.log
+[2026-04-22 15:30:08] Completed : H_O3_#4_2p
+
+[2026-04-22 15:30:08] Starting  : H_O3_#4_3p
+[2026-04-22 15:30:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#4_3p.log
+[2026-04-22 15:31:08] Completed : H_O3_#4_3p
+
+[2026-04-22 15:31:08] Starting  : H_O3_#4_4p
+[2026-04-22 15:31:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#4_4p.log
+[2026-04-22 15:32:08] Completed : H_O3_#4_4p
+
+[2026-04-22 15:32:08] Starting  : H_O3_#4_5p
+[2026-04-22 15:32:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#4_5p.log
+[2026-04-22 15:33:08] Completed : H_O3_#4_5p
+
+[2026-04-22 15:33:08] Starting  : H_O3_#5_2p
+[2026-04-22 15:33:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#5_2p.log
+[2026-04-22 15:34:08] Completed : H_O3_#5_2p
+
+[2026-04-22 15:34:08] Starting  : H_O3_#5_3p
+[2026-04-22 15:34:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#5_3p.log
+[2026-04-22 15:35:08] Completed : H_O3_#5_3p
+
+[2026-04-22 15:35:08] Starting  : H_O3_#5_4p
+[2026-04-22 15:35:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#5_4p.log
+[2026-04-22 15:36:08] Completed : H_O3_#5_4p
+
+[2026-04-22 15:36:08] Starting  : H_O3_#5_5p
+[2026-04-22 15:36:08] Log file  : /home/ndavid/SoftIdea/logs_sa_beta3/H_O3_#5_5p.log
+[2026-04-22 15:37:08] Completed : H_O3_#5_5p
+
+=== All instances completed at qua 22 abr 2026 15:37:08 WEST ===

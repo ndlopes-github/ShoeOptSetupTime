@@ -1,0 +1,260 @@
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.1.ccb6607
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/nuno/R/libs/irace
+# called with: 
+# 2026-04-27 10:50:08 WEST: Reading parameter file '/home/nuno/DrWatsonProjects/SoftIdea/irace_grasp/parameters.txt'.
+# --- Parameters Hierarchy ---
+  Parameter Level Depends.on
+1       Nit     1        Nit
+# ------------------------
+## irace scenario:
+scenarioFile = "/home/nuno/DrWatsonProjects/SoftIdea/irace_grasp/scenario.txt"
+execDir = "/home/nuno/DrWatsonProjects/SoftIdea/irace_grasp"
+parameterFile = "/home/nuno/DrWatsonProjects/SoftIdea/irace_grasp/parameters.txt"
+parameters = <environment>
+initConfigurations = NULL
+configurationsFile = ""
+logFile = "/home/nuno/DrWatsonProjects/SoftIdea/irace_grasp/irace.Rdata"
+recoveryFile = ""
+instances = c("/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n1_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n1_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n1_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n1_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n2_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n2_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n2_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n2_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n3_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n3_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n3_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n3_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n4_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n4_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n4_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n4_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n5_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n5_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n5_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O1_n5_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n1_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n1_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n1_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n1_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n2_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n2_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n2_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n2_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n3_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n3_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n3_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n3_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n4_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n4_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n4_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n4_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n5_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n5_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n5_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O2_n5_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n1_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n1_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n1_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n1_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n2_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n2_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n2_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n2_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n3_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n3_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n3_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n3_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n4_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n4_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n4_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n4_5p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n5_2p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n5_3p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n5_4p.jl", "/home/nuno/DrWatsonProjects/SoftIdea/irace_sa/instances/H_O3_n5_5p.jl")
+trainInstancesDir = ""
+trainInstancesFile = "/home/nuno/DrWatsonProjects/SoftIdea/irace_grasp/instances.txt"
+sampleInstances = TRUE
+testInstancesDir = ""
+testInstancesFile = ""
+testInstances = NULL
+testNbElites = 1L
+testIterationElites = FALSE
+testType = "friedman"
+firstTest = 5L
+blockSize = 1L
+eachTest = 1L
+targetRunner = "/home/nuno/DrWatsonProjects/SoftIdea/irace_grasp/target-runner"
+targetRunnerLauncher = ""
+targetCmdline = "{configurationID} {instanceID} {seed} {instance} {bound} {targetRunnerArgs}"
+targetRunnerRetries = 0L
+targetRunnerTimeout = 0L
+targetRunnerData = ""
+targetRunnerParallel = NULL
+targetEvaluator = NULL
+deterministic = FALSE
+maxExperiments = 5000L
+minExperiments = NA_character_
+maxTime = 0L
+budgetEstimation = 0.05
+minMeasurableTime = 0.01
+parallel = 0L
+loadBalancing = TRUE
+mpi = FALSE
+batchmode = "0"
+quiet = FALSE
+debugLevel = 1L
+seed = 12345L
+softRestart = TRUE
+softRestartThreshold = 1e-04
+elitist = TRUE
+elitistNewInstances = 1L
+elitistLimit = 2L
+repairConfiguration = NULL
+capping = FALSE
+cappingAfterFirstTest = FALSE
+cappingType = "median"
+boundType = "candidate"
+boundMax = NULL
+boundDigits = 0L
+boundPar = 1L
+boundAsTimeout = TRUE
+postselection = TRUE
+aclib = FALSE
+nbIterations = 0L
+nbExperimentsPerIteration = 0L
+minNbSurvival = 0L
+nbConfigurations = 0L
+mu = 5L
+confidence = 0.95
+## end of irace scenario
+# 2026-04-27 10:50:08 WEST: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 2
+# minNbSurvival: 2
+# nbParameters: 1
+# seed: 12345
+# confidence level: 0.95
+# budget: 5000
+# mu: 5
+# deterministic: FALSE
+
+# 2026-04-27 10:50:08 WEST: Iteration 1 of 2
+# experimentsUsed: 0
+# remainingBudget: 5000
+# currentBudget: 2500
+# nbConfigurations: 416
+# 2026-04-27 10:50:08 WEST: Sample 416 configurations from Sobol distribution
+# 2026-04-27 10:50:08 WEST: Launch race
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          1|        200|          1|     152.0000000|        200|00:05:50|   NA|  NA|    NA|
+|x|          2|        200|          1|     245.0000000|        400|00:06:06|+0.40|0.70|0.5949|
+|x|          3|        200|          1|     196.6666667|        600|00:06:22|+0.24|0.49|0.6001|
+|x|          4|        200|          1|     515.0000000|        800|00:06:39|+0.46|0.59|0.5098|
+|-|          5|        157|          1|     610.8000000|       1000|00:07:01|+0.00|0.20|0.1987|
+|=|          6|        157|          1|     719.6666667|       1157|00:05:44|+0.00|0.17|0.1656|
+|-|          7|        122|          1|     929.1428571|       1314|00:06:04|+0.00|0.14|0.1417|
+|=|          8|        122|          1|     828.1250000|       1436|00:04:52|+0.00|0.12|0.1240|
+|-|          9|        101|          1|     846.8888889|       1558|00:04:58|+0.00|0.11|0.1100|
+|=|         10|        101|          1|     796.8000000|       1659|00:04:12|+0.00|0.10|0.0990|
+|=|         11|        101|          1|     737.6363636|       1760|00:04:17|+0.00|0.09|0.0900|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+# Stopped because tests without elimination (2) >= elitistLimit (2)
+Best-so-far configuration:           1    mean value:      737.6363636
+Description of the best-so-far configuration:
+  .ID. Nit .PARENT.
+1    1 144       NA
+
+# 2026-04-27 11:52:17 WEST: Extracting elites
+# 2026-04-27 11:52:17 WEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+  .ID. Nit .PARENT. .RANK.          .WEIGHT.
+1    1 144       NA    548 0.666666666666667
+3    3 194       NA    548 0.333333333333333
+# 2026-04-27 11:52:17 WEST: Initialise model
+# 2026-04-27 11:52:17 WEST: End of iteration 1
+# 2026-04-27 11:52:17 WEST: Iteration 2 of 2
+# experimentsUsed: 1760
+# remainingBudget: 3240
+# currentBudget: 3240
+# nbConfigurations: 271
+# 2026-04-27 11:52:17 WEST: Update model
+# 2026-04-27 11:52:17 WEST: Sample 269 configurations from model
+# 2026-04-27 11:52:17 WEST: Computing similarity of configurations ............................................................................................................................................................................................................................................................................... DONE
+# 2026-04-27 11:52:17 WEST: Soft restart: 1 3 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 !
+# 2026-04-27 11:52:17 WEST: Launch race
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|         12|        271|          1|     1479.000000|        271|00:12:06|   NA|  NA|    NA|
+|x|         10|        271|          1|     912.5000000|        540|00:12:43|+1.00|1.00|0.0000|
+|x|          9|        271|          1|     940.6666667|        809|00:13:31|+1.00|1.00|0.0000|
+|x|          4|        271|          1|     1073.000000|       1078|00:14:02|+1.00|1.00|0.0000|
+|=|          6|        271|          1|     1111.200000|       1347|00:14:45|+1.00|1.00|0.0000|
+|=|          1|        271|          1|     951.3333333|       1616|00:15:32|+1.00|1.00|0.0000|
+|=|         11|        271|          1|     836.2857143|       1885|00:16:23|+1.00|1.00|0.0000|
+|=|          3|        271|          1|     744.2500000|       2154|00:17:08|+1.00|1.00|0.0000|
+|=|          2|        271|          1|     699.1111111|       2423|00:17:48|+1.00|1.00|0.0000|
+|=|          5|        271|          1|     728.6000000|       2692|00:18:47|+1.00|1.00|0.0000|
+|=|          8|        271|          1|     673.3636364|       2961|00:19:45|+1.00|1.00|0.0000|
+|=|          7|        271|          1|     799.4166667|       3230|00:20:59|+1.00|1.00|0.0000|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+# Stopped because experiments for next test (3501) > max experiments (3240)
+Best-so-far configuration:           1    mean value:      799.4166667
+Description of the best-so-far configuration:
+  .ID. Nit .PARENT.
+1    1 144       NA
+
+# 2026-04-27 15:05:53 WEST: Extracting elites
+# 2026-04-27 15:05:53 WEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+  .ID. Nit .PARENT. .RANK.          .WEIGHT.
+1    1 144       NA   1632 0.666666666666667
+3    3 194       NA   1632 0.333333333333333
+# 2026-04-27 15:05:53 WEST: End of iteration 2
+# 2026-04-27 15:05:53 WEST: Stopped because there is not enough budget left to race more than the minimum (2).
+# You may either increase the budget or set 'minNbSurvival' to a lower value.
+# Iteration: 3
+# nbIterations: 3
+# experimentsUsed: 4990
+# timeUsed: 0
+# remainingBudget: 10
+# currentBudget: 10
+# number of elites: 2
+# nbConfigurations: 2
+# Total CPU user time: 7159.907, CPU sys time: 515.07, Wall-clock time: 15344.74
+# 2026-04-27 15:05:53 WEST: Starting post-selection:
+# Configurations selected: 1, 3, 201, 202, 203, 204, 205, 206, 207, 208.
+# Pending instances: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.
+# 2026-04-27 15:05:53 WEST: seed: 12345
+# Configurations: 10
+# Available experiments: 10
+# minSurvival: 1
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|.|         10|         10|          1|     346.0000000|          0|00:00:00|   NA|  NA|    NA|
+|.|          7|         10|          1|     1266.000000|          0|00:00:00|+1.00|1.00|0.0000|
+|.|         12|         10|          1|     1337.000000|          0|00:00:00|+1.00|1.00|0.0000|
+|.|          2|         10|          1|     1087.250000|          0|00:00:00|+1.00|1.00|0.0000|
+|.|          9|         10|          1|     1069.200000|          0|00:00:00|+1.00|1.00|0.0000|
+|.|          6|         10|          1|     1101.666667|          0|00:00:00|+1.00|1.00|0.0000|
+|.|          1|         10|          1|     966.0000000|          0|00:00:00|+1.00|1.00|0.0000|
+|.|          8|         10|          1|     860.3750000|          0|00:00:00|+1.00|1.00|0.0000|
+|.|         11|         10|          1|     781.0000000|          0|00:00:00|+1.00|1.00|0.0000|
+|.|          4|         10|          1|     849.9000000|          0|00:00:00|+1.00|1.00|0.0000|
+|.|          3|         10|          1|     781.7272727|          0|00:00:00|+1.00|1.00|0.0000|
+|.|          5|         10|          1|     799.4166667|          0|00:00:00|+1.00|1.00|0.0000|
+|=|         13|         10|          1|     787.8461538|         10|00:00:50|+1.00|1.00|0.0000|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+# Stopped because experiments for next test (20) > max experiments (10)
+Best-so-far configuration:           1    mean value:      787.8461538
+Description of the best-so-far configuration:
+  .ID. Nit .PARENT.
+1    1 144       NA
+
+# 2026-04-27 15:06:43 WEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+  .ID. Nit .PARENT. .RANK.          .WEIGHT.
+1    1 144       NA   71.5 0.666666666666667
+3    3 194       NA   71.5 0.333333333333333
+# Total CPU user time: 7174.29, CPU sys time: 516.086, Wall-clock time: 15394.97
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+  Nit
+1 144
+3 194
+# Best configurations as commandlines (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+1 --Nit 144
+3 --Nit 194
+
+
+# Testing of elite configurations: 1 
+# Testing iteration configurations: FALSE 
+# 2026-04-27 15:06:43 WEST: No test instances, skip testing

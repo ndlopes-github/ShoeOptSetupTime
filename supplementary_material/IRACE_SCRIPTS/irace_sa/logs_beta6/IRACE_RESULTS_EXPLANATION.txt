@@ -1,0 +1,47 @@
+========================================
+IRACE TUNING RESULTS - FILE EXPLANATION
+========================================
+
+Two CSV files have been generated:
+
+1. irace_results_top4_configs.csv (12 instances)
+   =============================================
+   - Contains the FINAL 12 instances used in post-selection phase
+   - These are the instances where the elite configurations were compared
+   - All 4 elite configs (797, 1135, 1146, 1163) have costs for these instances
+   - This represents the final validation of the tuned parameters
+   - Columns: matrix_row, scenario_index, filename, config_797, config_1135, config_1146, config_1163, mean_cost
+
+2. irace_results_all_60_instances.csv (60 instances)
+   =================================================
+   - Contains ALL 60 possible instances in the benchmark suite
+   - Shows which instances were tested: only 12 have data (others are NA)
+   - The 12 instances WITH data are the post-selection instances
+   - This file shows the complete landscape of all available instances
+   - Columns: scenario_index, filename, config_797, config_1135, config_1146, config_1163, mean_cost
+
+WHY ONLY 12 INSTANCES WITH DATA?
+=================================
+irace uses a smart sampling strategy with "sampleInstances = TRUE":
+
+- Total benchmark instances available: 60
+- Each iteration: Samples DIFFERENT instances from the pool
+  - Iteration 1: 6 instances tested
+  - Iteration 2: 7 instances (different + some repeats)
+  - Iteration 3: 8 instances
+  - Iteration 4: 10 instances
+  - Iteration 5: 11 instances
+  - Iteration 6: 1 instance (final post-selection)
+
+- Final Phase (Post-Selection): Evaluated elite configs on 12 new instances
+- These 12 are what's in the experiments matrix and shown in both CSVs
+
+RECOMMENDATION
+==============
+Use irace_results_top4_configs.csv for analysis:
+- It contains clean data (no NA values)
+- Represents final validation results
+- Shows performance of elite configs on the selection test set
+
+The _all_60_instances.csv is for reference/context only.
+
