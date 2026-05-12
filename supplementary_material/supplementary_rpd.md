@@ -160,10 +160,10 @@ The statistical analysis follows the methodology of Derrac et al. (2011), using 
 
 | Algorithm | n | W statistic | p-value | Normal (p ≥ 0.05) |
 |-----------|--:|------------:|--------:|:-----------------:|
-| SA | 120 | 0.7905 | 8.49 × 10⁻¹² | No |
-| GRASP | 120 | 0.9559 | 6.01 × 10⁻⁴ | No |
-| GA | 120 | 0.7148 | 5.83 × 10⁻¹⁴ | No |
-| SSM-SA | 109 | 0.5847 | 4.52 × 10⁻¹⁶ | No |
+| SA | 120 | 0.7905 | < 0.001 | No |
+| GRASP | 120 | 0.9559 | < 0.001 | No |
+| GA | 120 | 0.7148 | < 0.001 | No |
+| SSM-SA | 109 | 0.5847 | < 0.001 | No |
 
 All four RPD distributions are non-normal, justifying the use of nonparametric tests.
 
@@ -173,19 +173,19 @@ All four RPD distributions are non-normal, justifying the use of nonparametric t
 |-----------|------:|
 | n instances | 109 |
 | χ² | 255.52 |
-| p-value | 4.18 × 10⁻⁵⁵ |
+| p-value | < 0.001 |
 | Significant (p < 0.05) | Yes |
 
 ### Pairwise Wilcoxon Signed-Rank Tests (Bonferroni corrected, α = 0.05/6)
 
 | Pair (A vs B) | W statistic | p-value (raw) | p-value (Bonf) | Significant | Effect size (r) | Magnitude |
 |---------------|------------:|--------------:|---------------:|:-----------:|----------------:|:---------:|
-| SA vs GRASP | 0.0 | 1.28 × 10⁻¹⁹ | 7.67 × 10⁻¹⁹ | Yes | 1.000 | large |
-| SA vs GA | 331.0 | 1.86 × 10⁻¹⁵ | 1.12 × 10⁻¹⁴ | Yes | 0.885 | large |
-| SA vs SSM-SA | 1217.0 | 2.03 × 10⁻⁷ | 1.22 × 10⁻⁶ | Yes | 0.579 | large |
-| GRASP vs GA | 0.0 | 1.28 × 10⁻¹⁹ | 7.67 × 10⁻¹⁹ | Yes | 1.000 | large |
-| GRASP vs SSM-SA | 0.0 | 1.28 × 10⁻¹⁹ | 7.67 × 10⁻¹⁹ | Yes | 1.000 | large |
-| GA vs SSM-SA | 1452.0 | 2.25 × 10⁻⁴ | 1.35 × 10⁻³ | Yes | 0.425 | medium |
+| SA vs GRASP | 0.0 | < 0.001 | < 0.001 | Yes | 1.000 | large |
+| SA vs GA | 331.0 | < 0.001 | < 0.001 | Yes | 0.885 | large |
+| SA vs SSM-SA | 1217.0 | < 0.001 | < 0.001 | Yes | 0.579 | large |
+| GRASP vs GA | 0.0 | < 0.001 | < 0.001 | Yes | 1.000 | large |
+| GRASP vs SSM-SA | 0.0 | < 0.001 | < 0.001 | Yes | 1.000 | large |
+| GA vs SSM-SA | 1452.0 | < 0.001 | 1.35 × 10⁻³ | Yes | 0.425 | medium |
 
 All six pairwise comparisons are statistically significant after Bonferroni correction. Effect sizes are large for all pairs except GA vs SSM-SA (medium, r = 0.42), indicating that while GA and SSM-SA differ significantly, the practical difference is smaller than the other pairs.
 
