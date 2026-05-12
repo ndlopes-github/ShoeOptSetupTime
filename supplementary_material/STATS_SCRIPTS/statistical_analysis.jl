@@ -38,9 +38,8 @@ using StatsBase: tiedrank
 using Distributions: Chisq, ccdf
 using Statistics
 using Printf
-
-# StatsPlots / Plots are loaded lazily inside plot_boxplot() so that the
-# script can still run headlessly when these packages are not installed.
+using Plots
+using StatsPlots
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
 const SCRIPT_DIR = dirname(abspath(@__FILE__))
@@ -146,18 +145,14 @@ end
 # ── Boxplot ─────────────────────────────────────────────────────────────────────
 function plot_boxplot(data::Dict{String,Vector{Float64}}, algo_cols, algo_labels)
     try
-        @eval using StatsPlots
-        @eval using Plots
-        @eval gr()
+
+        gr()
         plot_data = [data[c] for c in algo_cols]
-        plot_labels = reshape(algo_labels, 1, :)   # StatsPlots needs 1×k for labels
-
         colors = ["#4C72B0" "#DD8452" "#55A868" "#C44E52"]
-
-        p = @eval boxplot(
-            $plot_labels, $plot_data;
+        p = StatsPlots.boxplot(
+            reshape(collect(algo_labels), 1, :), plot_data;
             fillalpha=0.7,
-            color=$colors,
+            color=colors,
             linecolor=:black,
             whisker_width=0.5,
             outliers=true,
@@ -167,7 +162,7 @@ function plot_boxplot(data::Dict{String,Vector{Float64}}, algo_cols, algo_labels
             legend=false,
             size=(640, 420),
         )
-        savefig(p, OUT_PLOT)
+        Plots.savefig(p, OUT_PLOT)
         println("Written: $OUT_PLOT")
     catch e
         @warn "Could not produce boxplot (StatsPlots/Plots not available): $e"
