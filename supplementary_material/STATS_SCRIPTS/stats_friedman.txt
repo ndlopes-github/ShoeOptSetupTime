@@ -1,4 +1,4 @@
 Friedman test on 109 instances with all 4 heuristics
-chi2 = 255.524651
-p    = 4.177084e-55
-Significant (p<0.05): True
+chi2 = 252.008257
+p    = 2.406927e-54
+Significant (p<0.05): true

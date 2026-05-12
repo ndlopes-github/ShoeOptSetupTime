@@ -44,11 +44,11 @@ using Printf
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
 const SCRIPT_DIR = dirname(abspath(@__FILE__))
-const IN_CSV     = joinpath(SCRIPT_DIR, "rpd_results.csv")
-const OUT_NORM   = joinpath(SCRIPT_DIR, "stats_normality.csv")
-const OUT_FRIED  = joinpath(SCRIPT_DIR, "stats_friedman.txt")
+const IN_CSV = joinpath(SCRIPT_DIR, "rpd_results.csv")
+const OUT_NORM = joinpath(SCRIPT_DIR, "stats_normality.csv")
+const OUT_FRIED = joinpath(SCRIPT_DIR, "stats_friedman.txt")
 const OUT_WILCOX = joinpath(SCRIPT_DIR, "stats_wilcoxon.csv")
-const OUT_PLOT   = joinpath(SCRIPT_DIR, "rpd_boxplot.pdf")
+const OUT_PLOT = joinpath(SCRIPT_DIR, "rpd_boxplot.pdf")
 
 # ── Load data ──────────────────────────────────────────────────────────────────
 """
@@ -60,9 +60,9 @@ Returns:
 """
 function load_rpd(path::String)
     algo_cols = ["SA_avg_RPD", "GRASP_avg_RPD", "GA_avg_RPD", "SSM_SA_RPD"]
-    df = CSV.read(path, DataFrame; missingstring="—")
+    df = CSV.read(path, DataFrame; missingstring=["", "—"])
 
-    data          = Dict(a => Float64[] for a in algo_cols)
+    data = Dict(a => Float64[] for a in algo_cols)
     complete_rows = Vector{Dict{String,Float64}}()
 
     for row in eachrow(df)
@@ -92,12 +92,12 @@ function rank_biserial(x::Vector{Float64}, y::Vector{Float64})::Float64
     n = length(diffs)
     n == 0 && return 0.0
 
-    abs_d  = abs.(diffs)
-    ranks  = tiedrank(abs_d)          # handles ties; ranks start at 1
-    W_plus  = sum(ranks[i] for i in 1:n if diffs[i] > 0; init=0.0)
+    abs_d = abs.(diffs)
+    ranks = tiedrank(abs_d)          # handles ties; ranks start at 1
+    W_plus = sum(ranks[i] for i in 1:n if diffs[i] > 0; init=0.0)
     W_minus = sum(ranks[i] for i in 1:n if diffs[i] < 0; init=0.0)
-    W      = min(W_plus, W_minus)
-    max_W  = n * (n + 1) / 2
+    W = min(W_plus, W_minus)
+    max_W = n * (n + 1) / 2
     return 1.0 - (2.0 * W) / max_W
 end
 
@@ -110,7 +110,7 @@ function effect_magnitude(r::Float64)::String
 end
 
 fmt(::Missing, digits::Int=4) = "—"
-fmt(v::Real,   digits::Int=4) = @sprintf("%.*f", digits, Float64(v))
+fmt(v::Real, digits::Int=4) = @sprintf("%.*f", digits, Float64(v))
 
 # ── Friedman test (manual implementation) ─────────────────────────────────────
 """
@@ -149,7 +149,7 @@ function plot_boxplot(data::Dict{String,Vector{Float64}}, algo_cols, algo_labels
         @eval using StatsPlots
         @eval using Plots
         @eval gr()
-        plot_data   = [data[c] for c in algo_cols]
+        plot_data = [data[c] for c in algo_cols]
         plot_labels = reshape(algo_labels, 1, :)   # StatsPlots needs 1×k for labels
 
         colors = ["#4C72B0" "#DD8452" "#55A868" "#C44E52"]
@@ -178,8 +178,8 @@ end
 function main()
     data, complete_rows = load_rpd(IN_CSV)
 
-    algo_cols   = ["SA_avg_RPD", "GRASP_avg_RPD", "GA_avg_RPD", "SSM_SA_RPD"]
-    algo_labels = ["SA",         "GRASP",          "GA",          "SSM-SA"]
+    algo_cols = ["SA_avg_RPD", "GRASP_avg_RPD", "GA_avg_RPD", "SSM_SA_RPD"]
+    algo_labels = ["SA", "GRASP", "GA", "SSM-SA"]
 
     println("Loaded data: $(map(a -> length(data[a]), algo_cols)) values per algo")
     println("Complete rows (all 4 algos present): $(length(complete_rows))\n")
@@ -188,19 +188,19 @@ function main()
     println("=== Shapiro–Wilk Normality Test ===")
     norm_rows = NamedTuple[]
     for (col, label) in zip(algo_cols, algo_labels)
-        v      = data[col]
-        sw     = ShapiroWilkTest(v)
-        W_stat = teststatistic(sw)
-        p_val  = pvalue(sw)
+        v = data[col]
+        sw = ShapiroWilkTest(v)
+        W_stat = sw.W
+        p_val = pvalue(sw)
         normal = p_val ≥ 0.05
         @printf("  %-8s  n=%3d  W=%.4f  p=%.4e  %s\n",
             label, length(v), W_stat, p_val, normal ? "normal" : "NON-NORMAL")
         push!(norm_rows, (
-            Algorithm         = label,
-            n                 = length(v),
-            W                 = W_stat,
-            p_value           = p_val,
-            Normal_p_ge_0_05  = normal,
+            Algorithm=label,
+            n=length(v),
+            W=W_stat,
+            p_value=p_val,
+            Normal_p_ge_0_05=normal,
         ))
     end
     CSV.write(OUT_NORM, DataFrame(norm_rows))
@@ -209,8 +209,8 @@ function main()
     # ── 2. Friedman test ──────────────────────────────────────────────────────
     n_complete = length(complete_rows)
     groups = [Float64[r[c] for r in complete_rows] for c in algo_cols]
-    Q, fp  = friedman_test(groups)
-    sig    = fp < 0.05
+    Q, fp = friedman_test(groups)
+    sig = fp < 0.05
     println("\n=== Friedman Test (n=$n_complete complete instances) ===")
     @printf("  χ² = %.4f,  p = %.4e\n", Q, fp)
     println("  $(sig ? "Significant difference detected." : "No significant difference.")")
@@ -224,9 +224,9 @@ function main()
     println("Written: $OUT_FRIED")
 
     # ── 3. Wilcoxon signed-rank pairwise post-hoc ─────────────────────────────
-    pairs   = [(i, j) for i in 1:length(algo_cols) for j in (i+1):length(algo_cols)]
+    pairs = [(i, j) for i in 1:length(algo_cols) for j in (i+1):length(algo_cols)]
     n_pairs = length(pairs)
-    α_bonf  = 0.05 / n_pairs
+    α_bonf = 0.05 / n_pairs
     println("\n=== Wilcoxon Signed-Rank (pairwise, Bonferroni α=$(round(α_bonf; digits=4))) ===")
 
     wilcox_rows = NamedTuple[]
@@ -235,40 +235,40 @@ function main()
         xj = Float64[r[algo_cols[j]] for r in complete_rows]
 
         # HypothesisTests for two-sided p-value
-        st        = SignedRankTest(xi, xj)
-        p_raw     = pvalue(st; tail=:both)
-        p_bonf    = min(p_raw * n_pairs, 1.0)
+        st = SignedRankTest(xi, xj)
+        p_raw = pvalue(st; tail=:both)
+        p_bonf = min(p_raw * n_pairs, 1.0)
 
         # W statistic: min(T⁺, T⁻), consistent with scipy.stats.wilcoxon
-        T_plus    = teststatistic(st)
+        T_plus = st.W
         n_nonzero = count(!iszero, xi .- xj)
-        T_total   = n_nonzero * (n_nonzero + 1) / 2
-        W_stat    = min(T_plus, T_total - T_plus)
+        T_total = n_nonzero * (n_nonzero + 1) / 2
+        W_stat = min(T_plus, T_total - T_plus)
 
         # Effect size
-        r_rb  = rank_biserial(xi, xj)
-        mag   = effect_magnitude(r_rb)
+        r_rb = rank_biserial(xi, xj)
+        mag = effect_magnitude(r_rb)
 
-        sig_raw  = p_raw  < 0.05
+        sig_raw = p_raw < 0.05
         sig_bonf = p_bonf < 0.05
 
         @printf("  %-8s vs %-8s  W=%7.1f  p=%10.4e  p_bonf=%10.4e  r=%+.3f (%s)  %s %s\n",
             algo_labels[i], algo_labels[j],
             W_stat, p_raw, p_bonf,
             r_rb, mag,
-            sig_raw  ? "*" : " ",
+            sig_raw ? "*" : " ",
             sig_bonf ? "*" : " ")
 
         push!(wilcox_rows, (
-            Algo_A          = algo_labels[i],
-            Algo_B          = algo_labels[j],
-            W_stat          = W_stat,
-            p_value         = p_raw,
-            p_bonferroni    = p_bonf,
-            sig_raw         = sig_raw,
-            sig_bonferroni  = sig_bonf,
-            rank_biserial   = r_rb,
-            effect_size     = mag,
+            Algo_A=algo_labels[i],
+            Algo_B=algo_labels[j],
+            W_stat=W_stat,
+            p_value=p_raw,
+            p_bonferroni=p_bonf,
+            sig_raw=sig_raw,
+            sig_bonferroni=sig_bonf,
+            rank_biserial=r_rb,
+            effect_size=mag,
         ))
     end
     CSV.write(OUT_WILCOX, DataFrame(wilcox_rows))
