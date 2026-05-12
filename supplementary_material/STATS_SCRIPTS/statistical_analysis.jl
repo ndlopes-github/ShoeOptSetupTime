@@ -28,7 +28,8 @@ Outputs:
     <script_dir>/stats_normality.csv   — Shapiro–Wilk results
     <script_dir>/stats_friedman.txt    — Friedman test result
     <script_dir>/stats_wilcoxon.csv    — Pairwise Wilcoxon + effect sizes
-    <script_dir>/rpd_boxplot.pdf       — Boxplot figure
+    <script_dir>/rpd_boxplot.pdf       — Boxplot figure (PDF)
+    <script_dir>/rpd_boxplot.png       — Boxplot figure (PNG)
 """
 
 using CSV
@@ -47,7 +48,8 @@ const IN_CSV = joinpath(SCRIPT_DIR, "rpd_results.csv")
 const OUT_NORM = joinpath(SCRIPT_DIR, "stats_normality.csv")
 const OUT_FRIED = joinpath(SCRIPT_DIR, "stats_friedman.txt")
 const OUT_WILCOX = joinpath(SCRIPT_DIR, "stats_wilcoxon.csv")
-const OUT_PLOT = joinpath(SCRIPT_DIR, "rpd_boxplot.pdf")
+const OUT_PLOT     = joinpath(SCRIPT_DIR, "rpd_boxplot.pdf")
+const OUT_PLOT_PNG = joinpath(SCRIPT_DIR, "rpd_boxplot.png")
 
 # ── Load data ──────────────────────────────────────────────────────────────────
 """
@@ -164,6 +166,8 @@ function plot_boxplot(data::Dict{String,Vector{Float64}}, algo_cols, algo_labels
         )
         Plots.savefig(p, OUT_PLOT)
         println("Written: $OUT_PLOT")
+        Plots.savefig(p, OUT_PLOT_PNG)
+        println("Written: $OUT_PLOT_PNG")
     catch e
         @warn "Could not produce boxplot (StatsPlots/Plots not available): $e"
     end
