@@ -48,7 +48,7 @@ const IN_CSV = joinpath(SCRIPT_DIR, "rpd_results.csv")
 const OUT_NORM = joinpath(SCRIPT_DIR, "stats_normality.csv")
 const OUT_FRIED = joinpath(SCRIPT_DIR, "stats_friedman.txt")
 const OUT_WILCOX = joinpath(SCRIPT_DIR, "stats_wilcoxon.csv")
-const OUT_PLOT     = joinpath(SCRIPT_DIR, "rpd_boxplot.pdf")
+const OUT_PLOT = joinpath(SCRIPT_DIR, "rpd_boxplot.pdf")
 const OUT_PLOT_PNG = joinpath(SCRIPT_DIR, "rpd_boxplot.png")
 
 # ── Load data ──────────────────────────────────────────────────────────────────
