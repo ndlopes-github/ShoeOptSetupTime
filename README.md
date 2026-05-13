@@ -24,7 +24,7 @@ We address a real-world scheduling problem arising in shoe sole manufacturing, w
 
 - **Novel MILP Models:** Exact mixed-integer linear programming formulations of the problem
 - **Split-Solve-Merge Algorithm:** A novel heuristic specifically designed for handling large-scale instances
-- **Heuristic Methods:** GRASP and Simulated Annealing algorithms tailored to the problem structure
+- **Heuristic Methods:** GRASP, GA and Simulated Annealing algorithms tailored to the problem structure
 - **Real-World Validation:** Computational experiments based on actual production data from a footwear manufacturer demonstrate significant improvements in production efficiency
 
 ## 🚀 Solution Methods
