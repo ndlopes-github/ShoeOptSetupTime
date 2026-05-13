@@ -20,7 +20,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+PROJECT_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 INSTANCES_FILE="${1:-"$SCRIPT_DIR/list_complete_beta3.txt"}"
 LOG_DIR="$PROJECT_DIR/logs_beta3"
 POLL_INTERVAL=30   # seconds between screen-session checks (~8.5 h runs)

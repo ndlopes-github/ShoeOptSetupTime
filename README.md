@@ -282,6 +282,8 @@ julia --project scripts/batch_compare_all_methods.jl --limit=1 --skip-milp --ski
 
 **Output:** Results saved to `data/exp_pro/` as CSV files with detailed method comparisons.
 
+For batch execution of multiple instances, see [Batch Processing](#-batch-processing) section.
+
 ## 📚 Algorithm Documentation
 
 All algorithm modules include comprehensive docstrings following Julia conventions:
@@ -436,11 +438,105 @@ Each run produces:
 **Issue:** Module not found errors
 - **Solution:** Ensure you are in the project directory and have run `Pkg.instantiate()` after `Pkg.activate(".")`
 
+## � Batch Processing
+
+For running multiple instances in batch, use the helper scripts in `scripts/batch_helpers/`. These manage sequential execution with detached screen sessions (useful for long-running experiments on remote servers).
+
+**Available batch runners:**
+- `run_ga_batch.sh` - Run GA on multiple instances
+- `run_grasp_batch.sh` - Run GRASP on multiple instances  
+- `run_milp_batch.sh` - Run MILP on multiple instances (WARNING: slow)
+- `run_sa_batch.sh` - Run SA on multiple instances
+- `run_ssm_sa_batch.sh` - Run SSM-SA on multiple instances
+
+**Usage:**
+```bash
+# Run GA on instances listed in list_ga_all.txt
+bash scripts/batch_helpers/run_ga_batch.sh
+
+# Run with custom instance list
+bash scripts/batch_helpers/run_grasp_batch.sh my_instances.txt
+
+# Run with beta override
+bash scripts/batch_helpers/run_sa_batch.sh scripts/batch_helpers/list_sa_all.txt --beta 6
+
+# On remote server (survives SSH disconnect):
+screen -S ga_batch -dmL -Logfile logs_ga_beta3/ga_batch.log \
+    bash scripts/batch_helpers/run_ga_batch.sh
+```
+
+Results are saved to `data/exp_pro/` with logs in `logs_*_beta*/` directories.
+
+## ⚙️ Parameter Tuning with irace
+
+For automated parameter optimization, use the irace runners in `scripts/irace_helpers/`. These are designed to work with the irace optimizer framework.
+
+**Available irace runners:**
+- `irace_ga_runner.jl` - GA parameter tuning target
+- `irace_grasp_runner.jl` - GRASP parameter tuning target
+- `irace_sa_runner.jl` - SA parameter tuning target
+- `irace_ssm_sa_runner.jl` - SSM-SA parameter tuning target
+
+**Basic usage (one parameter evaluation):**
+```bash
+julia --project scripts/irace_helpers/irace_sa_runner.jl \
+    data/settings/H_O2_#2_3p.jl 12345 --Nit 100
+```
+
+For full irace integration, see `supplementary_material/IRACE_SCRIPTS/` for example configurations.
+
+## 📊 Supplementary Material
+
+Comprehensive experimental results, statistical analysis, and irace configuration files are available in the `supplementary_material/` directory:
+
+- **`GA/`, `GRASP/`, `MILP/`, `SA/`, `SSM-SA/`** - Per-method result directories with detailed logs and CSV exports
+- **`INSTANCES/`** - Test instances used in computational experiments
+  - `INSTANCES/MILP/` - Instances for exact solver tests
+  - `INSTANCES/HEURISTICS/` - Instances for heuristic method tests
+- **`IRACE_SCRIPTS/`** - irace parameter tuning configurations
+  - `irace_ga/`, `irace_grasp/`, `irace_sa/`, `irace_ssm_sa/` - One directory per method with scenario files, parameters, and forbidden configurations
+- **`STATS_SCRIPTS/`** - Statistical analysis tools
+  - `compute_rpd.jl` - Compute RPD (Relative Percent Deviation) from best known solutions
+  - `statistical_analysis.jl` - Wilcoxon and Friedman tests
+- **`supplementary_rpd.md`** - Per-instance RPD results table for all methods
+
+## ✅ Quick Smoke Tests
+
+To verify that your environment is set up correctly, run these quick validation tests:
+
+```bash
+# Test 1: MILP/SSM on small instance (~1 min)
+julia --project scripts/run_ssm_milp.jl heuristic
+
+# Test 2: Simulated Annealing (20 runs, ~2 min)
+julia --project scripts/run_sa.jl --runs=20 --log-every=0
+
+# Test 3: GRASP algorithm (50 iterations, ~1 min)
+julia --project scripts/run_grasp.jl --iterations=50
+
+# Test 4: Greedy algorithm on single-mold instance (~30 sec)
+julia --project scripts/run_greedy.jl --file=test_single_mold.jl
+
+# Test 5: Batch comparison (1 instance, fast methods only, ~2 min)
+julia --project scripts/batch_compare_all_methods.jl --limit=1 --skip-milp --skip-ssm
+```
+
+**Expected outcomes:**
+- All tests complete without errors (no red ERROR or EXCEPTION messages)
+- Solver produces solution quality metrics (cost, time, iterations)
+- Output files are generated in `data/exp_pro/` or `data/sims/`
+- Log files appear in the appropriate logs directory
+
+If any test fails, check the error message and ensure:
+1. Julia is properly initialized: `julia --project -e 'using Pkg; Pkg.instantiate()'`
+2. Solver is available: Use HiGHS if Gurobi is not licensed
+3. Instance files exist in `data/settings/`
+
 ## 📁 Project Structure
 
 ```
 ShoeOptSetupTime/
-├── scripts/                          # Algorithm implementations
+├── scripts/                          # Algorithm implementations and runners
 │   ├── run_ssm_milp.jl              # MILP and Split-Solve-Merge runner (with --help)
 │   ├── split_solve_merge_milp.jl    # Novel SSM algorithm module
 │   ├── run_sa.jl                    # Simulated Annealing runner (with --help)
@@ -448,7 +544,24 @@ ShoeOptSetupTime/
 │   ├── run_grasp.jl                 # GRASP runner (with --help)
 │   ├── grasp.jl                     # GRASP algorithm module
 │   ├── run_greedy.jl                # Greedy runner (with --help)
-│   └── batch_compare_all_methods.jl # Comprehensive comparison (with --help)
+│   ├── batch_compare_all_methods.jl # Comprehensive comparison (with --help)
+│   ├── batch_helpers/               # Batch processing for multiple instances
+│   │   ├── run_ga_batch.sh          # GA batch sequential runner
+│   │   ├── run_grasp_batch.sh       # GRASP batch sequential runner
+│   │   ├── run_milp_batch.sh        # MILP batch sequential runner
+│   │   ├── run_sa_batch.sh          # SA batch sequential runner
+│   │   ├── run_ssm_sa_batch.sh      # SSM-SA batch sequential runner
+│   │   ├── run_ga_cli.jl            # GA CLI runner
+│   │   ├── run_grasp_cli.jl         # GRASP CLI runner
+│   │   ├── run_milp_cli.jl          # MILP CLI runner
+│   │   ├── run_sa_cli.jl            # SA CLI runner
+│   │   ├── run_ssm_sa_cli.jl        # SSM-SA CLI runner
+│   │   └── list_*_all.txt           # Instance lists for batch runs
+│   └── irace_helpers/               # Parameter tuning runners for irace
+│       ├── irace_ga_runner.jl       # GA irace target runner
+│       ├── irace_grasp_runner.jl    # GRASP irace target runner
+│       ├── irace_sa_runner.jl       # SA irace target runner
+│       └── irace_ssm_sa_runner.jl   # SSM-SA irace target runner
 ├── src/
 │   └── loggers.jl                   # Logging utilities
 ├── data/
@@ -460,6 +573,12 @@ ShoeOptSetupTime/
 │   └── sims/                        # Simulation logs
 │       ├── exact/                   # Logs for Pg=1 runs
 │       └── heuristics/              # Logs for Pg>1 runs
+├── supplementary_material/          # Supplementary results and configurations
+│   ├── GA/, GRASP/, MILP/, SA/, SSM-SA/  # Per-method result directories
+│   ├── INSTANCES/                   # Test instances (MILP/, HEURISTICS/)
+│   ├── IRACE_SCRIPTS/               # irace tuning configurations
+│   ├── STATS_SCRIPTS/               # Statistical analysis tools
+│   └── supplementary_rpd.md         # Per-instance RPD results table
 ├── Project.toml                     # Julia project dependencies
 ├── Manifest.toml                    # Locked dependency versions
 ├── LICENSE                          # MIT License

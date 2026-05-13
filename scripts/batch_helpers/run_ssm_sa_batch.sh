@@ -21,7 +21,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+PROJECT_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 
 INSTANCES_FILE=""
 BETA_ARG=""
@@ -33,7 +33,7 @@ while [[ $# -gt 0 ]]; do
         *)        INSTANCES_FILE="$1"; shift ;;
     esac
 done
-INSTANCES_FILE="${INSTANCES_FILE:-"$SCRIPT_DIR/list_ssm_sa_all.txt"}"
+INSTANCES_FILE="${INSTANCES_FILE:-"$SCRIPT_DIR/list_ssm_sa_all.txt"}"}
 
 LOG_DIR="$PROJECT_DIR/logs_ssm_sa"
 POLL_INTERVAL=60   # seconds between screen-session checks
