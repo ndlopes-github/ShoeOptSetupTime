@@ -100,6 +100,8 @@ For more detailed examples, see [Usage](#usage) section.
 
 - Julia 1.12 or later
 - Git
+- R (only required for irace parameter tuning)
+- R package `irace` (only required for irace parameter tuning)
 
 ## Solver Requirements
 
@@ -129,6 +131,11 @@ If using HiGHS instead of Gurobi, you'll need to modify the `solver_name` parame
 3. **Verify installation:**
    ```bash
    julia> include("Project.toml")  # loads all dependencies
+   ```
+
+4. **Optional (only for irace tuning): Install irace in R**
+   ```bash
+   R -q -e 'install.packages("irace", repos="https://cloud.r-project.org")'
    ```
 
 This setup will install all required packages and handle local path configuration automatically.
@@ -438,7 +445,7 @@ Each run produces:
 **Issue:** Module not found errors
 - **Solution:** Ensure you are in the project directory and have run `Pkg.instantiate()` after `Pkg.activate(".")`
 
-## � Batch Processing
+## 🔬 Batch Processing
 
 For running multiple instances in batch, use the helper scripts in `scripts/batch_helpers/`. These manage sequential execution with detached screen sessions (useful for long-running experiments on remote servers).
 
@@ -467,9 +474,17 @@ screen -S ga_batch -dmL -Logfile logs_ga_beta3/ga_batch.log \
 
 Results are saved to `data/exp_pro/` with logs in `logs_*_beta*/` directories.
 
+The batch helpers are intentionally kept in `scripts/batch_helpers/` because they are maintained executable source scripts. The paper reproducibility artifacts are provided in `supplementary_material/`.
+
 ## ⚙️ Parameter Tuning with irace
 
 For automated parameter optimization, use the irace runners in `scripts/irace_helpers/`. These are designed to work with the irace optimizer framework.
+
+**Requirement:** irace runs require **R** with the **`irace`** package installed.
+
+```bash
+R -q -e 'install.packages("irace", repos="https://cloud.r-project.org")'
+```
 
 **Available irace runners:**
 - `irace_ga_runner.jl` - GA parameter tuning target
@@ -484,6 +499,8 @@ julia --project scripts/irace_helpers/irace_sa_runner.jl \
 ```
 
 For full irace integration, see `supplementary_material/IRACE_SCRIPTS/` for example configurations.
+
+The `scripts/irace_helpers/` files are the maintained runners used by this codebase. The `supplementary_material/IRACE_SCRIPTS/` directory stores the paper's experiment setup and reproducibility material.
 
 ## 📊 Supplementary Material
 
