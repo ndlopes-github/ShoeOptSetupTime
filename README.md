@@ -35,7 +35,8 @@ This implementation includes:
 2. **Split-Solve-Merge** - Novel heuristic algorithm for large-scale instances (Pg > 1)
 3. **Simulated Annealing** - Tailored metaheuristic approach
 4. **GRASP** - Greedy randomized adaptive search procedure tailored to the problem
-5. **Greedy** - Simple constructive heuristic for quick solutions
+5. **Genetic Algorithm** - Population-based evolutionary metaheuristic
+6. **Greedy** - Simple constructive heuristic for quick solutions
 
 ## ⚡ Quick Start & Smoke Tests
 
@@ -62,7 +63,10 @@ julia --project scripts/run_grasp.jl --iterations=50
 # Test 4: Greedy on single-mold instance (~30 sec)
 julia --project scripts/run_greedy.jl --file=test_single_mold.jl
 
-# Test 5: Batch comparison (1 instance, fast methods only, ~2 min)
+# Test 5: Genetic Algorithm (100 generations, ~2 min)
+julia --project scripts/batch_helpers/run_ga_cli.jl --instance=H_O2_#2_3p.jl
+
+# Test 6: Batch comparison (1 instance, fast methods only, ~2 min)
 julia --project scripts/batch_compare_all_methods.jl --limit=1 --skip-milp --skip-ssm
 ```
 
@@ -232,7 +236,30 @@ julia --project scripts/run_greedy.jl --file=test_single_mold.jl
 
 **Important:** Greedy validates input and exits with clear error if multi-mold jobs are detected.
 
-### 5️⃣ Comprehensive Batch Comparison
+### 5️⃣ Genetic Algorithm
+
+Population-based evolutionary metaheuristic. Best suited for multi-mold instances.
+
+```bash
+# Single run using the direct script (edit instance_file and parameters at the top)
+julia --project scripts/run_ga.jl
+
+# CLI runner (used by batch helpers and irace)
+julia --project scripts/batch_helpers/run_ga_cli.jl --instance=H_O2_#2_3p.jl
+
+# CLI runner with beta override
+julia --project scripts/batch_helpers/run_ga_cli.jl --instance=H_O2_#2_3p.jl --beta=6
+```
+
+**Parameters** (set as constants at the top of `run_ga_cli.jl`):
+- `GA_POP_SIZE` - Population size (default: 50)
+- `GA_CLONE_THRESHOLD` - Diversity threshold for clone removal (default: 0.1)
+- `GA_Nit` - Number of generations (default: 100)
+- `GA_NRUNS` - Number of independent runs (default: 100)
+
+> **Note:** GA parameters have not yet been through irace tuning; values above are working defaults.
+
+### 6️⃣ Comprehensive Batch Comparison
 
 Compare all solution methods across all instances with detailed CSV output.
 
