@@ -78,8 +78,8 @@ function parse_arguments()
 end
 
 # Configuration
-const NUM_SA_RUNS = 100  # Number of independent SA runs per instance
-const NUM_GA_RUNS = 10   # Number of independent GA runs per instance
+const NUM_SA_RUNS = 1  # Number of independent SA runs per instance
+const NUM_GA_RUNS = 1  # Number of independent GA runs per instance
 const GA_POP_SIZE = 400
 const GA_CLONE_THRESHOLD = 0.1
 const OUTPUT_DIR = datadir("exp_pro")
