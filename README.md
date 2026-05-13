@@ -70,13 +70,12 @@ julia --project scripts/run_ga.jl
 ```
 
 **Expected outcomes:**
-- All tests complete without errors (no red ERROR or EXCEPTION messages)
 - Solver produces solution quality metrics (cost, time, iterations)
 - Output files are generated in or `data/sims/` for SSM-SA or MILP (first test), while the other output straight to terminal. 
 
 If any test fails, ensure:
 1. Julia environment is initialized: `julia --project -e 'using Pkg; Pkg.instantiate()'`
-2. A solver is available: use `solver_name = "HiGHS"` in settings files if Gurobi is not licensed (inspect split_solve_merge_milp.jl script).
+2. A solver is available: use `solver_name = "HiGHS"` in settings files if Gurobi is not licensed (inspect and edit split_solve_merge_milp.jl script).
 3. Example instance files exist in `data/settings/`. Full set of instances used in paper are available at supplementary material.
 
 For detailed usage of each algorithm, see [Usage](#-usage).
