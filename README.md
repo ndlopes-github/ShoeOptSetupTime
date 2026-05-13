@@ -252,7 +252,7 @@ julia --project scripts/batch_helpers/batch_compare_all_methods.jl \
 |--------|----------:|:----------:|---------:|-------|
 | MILP (Exact, Pg=1) | **1492** | 18 | 41.8 | Optimal, proven to 0% gap |
 | SA (1 run) | **1492** | 18 | 1.7 | Matches optimal |
-| GA (1 run, pop=400) | **1492** | 18 | 16.0 | Matches optimal |
+| GA (1 run, pop=100) | 1500 | 8 | 3.1 | 0.54% above optimal |
 | GRASP (1 run) | 1497 | 18 | 4.3 | 0.33% above optimal |
 | SSM (Pg=2, Tl=30 s/sub) | 1498 | 18 | 106.2 | 0.40% above optimal |
 
