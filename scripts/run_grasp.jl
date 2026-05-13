@@ -13,7 +13,7 @@ using Printf
 const BETA_OVERRIDE = nothing
 
 # Load settings
-include(datadir("settings", "H_O2_#5_5p.jl"))
+include(datadir("settings", "H_O2_#2_3p.jl"))
 
 if !isnothing(BETA_OVERRIDE)
     order_dict[:β] = BETA_OVERRIDE

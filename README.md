@@ -49,36 +49,34 @@ julia --project -e 'using Pkg; Pkg.instantiate()'
 ```
 
 ### Verify your environment (~5–10 min total)
+### Inspect the scripts to check the default options
 
 ```bash
-# Test 1: MILP/SSM on heuristic instance (~1 min)
+# Test 1: MILP/SSM on heuristic instance
 julia --project scripts/run_ssm_milp.jl heuristic
 
-# Test 2: Simulated Annealing (20 runs, ~2 min)
-julia --project scripts/run_sa.jl --runs=20 --log-every=0
+# Test 2: Simulated Annealing 
+julia --project scripts/run_sa.jl 
 
-# Test 3: GRASP (50 iterations, ~1 min)
-julia --project scripts/run_grasp.jl --iterations=50
+# Test 3: GRASP 
+julia --project scripts/run_grasp.jl
 
-# Test 4: Greedy on single-mold instance (~30 sec)
-julia --project scripts/run_greedy.jl --file=test_single_mold.jl
+# Test 4: Greedy on single-mold instance
+julia --project scripts/run_greedy.jl 
 
-# Test 5: Genetic Algorithm (100 generations, ~2 min)
-julia --project scripts/batch_helpers/run_ga_cli.jl --instance=H_O2_#2_3p.jl
-
-# Test 6: Batch comparison (1 instance, fast methods only, ~2 min)
-julia --project scripts/batch_compare_all_methods.jl --limit=1 --skip-milp --skip-ssm
+# Test 5: Genetic Algorithm 
+julia --project scripts/run_ga.jl 
 ```
 
 **Expected outcomes:**
 - All tests complete without errors (no red ERROR or EXCEPTION messages)
 - Solver produces solution quality metrics (cost, time, iterations)
-- Output files are generated in `data/exp_pro/` or `data/sims/`
+- Output files are generated in or `data/sims/` for SSM-SA or MILP (first test), while the other output straight to terminal. 
 
 If any test fails, ensure:
 1. Julia environment is initialized: `julia --project -e 'using Pkg; Pkg.instantiate()'`
-2. A solver is available: use `solver_name = "HiGHS"` in settings files if Gurobi is not licensed
-3. Instance files exist in `data/settings/`
+2. A solver is available: use `solver_name = "HiGHS"` in settings files if Gurobi is not licensed (inspect split_solve_merge_milp.jl script).
+3. Example instance files exist in `data/settings/`. Full set of instances used in paper are available at supplementary material.
 
 For detailed usage of each algorithm, see [Usage](#-usage).
 

@@ -1,7 +1,7 @@
 #= Copyright (C) 2024
 Nuno David Lopes.
 Created:  2024/04/09
-Last changed - N. Lopes: 2026/04/29 10:20:25
+Last changed - N. Lopes: 2026/05/13 11:32:17
 =#
 
 using DrWatson
@@ -13,14 +13,14 @@ using Printf
 const BETA_OVERRIDE = nothing
 
 # Load settings
-include(datadir("settings", "H_O2_#5_5p.jl"))
+include(datadir("settings", "H_O2_#2_3p.jl"))
 
 # Now include and use the (renamed) heuristic module
 include(scriptsdir("simulated_annealing.jl"))
 using .SimulatedAnnealing
 
 # Configuration: number of independent runs
-const NUM_RUNS = 100
+const NUM_RUNS = 10
 
 if !isnothing(BETA_OVERRIDE)
     order_dict[:β] = BETA_OVERRIDE

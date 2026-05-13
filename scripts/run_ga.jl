@@ -21,17 +21,18 @@ using .SimulatedAnnealing: get_cost_from_shelves
 const BETA_OVERRIDE = nothing
 
 # Log file setup
-log_path = projectdir("logs", "run_ga.log")
-mkpath(dirname(log_path))
-const TEE_LOGGER = TeeLogger(
-    MinLevelLogger(FileLogger(log_path), Logging.Info),
-    MinLevelLogger(ConsoleLogger(stderr), Logging.Debug)
-)
-global_logger(TEE_LOGGER)
+# if saving to log file is required uncomment the following 
+#log_path = projectdir("logs", "run_ga.log")
+#mkpath(dirname(log_path))
+#const TEE_LOGGER = TeeLogger(
+#    MinLevelLogger(FileLogger(log_path), Logging.Info),
+#    MinLevelLogger(ConsoleLogger(stderr), Logging.Debug)
+#)
+#global_logger(TEE_LOGGER)
 
 # --- Select and Load Instance ---
 # You can change this to any instance file from `data/settings`
-instance_file = "H_O3_#3_3p.jl"
+instance_file = "H_O2_#2_3p.jl"
 instance_path = datadir("settings", instance_file)
 
 if !isfile(instance_path)
