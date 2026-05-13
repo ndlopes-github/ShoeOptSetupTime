@@ -33,9 +33,9 @@ This implementation includes:
 
 1. **MILP (Mixed-Integer Linear Programming)** - Exact solver providing optimal solutions
 2. **Split-Solve-Merge** - Novel heuristic algorithm for large-scale instances (Pg > 1)
-3. **Simulated Annealing** - Tailored metaheuristic approach
+3. **Simulated Annealing (SA)** - Tailored metaheuristic approach
 4. **GRASP** - Greedy randomized adaptive search procedure tailored to the problem
-5. **Genetic Algorithm** - Population-based evolutionary metaheuristic
+5. **Genetic Algorithm (GA)** - Population-based evolutionary metaheuristic
 6. **Greedy** - Simple constructive heuristic for quick solutions
 
 ## ⚡ Quick Start & Smoke Tests
@@ -52,16 +52,17 @@ julia --project -e 'using Pkg; Pkg.instantiate()'
 ### Inspect the scripts to check the default options
 
 ```bash
-# Test 1: MILP/SSM on heuristic instance
-julia --project scripts/run_ssm_milp.jl heuristic
+# Test 1: SSM-SA/MILP heuristic(exact) on default instance
+julia --project scripts/run_ssm_milp.jl heuristic 
+julia --project scripts/run_ssm_milp.jl exact 
 
-# Test 2: Simulated Annealing 
+# Test 2: Simulated Annealing on default instance
 julia --project scripts/run_sa.jl 
 
-# Test 3: GRASP 
+# Test 3: GRASP on default instance
 julia --project scripts/run_grasp.jl
 
-# Test 4: Greedy on single-mold instance
+# Test 4: Greedy on single-mold default instance
 julia --project scripts/run_greedy.jl 
 
 # Test 5: Genetic Algorithm 
