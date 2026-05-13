@@ -48,7 +48,7 @@ cd ShoeOptSetupTime
 julia --project -e 'using Pkg; Pkg.instantiate()'
 ```
 
-### Verify your environment (~5–10 min total)
+### Verify your environment
 ### Inspect the scripts to check the default options
 
 ```bash
