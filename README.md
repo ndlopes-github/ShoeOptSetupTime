@@ -236,7 +236,24 @@ Each run produces:
 - Console output showing solution quality and computation times
 - CSV exports for batch experiments with statistics
 
-## 🔧 Troubleshooting
+## � Sample Results
+
+Method comparison on instance **O2 / Scenario #2 / p=3** (8 jobs, 3 shelves, α=1, β=6):
+
+| Method | Best Cost | Slots Used | Total Time (s) | Notes |
+|--------|----------:|:----------:|---------------:|-------|
+| MILP (Exact, Pg=1) | **1492** | 18 | 41.8 | Optimal, proven to 0% gap |
+| SA (100 runs) | **1492** | 18 | 181.7 | Matches optimal |
+| GA (10 runs, pop=400) | **1492** | 18 | 130.8 | Matches optimal |
+| GRASP (1 run) | 1497 | 18 | 4.3 | 0.33% above optimal |
+| SSM (Pg=2, Tl=30 s/sub) | 1498 | 18 | 102.8 | 0.40% above optimal |
+
+Produced by `scripts/batch_helpers/batch_compare_all_methods.jl` on 2026-05-13 (Gurobi 13.0.0, AMD Ryzen 9 3950X).
+
+> **SSM** uses the heuristic instance file (`H_O2_#2_3p.jl`, Pg=2, 30 s per sub-problem).
+> All other methods use the exact instance file (`E_O2_#2_3p.jl`, Pg=1).
+
+## �🔧 Troubleshooting
 
 **Issue:** Gurobi license not found
 - **Solution:** Install Gurobi or switch to HiGHS solver in settings file by changing `solver_name = "HiGHS"`
