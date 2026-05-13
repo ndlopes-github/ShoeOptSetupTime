@@ -37,9 +37,9 @@ This implementation includes:
 4. **GRASP** - Greedy randomized adaptive search procedure tailored to the problem
 5. **Greedy** - Simple constructive heuristic for quick solutions
 
-## ⚡ Quick Start
+## ⚡ Quick Start & Smoke Tests
 
-### 1. Clone and Setup
+### Setup
 
 ```bash
 git clone https://github.com/ndlopes-github/ShoeOptSetupTime.git
@@ -47,52 +47,36 @@ cd ShoeOptSetupTime
 julia --project -e 'using Pkg; Pkg.instantiate()'
 ```
 
-### 2. Run an Algorithm (5 minutes)
+### Verify your environment (~5–10 min total)
 
-**Split-Solve-Merge (recommended for quick test):**
 ```bash
-julia --project scripts/run_ssm_milp.jl
+# Test 1: MILP/SSM on heuristic instance (~1 min)
+julia --project scripts/run_ssm_milp.jl heuristic
+
+# Test 2: Simulated Annealing (20 runs, ~2 min)
+julia --project scripts/run_sa.jl --runs=20 --log-every=0
+
+# Test 3: GRASP (50 iterations, ~1 min)
+julia --project scripts/run_grasp.jl --iterations=50
+
+# Test 4: Greedy on single-mold instance (~30 sec)
+julia --project scripts/run_greedy.jl --file=test_single_mold.jl
+
+# Test 5: Batch comparison (1 instance, fast methods only, ~2 min)
+julia --project scripts/batch_compare_all_methods.jl --limit=1 --skip-milp --skip-ssm
 ```
 
-**Simulated Annealing (100 trials):**
-```bash
-julia --project scripts/run_sa.jl
-```
+**Expected outcomes:**
+- All tests complete without errors (no red ERROR or EXCEPTION messages)
+- Solver produces solution quality metrics (cost, time, iterations)
+- Output files are generated in `data/exp_pro/` or `data/sims/`
 
-**Compare All Methods:**
-```bash
-julia --project scripts/batch_compare_all_methods.jl --skip-milp --limit=1
-```
-> Note: `--skip-milp` skips the exact MILP solver as it may take a long time for larger instances. See [Usage](#-usage) section for running MILP and other options.
+If any test fails, ensure:
+1. Julia environment is initialized: `julia --project -e 'using Pkg; Pkg.instantiate()'`
+2. A solver is available: use `solver_name = "HiGHS"` in settings files if Gurobi is not licensed
+3. Instance files exist in `data/settings/`
 
-### 3. Custom Instance
-
-Create `data/settings/my_instance.jl`:
-```julia
-using DrWatson
-@quickactivate "ShoeOptSetupTime"
-
-g = [1 2 3 4]                    # Job IDs
-o = [1 1 1 1]                   # Molds available per job
-n = [100 200 150 180]           # Job quantities
-p = 2                           # Number of shelves
-α = 1; β = 3                    # Objective coefficients
-Pg = 2                          # Partition size
-Tl = 20                         # Time limit (seconds)
-solver_name = "Gurobi"          # or "HiGHS" for open-source
-
-order_dict = Dict(
-    :g => g, :o => o, :n => n, :p => p, :α => α, :β => β,
-    :Pg => Pg, :Tl => Tl, :solver_name => solver_name
-)
-```
-
-Run it:
-```bash
-julia --project -e 'include("data/settings/my_instance.jl"); include("scripts/split_solve_merge_milp.jl"); using .SplitSolveMergeMILP; SplitSolveMergeMILP.run(order_dict)'
-```
-
-For more detailed examples, see [Usage](#usage) section.
+For detailed usage of each algorithm, see [Usage](#-usage).
 
 # 💻 Installation
 
@@ -153,7 +137,7 @@ Key packages include:
 
 All scripts include comprehensive built-in help and command-line options. Use `--help` to see available options for each script.
 
-## Quick Start: Running Individual Algorithms
+## Running Individual Algorithms
 
 The main scripts are located in the `scripts/` directory. Each algorithm has its own entry point with flexible command-line options.
 
@@ -516,38 +500,6 @@ Comprehensive experimental results, statistical analysis, and irace configuratio
   - `compute_rpd.jl` - Compute RPD (Relative Percent Deviation) from best known solutions
   - `statistical_analysis.jl` - Wilcoxon and Friedman tests
 - **`supplementary_rpd.md`** - Per-instance RPD results table for all methods
-
-## ✅ Quick Smoke Tests
-
-To verify that your environment is set up correctly, run these quick validation tests:
-
-```bash
-# Test 1: MILP/SSM on small instance (~1 min)
-julia --project scripts/run_ssm_milp.jl heuristic
-
-# Test 2: Simulated Annealing (20 runs, ~2 min)
-julia --project scripts/run_sa.jl --runs=20 --log-every=0
-
-# Test 3: GRASP algorithm (50 iterations, ~1 min)
-julia --project scripts/run_grasp.jl --iterations=50
-
-# Test 4: Greedy algorithm on single-mold instance (~30 sec)
-julia --project scripts/run_greedy.jl --file=test_single_mold.jl
-
-# Test 5: Batch comparison (1 instance, fast methods only, ~2 min)
-julia --project scripts/batch_compare_all_methods.jl --limit=1 --skip-milp --skip-ssm
-```
-
-**Expected outcomes:**
-- All tests complete without errors (no red ERROR or EXCEPTION messages)
-- Solver produces solution quality metrics (cost, time, iterations)
-- Output files are generated in `data/exp_pro/` or `data/sims/`
-- Log files appear in the appropriate logs directory
-
-If any test fails, check the error message and ensure:
-1. Julia is properly initialized: `julia --project -e 'using Pkg; Pkg.instantiate()'`
-2. Solver is available: Use HiGHS if Gurobi is not licensed
-3. Instance files exist in `data/settings/`
 
 ## 📁 Project Structure
 
