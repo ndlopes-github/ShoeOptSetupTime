@@ -75,7 +75,7 @@ julia --project scripts/run_ga.jl
 
 If any test fails, ensure:
 1. Julia environment is initialized: `julia --project -e 'using Pkg; Pkg.instantiate()'`
-2. A solver is available: use `solver_name = "HiGHS"` in settings files if Gurobi is not licensed (inspect and edit split_solve_merge_milp.jl script).
+2. A solver is available: use `solver_name = "HiGHS"` in settings instance files if Gurobi is not licensed.
 3. Example instance files exist in `data/settings/`. Full set of instances used in paper are available at supplementary material.
 
 For detailed usage of each algorithm, see [Usage](#-usage).
@@ -86,8 +86,6 @@ For detailed usage of each algorithm, see [Usage](#-usage).
 
 - Julia 1.12 or later
 - Git
-- R (only required for irace parameter tuning)
-- R package `irace` (only required for irace parameter tuning)
 
 ## Solver Requirements
 
@@ -119,10 +117,6 @@ If using HiGHS instead of Gurobi, you'll need to modify the `solver_name` parame
    julia> include("Project.toml")  # loads all dependencies
    ```
 
-4. **Optional (only for irace tuning): Install irace in R**
-   ```bash
-   R -q -e 'install.packages("irace", repos="https://cloud.r-project.org")'
-   ```
 
 This setup will install all required packages and handle local path configuration automatically.
 
@@ -135,170 +129,6 @@ Key packages include:
 - **Combinatorics** - Combinatorial operations
 - **LoggingExtras** - Advanced logging capabilities
 
-# 📖 Usage
-
-All scripts include comprehensive built-in help and command-line options. Use `--help` to see available options for each script.
-
-## Running Individual Algorithms
-
-The main scripts are located in the `scripts/` directory. Each algorithm has its own entry point with flexible command-line options.
-
-### 1️⃣ Exact MILP and Split-Solve-Merge Algorithm (Novel Heuristic)
-
-The Exact MILP  and the Split-Solve-Merge algorithms are the **primary contribution** of this work.
-
-```bash
-# Show all available options
-julia --project scripts/run_ssm_milp.jl --help
-
-# Run with default heuristic instance (H_O2_#2_3p.jl)
-julia --project scripts/run_ssm_milp.jl
-
-# Or explicitly specify heuristic mode
-julia --project scripts/run_ssm_milp.jl heuristic
-
-# Run exact MILP instance (E_O2_#2_3p.jl) - takes longer
-julia --project scripts/run_ssm_milp.jl exact
-
-# Run custom instance
-julia --project scripts/run_ssm_milp.jl --file=custom_instance.jl
-```
-
-**When to use:**
-- Large instances where exact MILP is too slow
-- When option `Pg > 1` (multi-stage partitioning)
-- For production-scale problems requiring good solutions quickly
-
-### 2️⃣ Simulated Annealing
-
-Multiple independent SA runs provide statistical evidence of solution quality.
-
-```bash
-# Show all available options
-julia --project scripts/run_sa.jl --help
-
-# Run with defaults (100 independent runs)
-julia --project scripts/run_sa.jl
-
-# Run with fewer trials for faster testing
-julia --project scripts/run_sa.jl --runs=20
-
-# Custom instance with specific configuration
-julia --project scripts/run_sa.jl --file=test_single_mold.jl --runs=50
-
-# Silent mode (no iteration logging, only final results)
-julia --project scripts/run_sa.jl --runs=10 --log-every=0
-
-# Frequent logging (every iteration)
-julia --project scripts/run_sa.jl --runs=5 --log-every=1
-```
-
-**Options:**
-- `--runs=N`: Number of independent SA trials (default: 100)
-- `--log-every=N`: Logging frequency per run (default: 10, use 0 for silent mode)
-- `--file=PATH`: Load custom instance from `data/settings/`
-
-### 3️⃣ GRASP Algorithm
-
-Greedy Randomized Adaptive Search Procedure with local search.
-
-```bash
-# Show all available options
-julia --project scripts/run_grasp.jl --help
-
-# Run with default settings from instance file
-julia --project scripts/run_grasp.jl
-
-# Override iteration count from command line
-julia --project scripts/run_grasp.jl --iterations=50
-
-# Custom instance with iteration override
-julia --project scripts/run_grasp.jl --file=custom_instance.jl --iterations=100
-```
-
-**Options:**
-- `--iterations=N`: Override number of GRASP iterations from settings file
-- `--file=PATH`: Load custom instance from `data/settings/`
-
-### 4️⃣ Greedy Algorithm
-
-Fast deterministic baseline heuristic - **only supports single-mold instances** (all `o[j] == 1`).
-
-```bash
-# Show all available options
-julia --project scripts/run_greedy.jl --help
-
-# Run on single-mold instance
-julia --project scripts/run_greedy.jl --file=test_single_mold.jl
-```
-
-**Important:** Greedy validates input and exits with clear error if multi-mold jobs are detected.
-
-### 5️⃣ Genetic Algorithm
-
-Population-based evolutionary metaheuristic. Best suited for multi-mold instances.
-
-```bash
-# Single run using the direct script (edit instance_file and parameters at the top)
-julia --project scripts/run_ga.jl
-
-# CLI runner (used by batch helpers and irace)
-julia --project scripts/batch_helpers/run_ga_cli.jl --instance=H_O2_#2_3p.jl
-
-# CLI runner with beta override
-julia --project scripts/batch_helpers/run_ga_cli.jl --instance=H_O2_#2_3p.jl --beta=6
-```
-
-**Parameters** (set as constants at the top of `run_ga_cli.jl`):
-- `GA_POP_SIZE` - Population size (default: 50)
-- `GA_CLONE_THRESHOLD` - Diversity threshold for clone removal (default: 0.1)
-- `GA_Nit` - Number of generations (default: 100)
-- `GA_NRUNS` - Number of independent runs (default: 100)
-
-> **Note:** GA parameters have not yet been through irace tuning; values above are working defaults.
-
-### 6️⃣ Comprehensive Batch Comparison
-
-Compare all solution methods across all instances with detailed CSV output.
-
-```bash
-# Show all available options
-julia --project scripts/batch_compare_all_methods.jl --help
-
-# Run all methods on all instances (WARNING: may take hours!)
-julia --project scripts/batch_compare_all_methods.jl
-
-# Skip computationally expensive exact MILP
-julia --project scripts/batch_compare_all_methods.jl --skip-milp
-
-# Process only first 5 instances (for testing)
-julia --project scripts/batch_compare_all_methods.jl --limit=5
-
-# Skip multiple methods for faster comparison
-julia --project scripts/batch_compare_all_methods.jl --skip-milp --skip-ssm
-
-# Run only SA and GRASP
-julia --project scripts/batch_compare_all_methods.jl --skip-milp --skip-ssm
-
-# Override beta parameter for all instances
-julia --project scripts/batch_compare_all_methods.jl --beta=3
-
-# Test run: 1 instance, fast methods only
-julia --project scripts/batch_compare_all_methods.jl --limit=1 --skip-milp --skip-ssm
-```
-
-**Options:**
-- `--limit=N, -l=N`: Process only first N instances
-- `--beta=VALUE, -b=VALUE`: Override β coefficient from settings files
-- `--only-file=PATH`: Run only instances listed in file (Order,Scenario,P format)
-- `--skip-milp`: Skip exact MILP solver
-- `--skip-ssm`: Skip Split-Solve-Merge algorithm
-- `--skip-sa`: Skip Simulated Annealing
-- `--skip-grasp`: Skip GRASP algorithm
-
-**Output:** Results saved to `data/exp_pro/` as CSV files with detailed method comparisons.
-
-For batch execution of multiple instances, see [Batch Processing](#-batch-processing) section.
 
 ## 📚 Algorithm Documentation
 
@@ -335,7 +165,9 @@ p = 3                           # Number of shelves
 
 # Algorithm-specific parameters
 Pg = 2                          # Partition size for Split-Solve-Merge (Pg=1 for exact)
-Nit = 100                       # Simulated annealing iterations
+Nit = 100                       # Simulated annealing iterations or Independent Runs in Grasp
+
+                                # SA parameters
 T0 = 5                          # Initial temperature
 Tf = 0.01                       # Final temperature
 Tj = 3                          # Temperature jump interval
@@ -391,47 +223,11 @@ julia> SplitSolveMergeMILP.run(order_dict)
 
 ## 📊 Data and Instances
 
-The `data/exp_pro/` directory contains two real-world instances from the paper:
+The `data/settings/` directory contains the real-world instances from the paper:
 - **E_O2_#2_3p.jl** - Exact solver instance (Pg=1, longer time limits)
-- **H_O2_#2_3p.jl** - Heuristic instance (Pg=2, multi-stage partitioning)
+- **H_O2_#1_3p.jl** - Heuristic instance (Pg=2, single-mold, multi-stage partitioning)
+- **H_O2_#2_3p.jl** - Heuristic instance (Pg=2, multi-mold, multi-stage partitioning)
 
-### Creating Test Instances
-
-For testing single-mold scenarios (required for Greedy algorithm):
-
-```julia
-# data/settings/test_single_mold.jl
-using DrWatson
-@quickactivate "ShoeOptSetupTime"
-
-g = [1 2 3 4 5]
-o = [1 1 1 1 1]  # All single mold
-n = [100 200 150 80 120]
-
-p = 3
-α = 1
-β = 6
-
-Pg = 1
-Nit = 10
-Tl = 30
-T0 = 5
-Tf = 0.01
-Tj = 3
-Gl = 1800
-solver_name = "Gurobi"
-
-# Create order_dict
-order_dict = @dict g n o p α β T0 Tf Tj Pg Nit Gl Tl solver_name
-const FILEBASENAME = splitext(basename(@__FILE__()))[1]
-order_dict[:Oid] = "$(FILEBASENAME)_p_$(p)_nit_$(Nit)_Pg_$(Pg)_Tl_$(Tl)_Ts_$(T0)_$(Tf)_$(Tj)_Gl_$(Gl)"
-@tag!(order_dict)
-```
-
-Results from experiments are saved in:
-- CSV comparison tables
-- Detailed solver logs in separate output files
-- Progress and error logs for batch runs
 
 ### Solver Output
 
@@ -515,7 +311,7 @@ The `scripts/irace_helpers/` files are the maintained runners used by this codeb
 
 Comprehensive experimental results, statistical analysis, and irace configuration files are available in the `supplementary_material/` directory:
 
-- **`GA/`, `GRASP/`, `MILP/`, `SA/`, `SSM-SA/`** - Per-method result directories with detailed logs and CSV exports
+- **`GA/`, `GRASP/`, `GREEDY/`, `MILP/`, `SA/`, `SSM-SA/`** - Per-method result archives (`.tar.bz2`)
 - **`INSTANCES/`** - Test instances used in computational experiments
   - `INSTANCES/MILP/` - Instances for exact solver tests
   - `INSTANCES/HEURISTICS/` - Instances for heuristic method tests
@@ -524,6 +320,7 @@ Comprehensive experimental results, statistical analysis, and irace configuratio
 - **`STATS_SCRIPTS/`** - Statistical analysis tools
   - `compute_rpd.jl` - Compute RPD (Relative Percent Deviation) from best known solutions
   - `statistical_analysis.jl` - Wilcoxon and Friedman tests
+- **`rpd_boxplot.png`** - RPD boxplot figure
 - **`supplementary_rpd.md`** - Per-instance RPD results table for all methods
 
 ## 📁 Project Structure
@@ -537,9 +334,11 @@ ShoeOptSetupTime/
 │   ├── simulated_annealing.jl       # SA algorithm module
 │   ├── run_grasp.jl                 # GRASP runner (with --help)
 │   ├── grasp.jl                     # GRASP algorithm module
-│   ├── run_greedy.jl                # Greedy runner (with --help)
-│   ├── batch_compare_all_methods.jl # Comprehensive comparison (with --help)
+│   ├── run_greedy.jl                # Greedy runner
+│   ├── run_ga.jl                    # Genetic Algorithm runner
+│   ├── genetic_algorithm.jl         # GA algorithm module
 │   ├── batch_helpers/               # Batch processing for multiple instances
+│   │   ├── batch_compare_all_methods.jl  # Comprehensive comparison (with --help)
 │   │   ├── run_ga_batch.sh          # GA batch sequential runner
 │   │   ├── run_grasp_batch.sh       # GRASP batch sequential runner
 │   │   ├── run_milp_batch.sh        # MILP batch sequential runner
@@ -561,17 +360,23 @@ ShoeOptSetupTime/
 ├── data/
 │   ├── settings/                    # Problem instance definitions
 │   │   ├── E_O2_#2_3p.jl           # Exact solver instance (Pg=1)
-│   │   ├── H_O2_#2_3p.jl           # Heuristic instance (Pg=2)
-│   │   └── test_single_mold.jl     # Example single-mold instance
-│   ├── exp_pro/                     # Experimental results (CSV files)
+│   │   ├── H_O2_#1_3p.jl           # Heuristic instance (Pg=2, single-mold)
+│   │   └── H_O2_#2_3p.jl           # Heuristic instance (Pg=2, multi-mold)
+│   ├── exp_pro/                     # Experimental results (created at runtime)
 │   └── sims/                        # Simulation logs
 │       ├── exact/                   # Logs for Pg=1 runs
 │       └── heuristics/              # Logs for Pg>1 runs
 ├── supplementary_material/          # Supplementary results and configurations
-│   ├── GA/, GRASP/, MILP/, SA/, SSM-SA/  # Per-method result directories
+│   ├── GA/                          # GA result archives (.tar.bz2)
+│   ├── GRASP/                       # GRASP result archives (.tar.bz2)
+│   ├── GREEDY/                      # Greedy result archives
+│   ├── MILP/                        # MILP result archives (.tar.bz2)
+│   ├── SA/                          # SA result archives (.tar.bz2)
+│   ├── SSM-SA/                      # SSM-SA result archives (.tar.bz2)
 │   ├── INSTANCES/                   # Test instances (MILP/, HEURISTICS/)
 │   ├── IRACE_SCRIPTS/               # irace tuning configurations
 │   ├── STATS_SCRIPTS/               # Statistical analysis tools
+│   ├── rpd_boxplot.png              # RPD boxplot figure
 │   └── supplementary_rpd.md         # Per-instance RPD results table
 ├── Project.toml                     # Julia project dependencies
 ├── Manifest.toml                    # Locked dependency versions
