@@ -148,37 +148,9 @@ julia> using .SplitSolveMergeMILP
 julia> ?SplitSolveMergeMILP.run
 ```
 
-## ⚙️ Configuration: Creating Settings Files
+## ⚙️ Configuration: Creating a Custom Instance
 
-Settings files define problem instances and algorithm parameters. The structure is:
-
-```julia
-# Jobs specification
-g = [1 2 3 4 5 6 7 8]           # Job IDs
-o = [1 1 1 2 1 1 1 1]           # Number of molds available per job
-n = [215 463 970 1240 842 342 147 99]  # Job quantities
-
-# Problem parameters
-p = 3                           # Number of shelves
-α = 1                           # Objective coefficient for makespan
-β = 6                           # Objective coefficient for interruptions
-
-# Algorithm-specific parameters
-Pg = 2                          # Partition size for Split-Solve-Merge (Pg=1 for exact)
-Nit = 100                       # Simulated annealing iterations or Independent Runs in Grasp
-
-                                # SA parameters
-T0 = 5                          # Initial temperature
-Tf = 0.01                       # Final temperature
-Tj = 3                          # Temperature jump interval
-
-# Solver settings
-Tl = 30                         # Solver time limit (seconds)
-Gl = 1800                       # Global time limit (seconds)
-solver_name = "Gurobi"          # "Gurobi" or "HiGHS"
-```
-
-### Creating a Simple Custom Instance
+Settings files define problem instances and algorithm parameters.
 
 Create a new Julia file in `data/settings/` (e.g., `H_O2_#2_3p.jl`):
 
