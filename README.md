@@ -241,15 +241,15 @@ julia --project=@. scripts/batch_helpers/batch_compare_all_methods.jl \
     --only-file=scripts/batch_helpers/only_o2_2_3.txt
 ```
 
-| Method | Best Cost | Slots Used | Time (s) | Notes |
-|--------|----------:|:----------:|---------:|-------|
-| MILP (Exact, Pg=1) | **1492** | 18 | 41.8 | Optimal, proven to 0% gap |
-| SA (1 run) | **1492** | 18 | 1.7 | Matches optimal |
-| GA (1 run, pop=100) | 1500 | 8 | 3.1 | 0.54% above optimal |
-| GRASP (1 run) | 1497 | 18 | 4.3 | 0.33% above optimal |
-| SSM (Pg=2, Tl=30 s/sub) | 1498 | 18 | 106.2 | 0.40% above optimal |
+| Method | Best Cost | m | Time (s) | Notes |
+|--------|----------:|:-:|--------:|-------|
+| MILP (Exact, Pg=1) | **1492** | 8 | 328.7 | Optimal, 0.00% gap |
+| SSM (Pg=2, Tl=30 s/sub) | **1492** | 8 | 246.7 | Matches optimal |
+| GA (1 run, pop=100) | **1492** | 8 | 1.32 | Matches optimal |
+| SA (1 run) | 1497 | 9 | 1.45 | +0.34% above optimal |
+| GRASP (1 run) | 1507 | 9 | 1.06 | +1.01% above optimal |
 
-> Using only the instances files `E_O2_#2_3p.jl` (exact) and `H_O2_#2_3p.jl` (heuristics).
+> Source: `data/exp_pro/all_methods_comparison.csv`. Instance files: `E_O2_#2_3p.jl` (exact) and `H_O2_#2_3p.jl` (heuristics). m = number of interruption intervals.
 
 
 ### Reading Results
@@ -260,7 +260,7 @@ Results are reported differently depending on the method:
 ```
 [Info] | Best cost 1492.0 at instances 1
 [Info] | m value = 8.0
-[Info] | Elapsed time 347.97 seconds
+[Info] | Elapsed time 328.70 seconds
 [Info] | Solution matrix (ts):
  Row │ Job1,1  Job2,1  Job3,1  Job4,1  Job4,2  Job5,1  Job6,1  Job7,1  Job8,1
 ─────┼─────────────────────────────────────────────────────────────────────────
@@ -280,36 +280,50 @@ Each non-empty row is a time slot; the p=3 non-zero columns in that row are the 
 ```
 [Info] | Heuristic solutions Best cost: 1492.0
 [Info] | Heuristic solution  m value: 8.0
-[Info] | Elapsed time 248.88 seconds
-[Info] | Best Solutions (ts) — partition 1 (jobs 6, 4):
- Row │ Job6,1  Job4,1  Job4,2
+[Info] | Elapsed time 246.70 seconds
+[Info] | Best Solutions (ts) — partition 1 (jobs 4, 7):
+ Row │ Job4,1  Job4,2  Job7,1
 ─────┼──────────────────────────
-   1 │  342.0   342.0   342.0
-   2 │    0.0   278.0   278.0
-   3 │    0.0    -0.0     0.0
-[Info] | Best Solutions (ts) — partition 2 (jobs 3,1,2,8,5,7,4):
- Row │ Job3,1  Job1,1  Job2,1  Job8,1  Job5,1  Job7,1  Job4,1  Job4,2
+   1 │  147.0   147.0   147.0
+   2 │  473.0   473.0     0.0
+   3 │   -0.0     0.0     0.0
+[Info] | Best Solutions (ts) — partition 2 (jobs 1,6,8,2,3,5,4):
+ Row │ Job1,1  Job6,1  Job8,1  Job2,1  Job3,1  Job5,1  Job4,1  Job4,2
 ─────┼────────────────────────────────────────────────────────────────
-   1 │    0.0    0.0    0.0    0.0  132.0    0.0  132.0  132.0
-   2 │  292.0    0.0    0.0    0.0  292.0    0.0  292.0    0.0
-   3 │  418.0    0.0  418.0    0.0  418.0    0.0    0.0    0.0
-   4 │   45.0    0.0   45.0   45.0    0.0    0.0    0.0    0.0
-   5 │   54.0   54.0    0.0   54.0    0.0    0.0    0.0    0.0
-   6 │  147.0  147.0    0.0    0.0    0.0  147.0    0.0    0.0
-   7 │   14.0   14.0    0.0    0.0    0.0    0.0    0.0    0.0
+   1 │    0.0    0.0    0.0    0.0    0.0  327.0  327.0  327.0
+   2 │    0.0    0.0    0.0    0.0  292.0  292.0  292.0    0.0
+   3 │    0.0    0.0    0.0  223.0  223.0  223.0    0.0    0.0
+   4 │    0.0    0.0    0.0   14.0   14.0    0.0    0.0    0.0
+   5 │    0.0    0.0   99.0   99.0   99.0    0.0    0.0    0.0
+   6 │    0.0  127.0    0.0  127.0  127.0    0.0    0.0    0.0
+   7 │  215.0  215.0    0.0    0.0  215.0    0.0    0.0    0.0
    8 │    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
 ```
 Job 4 (with o=2 molds) appears in both partitions; SSM splits it across sub-problems and the SA merge step reconciles the quantities.
 
-**SA, GRASP, GA** — printed to the console. Example (GA, optimal solution):
+**SA, GRASP, GA** — printed to the console. Best-solution shelf partition for each method:
+
+SA (cost=1497, m=9):
 ```
-[ Info: GA finished: generations=100  best_cost=1492.0  best_m=8  best_max_sum=1444.0
-[ Info: Best partition (shelves) snapshot:
+  Shelf 1: (job=3, mold=1, qty=970),  (job=2, mold=1, qty=463)
+  Shelf 2: (job=4, mold=1, qty=464),  (job=5, mold=1, qty=842),  (job=7, mold=1, qty=147)
+  Shelf 3: (job=6, mold=1, qty=342),  (job=1, mold=1, qty=215),  (job=4, mold=2, qty=776),  (job=8, mold=1, qty=99)
+```
+
+GRASP (cost=1507, m=9):
+```
+  Shelf 1: (job=3, mold=1, qty=970),  (job=4, mold=1, qty=11),   (job=2, mold=1, qty=463)
+  Shelf 2: (job=4, mold=2, qty=1229), (job=1, mold=1, qty=215)
+  Shelf 3: (job=7, mold=1, qty=147),  (job=6, mold=1, qty=342),  (job=5, mold=1, qty=842),  (job=8, mold=1, qty=99)
+```
+
+GA (cost=1492, m=8 — optimal):
+```
   Shelf 1: (job=4, mold=1, qty=1229), (job=1, mold=1, qty=215)
-  Shelf 2: (job=4, mold=2, qty=11),   (job=2, mold=1, qty=463), (job=3, mold=1, qty=970)
-  Shelf 3: (job=8, mold=1, qty=99),   (job=5, mold=1, qty=842), (job=6, mold=1, qty=342), (job=7, mold=1, qty=147)
+  Shelf 2: (job=4, mold=2, qty=11),   (job=2, mold=1, qty=463),  (job=3, mold=1, qty=970)
+  Shelf 3: (job=8, mold=1, qty=99),   (job=5, mold=1, qty=842),  (job=6, mold=1, qty=342),  (job=7, mold=1, qty=147)
 ```
-The DataFrame that follows encodes the same partition in tabular form (`S{k}JobID`, `S{k}MoldID`, `S{k}Qty` for each shelf `k`). SA and GRASP produce an identical structure with their respective method name in the header line.
+Each snapshot is preceded by a `[ Info: SA/GRASP/GA finished: ...  best_cost=...  best_m=...` header line. A DataFrame encoding the same partition (`S{k}JobID`, `S{k}MoldID`, `S{k}Qty` per shelf `k`) follows.
 
 ## �🔧 Troubleshooting
 
