@@ -233,7 +233,7 @@ Each run produces:
 ## � Example of Sample Results
 
 Method comparison on instance **O2 / Scenario #2 / p=3** (8 jobs, 3 shelves, α=1, β=6),
-with `NUM_SA_RUNS=1`, `NUM_GA_RUNS=1` (single independent run each, as set in the script).
+with single independent run for each heuristics, as set in the scripts.
 
 **To reproduce:**
 ```bash
@@ -249,7 +249,7 @@ julia --project=@. scripts/batch_helpers/batch_compare_all_methods.jl \
 | SA (1 run) | 1497 | 9 | 1.45 | +0.34% above optimal |
 | GRASP (1 run) | 1507 | 9 | 1.06 | +1.01% above optimal |
 
-> Source: `data/exp_pro/all_methods_comparison.csv`. Instance files: `E_O2_#2_3p.jl` (exact) and `H_O2_#2_3p.jl` (heuristics). m = number of interruption intervals.
+> Source: `data/exp_pro/all_methods_comparison.csv`. Instance files: `E_O2_#2_3p.jl` (exact) and `H_O2_#2_3p.jl` (heuristics).
 
 
 ### Reading Results
@@ -274,9 +274,15 @@ Results are reported differently depending on the method:
    8 │    0.0     0.0    0.0   13.0   13.0     0.0    0.0    0.0    0.0
    9 │    0.0     0.0    0.0    0.0    0.0     0.0    0.0    0.0    0.0
 ```
+Equivalent shelf partition (sum of each column across all rows):
+```
+  Shelf 1: (job=1, mold=1, qty=215),  (job=3, mold=1, qty=970),  (job=4, mold=2, qty=259)
+  Shelf 2: (job=2, mold=1, qty=463),  (job=4, mold=1, qty=981)
+  Shelf 3: (job=5, mold=1, qty=842),  (job=6, mold=1, qty=342),  (job=8, mold=1, qty=99),   (job=7, mold=1, qty=147)
+```
 Each non-empty row is a time slot; the p=3 non-zero columns in that row are the 3 shelves co-processing. `Job4,2` denotes the second mold of job 4.
 
-**SSM** — written to `data/sims/heuristics/*_info.log.txt`. SSM solves sub-partitions independently and merges. One `ts` matrix is reported per sub-partition:
+**SSM-SA** — written to `data/sims/heuristics/*_info.log.txt`. SSM solves sub-partitions independently and merges. One `ts` matrix is reported per sub-partition:
 ```
 [Info] | Heuristic solutions Best cost: 1492.0
 [Info] | Heuristic solution  m value: 8.0
@@ -323,7 +329,6 @@ GA (cost=1492, m=8 — optimal):
   Shelf 2: (job=4, mold=2, qty=11),   (job=2, mold=1, qty=463),  (job=3, mold=1, qty=970)
   Shelf 3: (job=8, mold=1, qty=99),   (job=5, mold=1, qty=842),  (job=6, mold=1, qty=342),  (job=7, mold=1, qty=147)
 ```
-Each snapshot is preceded by a `[ Info: SA/GRASP/GA finished: ...  best_cost=...  best_m=...` header line. A DataFrame encoding the same partition (`S{k}JobID`, `S{k}MoldID`, `S{k}Qty` per shelf `k`) follows.
 
 ## �🔧 Troubleshooting
 
