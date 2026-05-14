@@ -230,16 +230,15 @@ Each run produces:
 - Console output showing solution quality and computation times
 - CSV exports for batch experiments with statistics
 
-## � Sample Results
+## � Example of Sample Results
 
 Method comparison on instance **O2 / Scenario #2 / p=3** (8 jobs, 3 shelves, α=1, β=6),
 with `NUM_SA_RUNS=1`, `NUM_GA_RUNS=1` (single independent run each, as set in the script).
 
 **To reproduce:**
 ```bash
-echo "O2,2,3" > /tmp/only_o2_2_3.txt
-julia --project scripts/batch_helpers/batch_compare_all_methods.jl \
-    --only-file=/tmp/only_o2_2_3.txt
+julia --project=@. scripts/batch_helpers/batch_compare_all_methods.jl \
+    --only-file=scripts/batch_helpers/only_o2_2_3.txt
 ```
 
 | Method | Best Cost | Slots Used | Time (s) | Notes |
@@ -250,11 +249,7 @@ julia --project scripts/batch_helpers/batch_compare_all_methods.jl \
 | GRASP (1 run) | 1497 | 18 | 4.3 | 0.33% above optimal |
 | SSM (Pg=2, Tl=30 s/sub) | 1498 | 18 | 106.2 | 0.40% above optimal |
 
-Produced on 2026-05-13 (Gurobi 13.0.0, AMD Ryzen 9 3950X).
-
-> **SSM** uses the heuristic instance file (`H_O2_#2_3p.jl`, Pg=2, 30 s per sub-problem).
-> All other methods use the exact instance file (`E_O2_#2_3p.jl`, Pg=1).
-> To increase statistical confidence, raise `NUM_SA_RUNS` and `NUM_GA_RUNS` in the script.
+> Using only the instances files `E_O2_#2_3p.jl` (exact) and `H_O2_#2_3p.jl` (heuristics).
 
 ## �🔧 Troubleshooting
 
@@ -316,12 +311,6 @@ R -q -e 'install.packages("irace", repos="https://cloud.r-project.org")'
 - `irace_grasp_runner.jl` - GRASP parameter tuning target
 - `irace_sa_runner.jl` - SA parameter tuning target
 - `irace_ssm_sa_runner.jl` - SSM-SA parameter tuning target
-
-**Basic usage (one parameter evaluation):**
-```bash
-julia --project scripts/irace_helpers/irace_sa_runner.jl \
-    data/settings/H_O2_#2_3p.jl 12345 --Nit 100
-```
 
 For full irace integration, see `supplementary_material/IRACE_SCRIPTS/` for example configurations.
 
