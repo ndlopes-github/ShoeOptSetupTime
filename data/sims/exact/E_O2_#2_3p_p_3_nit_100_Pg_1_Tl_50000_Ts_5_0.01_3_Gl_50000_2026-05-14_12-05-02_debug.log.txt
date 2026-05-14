@@ -11,7 +11,7 @@
  Row │ α    β    p    m    cost    cost_p  bound   gap  stime    MiB     status
      │ Any  Any  Any  Any  Any     Any     Any     Any  Any      Any     Any
 ─────┼───────────────────────────────────────────────────────────────────────────
-   1 │ 1    6    3    8.0  1492.0  1473.0  1492.0  0.0  353.347  2127.6  OPTIMAL
+   1 │ 1    6    3    8.0  1492.0  1473.0  1492.0  0.0  317.404  2116.8  OPTIMAL
 [Debug] Main.SplitSolveMergeMILP:[539] | Instances  Dict{Symbol, Any}[Dict(:α => 1, :o => Any[1, 1, 1, 2, 1, 1, 1, 1], :p => 3, :n => Any[215, 463, 970, 1240, 842, 342, 147, 99], :g => Any[1, 2, 3, 4, 5, 6, 7, 8], :β => 6)]
 [Debug] Main.SplitSolveMergeMILP:[543] | Instance permutation 1
 [Debug] Main.SplitSolveMergeMILP:[544] | Any[Dict{Symbol, Any}(:m => 8.0, :Dxf => 9×9 DataFrame

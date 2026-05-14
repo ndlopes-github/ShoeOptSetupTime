@@ -1,5 +1,0 @@
-[Debug] Main.SplitSolveMergeMILP:[518] | Simulated Annealing Initialization Function
-[Debug] Main.SplitSolveMergeMILP:[485] | Group sizes (subjobs): [9.0]
-[Debug] Main.SplitSolveMergeMILP:[41 ] |  Optimization model builder 
-[Debug] Main.SplitSolveMergeMILP:[104] | Model built
-[Debug] Main.SplitSolveMergeMILP:[124] | Solver for Instance:  Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 2, 1, 1, 1, 1], :p => 3, :n => Any[215, 463, 970, 1240, 842, 342, 147, 99], :g => Any[1, 2, 3, 4, 5, 6, 7, 8], :β => 6) 

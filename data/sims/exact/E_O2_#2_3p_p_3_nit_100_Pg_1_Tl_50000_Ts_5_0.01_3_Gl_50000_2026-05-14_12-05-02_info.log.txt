@@ -1,5 +1,5 @@
-[Info] Main.SplitSolveMergeMILP:[833] | Simulation date  2026-05-13T15:18:19.080
-[Info] Main.SplitSolveMergeMILP:[834] | Order Dictionary Dict{Symbol, Any}(:o => [1 1 1 2 1 1 1 1], :α => 1, :p => 3, :n => [215 463 970 1240 842 342 147 99], :Tf => 0.01, :Pg => 1, :Tj => 3, :Oid => "E_O2_#2_3p_p_3_nit_100_Pg_1_Tl_50000_Ts_5_0.01_3_Gl_50000", :T0 => 5, :Tl => 50000, :g => [1 2 3 4 5 6 7 8], :β => 6, :gitcommit => "86dd0fc5321446cdee87a04aa61b5d83c45ebadd", :Gl => 50000, :script => "data/settings/E_O2_#2_3p.jl#58", :Nit => 100, :solver_name => "Gurobi")
+[Info] Main.SplitSolveMergeMILP:[833] | Simulation date  2026-05-14T12:05:02.261
+[Info] Main.SplitSolveMergeMILP:[834] | Order Dictionary Dict{Symbol, Any}(:o => [1 1 1 2 1 1 1 1], :α => 1, :p => 3, :n => [215 463 970 1240 842 342 147 99], :Tf => 0.01, :Pg => 1, :Tj => 3, :Oid => "E_O2_#2_3p_p_3_nit_100_Pg_1_Tl_50000_Ts_5_0.01_3_Gl_50000", :T0 => 5, :Tl => 50000, :g => [1 2 3 4 5 6 7 8], :β => 6, :gitcommit => "bd7600f9b8233faf55854cfce7b256126e3b8785-dirty", :Gl => 50000, :script => "data/settings/E_O2_#2_3p.jl#58", :Nit => 100, :solver_name => "Gurobi")
 [Info] Main.SplitSolveMergeMILP:[530] | Instances group length 1
 [Info] Main.SplitSolveMergeMILP:[535] | Costs  Any[1492.0]
 [Info] Main.SplitSolveMergeMILP:[537] | Best cost 1492.0 at instances 1
@@ -22,4 +22,4 @@
    9 │     0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0
 [Info] Main.SplitSolveMergeMILP:[844] | m value = 8.0
 [Info] Main.SplitSolveMergeMILP:[850] | Partition size is 1, no need to run simulated annealing
-[Info] Main.SplitSolveMergeMILP:[851] | Elapsed time 347.970488268 seconds
+[Info] Main.SplitSolveMergeMILP:[851] | Elapsed time 328.703823816 seconds
