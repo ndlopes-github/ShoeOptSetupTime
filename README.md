@@ -148,7 +148,15 @@ julia> using .SplitSolveMergeMILP
 julia> ?SplitSolveMergeMILP.run
 ```
 
-## ⚙️ Configuration: Creating a Custom Instance
+## 📊 Data and Instances
+
+The `data/settings/` directory contains the some example instances:
+- **E_O2_#2_3p.jl** - Exact solver instance (Pg=1, longer time limits)
+- **H_O2_#1_3p.jl** - Heuristic instance (Pg=2, single-mold, multi-stage partitioning)
+- **H_O2_#2_3p.jl** - Heuristic instance (Pg=2, multi-mold, multi-stage partitioning)
+
+
+### ⚙️ Configuration: Creating a Custom Instance
 
 Settings files define problem instances and algorithm parameters.
 
@@ -213,15 +221,6 @@ julia --project scripts/run_ssm_milp.jl heuristic   # loads H_O2_#2_3p.jl
 julia --project scripts/run_ssm_milp.jl exact        # loads E_O2_#2_3p.jl
 julia --project scripts/run_ssm_milp.jl --file data/settings/H_O2_#1_3p.jl
 ```
-
-SA, GA, GRASP and Greedy runners also expose a `BETA_OVERRIDE` constant at the top of the script to override β without modifying the instance file.
-
-## 📊 Data and Instances
-
-The `data/settings/` directory contains the real-world instances from the paper:
-- **E_O2_#2_3p.jl** - Exact solver instance (Pg=1, longer time limits)
-- **H_O2_#1_3p.jl** - Heuristic instance (Pg=2, single-mold, multi-stage partitioning)
-- **H_O2_#2_3p.jl** - Heuristic instance (Pg=2, multi-mold, multi-stage partitioning)
 
 
 ### Solver Output
