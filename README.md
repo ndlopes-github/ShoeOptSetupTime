@@ -305,6 +305,12 @@ Each non-empty row is a time slot; the p=3 non-zero columns in that row are the 
    7 │  215.0  215.0    0.0    0.0  215.0    0.0    0.0    0.0
    8 │    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
 ```
+Equivalent merged shelf partition (p1 slot 1 ∪ p2 all slots; job4 quantities summed across both sub-problems):
+```
+  Shelf 1: (job=7, mold=1, qty=147),  (job=5, mold=1, qty=842),  (job=8, mold=1, qty=99),   (job=6, mold=1, qty=342)
+  Shelf 2: (job=4, mold=1, qty=766),  (job=2, mold=1, qty=463),  (job=1, mold=1, qty=215)
+  Shelf 3: (job=4, mold=2, qty=474),  (job=3, mold=1, qty=970)
+```
 Job 4 (with o=2 molds) appears in both partitions; SSM splits it across sub-problems and the SA merge step reconciles the quantities.
 
 **SA, GRASP, GA** — printed to the console. Best-solution shelf partition for each method:
