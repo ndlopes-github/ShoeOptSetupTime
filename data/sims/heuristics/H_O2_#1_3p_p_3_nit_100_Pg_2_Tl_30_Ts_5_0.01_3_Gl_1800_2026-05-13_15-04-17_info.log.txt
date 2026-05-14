@@ -1,0 +1,154 @@
+[Info] Main.SplitSolveMergeMILP:[833] | Simulation date  2026-05-13T15:04:17.581
+[Info] Main.SplitSolveMergeMILP:[834] | Order Dictionary Dict{Symbol, Any}(:o => [1 1 1 1 1 1 1 1], :α => 1, :p => 3, :n => [215 463 970 1240 842 342 147 99], :Tf => 0.01, :Pg => 2, :Tj => 3, :Oid => "H_O2_#1_3p_p_3_nit_100_Pg_2_Tl_30_Ts_5_0.01_3_Gl_1800", :T0 => 5, :Tl => 30, :g => [1 2 3 4 5 6 7 8], :β => 6, :gitcommit => "5d9bd2a5d713602e53dff59e2849bd8377150d48", :Gl => 1800, :script => "data/settings/H_O2_#1_3p.jl#58", :Nit => 100, :solver_name => "Gurobi")
+[Info] Main.SplitSolveMergeMILP:[530] | Instances group length 2
+[Info] Main.SplitSolveMergeMILP:[535] | Costs  Any[2007.0, 1630.0]
+[Info] Main.SplitSolveMergeMILP:[537] | Best cost 1630.0 at instances 2
+[Info] Main.SplitSolveMergeMILP:[838] | Simulated Annealing Init
+[Info] Main.SplitSolveMergeMILP:[839] | Initial instances: Any[Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1], :p => 3, :n => Any[842, 342, 99], :g => Any[5, 6, 8], :β => 6), Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1, 1], :p => 3, :n => Any[215, 463, 970, 1240, 147], :g => Any[1, 2, 3, 4, 7], :β => 6)]
+[Info] Main.SplitSolveMergeMILP:[840] | Initial cost: 1630.0
+[Info] Main.SplitSolveMergeMILP:[841] | Initial Solutions (ts) and m values:
+[Info] Main.SplitSolveMergeMILP:[843] | 3×3 DataFrame
+ Row │ Job5,1   Job6,1   Job8,1
+     │ Float64  Float64  Float64
+─────┼───────────────────────────
+   1 │    99.0     99.0     99.0
+   2 │   243.0    243.0     -0.0
+   3 │   500.0      0.0      0.0
+[Info] Main.SplitSolveMergeMILP:[844] | m value = 3.0
+[Info] Main.SplitSolveMergeMILP:[843] | 6×6 DataFrame
+ Row │ Job1,1   Job2,1   Job3,1   Job4,1   Job7,1   Job5,1
+     │ Float64  Float64  Float64  Float64  Float64  Float64
+─────┼──────────────────────────────────────────────────────
+   1 │    -0.0     -0.0    500.0    500.0     -0.0    500.0
+   2 │     0.0      0.0    147.0    147.0    147.0     -0.0
+   3 │     0.0      0.0     75.0     75.0     -0.0     -0.0
+   4 │     0.0    248.0    248.0    248.0      0.0     -0.0
+   5 │   215.0    215.0      0.0    215.0     -0.0     -0.0
+   6 │     0.0      0.0     -0.0     55.0      0.0     -0.0
+[Info] Main.SplitSolveMergeMILP:[844] | m value = 6.0
+[Info] Main.SplitSolveMergeMILP:[854] | Elapsed time 14.129762249 seconds
+[Info] Main.SplitSolveMergeMILP:[742] | Simulated Annealing with 100 iterations
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0002 | cur  1630.0 | alt 1850.0 | best 1630.0 | Temp  05.000000 | Δ -4.40000e+01 | exp(Δ)  7.78113e-20| sa_timer 00000.0 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0003 | cur  1630.0 | alt 1860.0 | best 1630.0 | Temp  04.149549 | Δ -5.54277e+01 | exp(Δ)  8.47328e-25| sa_timer 00000.7 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0004 | cur  1630.0 | alt 1729.0 | best 1630.0 | Temp  04.149549 | Δ -2.38580e+01 | exp(Δ)  4.35107e-11| sa_timer 00001.0 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0005 | cur  1630.0 | alt 2130.0 | best 1630.0 | Temp  04.149549 | Δ -1.20495e+02 | exp(Δ)  4.67388e-53| sa_timer 00001.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0006 | cur  1630.0 | alt 1970.0 | best 1630.0 | Temp  03.443751 | Δ -9.87295e+01 | exp(Δ)  1.32527e-43| sa_timer 00001.5 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0007 | cur  1630.0 | alt 2130.0 | best 1630.0 | Temp  03.443751 | Δ -1.45190e+02 | exp(Δ)  8.80171e-64| sa_timer 00001.9 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0008 | cur  1630.0 | alt 1630.0 | best 1630.0 | Temp  03.443751 | Δ +0.00000e+00 | exp(Δ)  1.00000e+00| sa_timer 00002.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0009 | cur  1630.0 | alt 2130.0 | best 1630.0 | Temp  02.858003 | Δ -1.74947e+02 | exp(Δ)  1.05037e-76| sa_timer 00002.7 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0010 | cur  1630.0 | alt 2130.0 | best 1630.0 | Temp  02.858003 | Δ -1.74947e+02 | exp(Δ)  1.05037e-76| sa_timer 00002.9 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0011 | cur  1630.0 | alt 2130.0 | best 1630.0 | Temp  02.858003 | Δ -1.74947e+02 | exp(Δ)  1.05037e-76| sa_timer 00003.3 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0012 | cur  1630.0 | alt 1650.0 | best 1630.0 | Temp  02.371885 | Δ -8.43211e+00 | exp(Δ)  2.17761e-04| sa_timer 00003.8 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0013 | cur  1630.0 | alt 1630.0 | best 1630.0 | Temp  02.371885 | Δ +0.00000e+00 | exp(Δ)  1.00000e+00| sa_timer 00003.9 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0014 | cur  1630.0 | alt 1751.0 | best 1630.0 | Temp  02.371885 | Δ -5.10143e+01 | exp(Δ)  6.99487e-23| sa_timer 00004.3 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0015 | cur  1630.0 | alt 1860.0 | best 1630.0 | Temp  01.968451 | Δ -1.16843e+02 | exp(Δ)  1.80159e-51| sa_timer 00004.7 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0016 | cur  1630.0 | alt 1546.0 | best 1630.0 | Temp  01.968451 | Δ +4.26732e+01 | exp(Δ)  3.40971e+18| sa_timer 00004.9 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0017 | cur  1546.0 | alt 1696.0 | best 1546.0 | Temp  01.968451 | Δ -7.62021e+01 | exp(Δ)  8.05124e-34| sa_timer 00005.7 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0018 | cur  1546.0 | alt 1942.0 | best 1546.0 | Temp  01.633636 | Δ -2.42404e+02 | exp(Δ)  5.31227e-106| sa_timer 00005.9 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0019 | cur  1546.0 | alt 1630.0 | best 1546.0 | Temp  01.633636 | Δ -5.14190e+01 | exp(Δ)  4.66658e-23| sa_timer 00006.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0020 | cur  1546.0 | alt 1630.0 | best 1546.0 | Temp  01.633636 | Δ -5.14190e+01 | exp(Δ)  4.66658e-23| sa_timer 00006.7 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0021 | cur  1546.0 | alt 1575.0 | best 1546.0 | Temp  01.355771 | Δ -2.13900e+01 | exp(Δ)  5.13359e-10| sa_timer 00007.0 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0022 | cur  1546.0 | alt 1630.0 | best 1546.0 | Temp  01.355771 | Δ -6.19574e+01 | exp(Δ)  1.23667e-27| sa_timer 00008.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0023 | cur  1546.0 | alt 1630.0 | best 1546.0 | Temp  01.355771 | Δ -6.19574e+01 | exp(Δ)  1.23667e-27| sa_timer 00008.5 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0024 | cur  1546.0 | alt 1568.0 | best 1546.0 | Temp  01.125168 | Δ -1.95526e+01 | exp(Δ)  3.22400e-09| sa_timer 00009.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0025 | cur  1546.0 | alt 1860.0 | best 1546.0 | Temp  01.125168 | Δ -2.79070e+02 | exp(Δ)  6.33339e-122| sa_timer 00010.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0026 | cur  1546.0 | alt 1568.0 | best 1546.0 | Temp  01.125168 | Δ -1.95526e+01 | exp(Δ)  3.22400e-09| sa_timer 00010.4 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0027 | cur  1546.0 | alt 1727.0 | best 1546.0 | Temp  00.933788 | Δ -1.93834e+02 | exp(Δ)  6.58967e-85| sa_timer 00011.6 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0028 | cur  1546.0 | alt 2130.0 | best 1546.0 | Temp  00.933788 | Δ -6.25410e+02 | exp(Δ)  2.44307e-272| sa_timer 00012.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0029 | cur  1546.0 | alt 1630.0 | best 1546.0 | Temp  00.933788 | Δ -8.99562e+01 | exp(Δ)  8.56074e-40| sa_timer 00012.4 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0030 | cur  1546.0 | alt 1696.0 | best 1546.0 | Temp  00.774959 | Δ -1.93559e+02 | exp(Δ)  8.68180e-85| sa_timer 00013.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0031 | cur  1546.0 | alt 1727.0 | best 1546.0 | Temp  00.774959 | Δ -2.33561e+02 | exp(Δ)  3.68063e-102| sa_timer 00013.4 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0032 | cur  1546.0 | alt 1650.0 | best 1546.0 | Temp  00.774959 | Δ -1.34201e+02 | exp(Δ)  5.21718e-59| sa_timer 00014.9 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0033 | cur  1546.0 | alt 1860.0 | best 1546.0 | Temp  00.643146 | Δ -4.88225e+02 | exp(Δ)  9.26207e-213| sa_timer 00015.5 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0034 | cur  1546.0 | alt 1860.0 | best 1546.0 | Temp  00.643146 | Δ -4.88225e+02 | exp(Δ)  9.26207e-213| sa_timer 00015.6 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0035 | cur  1546.0 | alt 2075.0 | best 1546.0 | Temp  00.643146 | Δ -8.22519e+02 | exp(Δ)  0.00000e+00| sa_timer 00016.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0036 | cur  1546.0 | alt 1751.0 | best 1546.0 | Temp  00.533754 | Δ -3.84072e+02 | exp(Δ)  1.58304e-167| sa_timer 00016.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0037 | cur  1546.0 | alt 2130.0 | best 1546.0 | Temp  00.533754 | Δ -1.09414e+03 | exp(Δ)  0.00000e+00| sa_timer 00016.6 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0038 | cur  1546.0 | alt 2130.0 | best 1546.0 | Temp  00.533754 | Δ -1.09414e+03 | exp(Δ)  0.00000e+00| sa_timer 00016.8 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0039 | cur  1546.0 | alt 1823.0 | best 1546.0 | Temp  00.442967 | Δ -6.25328e+02 | exp(Δ)  2.65082e-272| sa_timer 00017.0 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0040 | cur  1546.0 | alt 1568.0 | best 1546.0 | Temp  00.442967 | Δ -4.96651e+01 | exp(Δ)  2.69611e-22| sa_timer 00017.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0041 | cur  1546.0 | alt 2130.0 | best 1546.0 | Temp  00.442967 | Δ -1.31838e+03 | exp(Δ)  0.00000e+00| sa_timer 00017.9 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0042 | cur  1546.0 | alt 1580.0 | best 1546.0 | Temp  00.367623 | Δ -9.24861e+01 | exp(Δ)  6.82042e-41| sa_timer 00018.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0043 | cur  1546.0 | alt 1503.0 | best 1546.0 | Temp  00.367623 | Δ +1.16968e+02 | exp(Δ)  6.28659e+50| sa_timer 00018.4 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0044 | cur  1503.0 | alt 1860.0 | best 1503.0 | Temp  00.367623 | Δ -9.71104e+02 | exp(Δ)  0.00000e+00| sa_timer 00018.8 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0045 | cur  1503.0 | alt 1983.0 | best 1503.0 | Temp  00.305094 | Δ -1.57329e+03 | exp(Δ)  0.00000e+00| sa_timer 00019.3 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0046 | cur  1503.0 | alt 1860.0 | best 1503.0 | Temp  00.305094 | Δ -1.17013e+03 | exp(Δ)  0.00000e+00| sa_timer 00019.4 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0047 | cur  1503.0 | alt 1983.0 | best 1503.0 | Temp  00.305094 | Δ -1.57329e+03 | exp(Δ)  0.00000e+00| sa_timer 00019.8 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0048 | cur  1503.0 | alt 1575.0 | best 1503.0 | Temp  00.253200 | Δ -2.84360e+02 | exp(Δ)  3.19255e-124| sa_timer 00020.9 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0049 | cur  1503.0 | alt 2130.0 | best 1503.0 | Temp  00.253200 | Δ -2.47630e+03 | exp(Δ)  0.00000e+00| sa_timer 00021.7 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0050 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.253200 | Δ -5.01579e+02 | exp(Δ)  1.46900e-218| sa_timer 00022.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0051 | cur  1503.0 | alt 1602.0 | best 1503.0 | Temp  00.210134 | Δ -4.71129e+02 | exp(Δ)  2.46178e-205| sa_timer 00022.5 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0052 | cur  1503.0 | alt 1568.0 | best 1503.0 | Temp  00.210134 | Δ -3.09327e+02 | exp(Δ)  4.58059e-135| sa_timer 00022.6 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0053 | cur  1503.0 | alt 1602.0 | best 1503.0 | Temp  00.210134 | Δ -4.71129e+02 | exp(Δ)  2.46178e-205| sa_timer 00023.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0054 | cur  1503.0 | alt 1507.0 | best 1503.0 | Temp  00.174392 | Δ -2.29369e+01 | exp(Δ)  1.09308e-10| sa_timer 00023.3 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0055 | cur  1503.0 | alt 1537.0 | best 1503.0 | Temp  00.174392 | Δ -1.94963e+02 | exp(Δ)  2.13081e-85| sa_timer 00025.4 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0056 | cur  1503.0 | alt 1628.0 | best 1503.0 | Temp  00.174392 | Δ -7.16777e+02 | exp(Δ)  5.10368e-312| sa_timer 00025.6 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0057 | cur  1503.0 | alt 1537.0 | best 1503.0 | Temp  00.144730 | Δ -2.34921e+02 | exp(Δ)  9.44304e-103| sa_timer 00026.3 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0058 | cur  1503.0 | alt 1860.0 | best 1503.0 | Temp  00.144730 | Δ -2.46667e+03 | exp(Δ)  0.00000e+00| sa_timer 00026.6 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0059 | cur  1503.0 | alt 1695.0 | best 1503.0 | Temp  00.144730 | Δ -1.32661e+03 | exp(Δ)  0.00000e+00| sa_timer 00026.9 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0060 | cur  1503.0 | alt 2130.0 | best 1503.0 | Temp  00.120112 | Δ -5.22011e+03 | exp(Δ)  0.00000e+00| sa_timer 00027.0 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0061 | cur  1503.0 | alt 1715.0 | best 1503.0 | Temp  00.120112 | Δ -1.76501e+03 | exp(Δ)  0.00000e+00| sa_timer 00027.4 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0062 | cur  1503.0 | alt 1843.0 | best 1503.0 | Temp  00.120112 | Δ -2.83068e+03 | exp(Δ)  0.00000e+00| sa_timer 00027.8 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0063 | cur  1503.0 | alt 1860.0 | best 1503.0 | Temp  00.099682 | Δ -3.58137e+03 | exp(Δ)  0.00000e+00| sa_timer 00028.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0064 | cur  1503.0 | alt 1850.0 | best 1503.0 | Temp  00.099682 | Δ -3.48105e+03 | exp(Δ)  0.00000e+00| sa_timer 00028.6 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0065 | cur  1503.0 | alt 1915.0 | best 1503.0 | Temp  00.099682 | Δ -4.13312e+03 | exp(Δ)  0.00000e+00| sa_timer 00028.7 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0066 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.082727 | Δ -1.53516e+03 | exp(Δ)  0.00000e+00| sa_timer 00029.0 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0067 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.082727 | Δ -1.53516e+03 | exp(Δ)  0.00000e+00| sa_timer 00029.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0068 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.082727 | Δ -1.53516e+03 | exp(Δ)  0.00000e+00| sa_timer 00029.7 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0069 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.068656 | Δ -1.84979e+03 | exp(Δ)  0.00000e+00| sa_timer 00030.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0070 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.068656 | Δ -1.84979e+03 | exp(Δ)  0.00000e+00| sa_timer 00030.5 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0071 | cur  1503.0 | alt 1575.0 | best 1503.0 | Temp  00.068656 | Δ -1.04870e+03 | exp(Δ)  0.00000e+00| sa_timer 00030.8 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0072 | cur  1503.0 | alt 1503.0 | best 1503.0 | Temp  00.056979 | Δ +0.00000e+00 | exp(Δ)  1.00000e+00| sa_timer 00031.6 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0073 | cur  1503.0 | alt 1860.0 | best 1503.0 | Temp  00.056979 | Δ -6.26551e+03 | exp(Δ)  0.00000e+00| sa_timer 00031.8 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0074 | cur  1503.0 | alt 1860.0 | best 1503.0 | Temp  00.056979 | Δ -6.26551e+03 | exp(Δ)  0.00000e+00| sa_timer 00032.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0075 | cur  1503.0 | alt 1860.0 | best 1503.0 | Temp  00.047287 | Δ -7.54963e+03 | exp(Δ)  0.00000e+00| sa_timer 00032.7 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0076 | cur  1503.0 | alt 1575.0 | best 1503.0 | Temp  00.047287 | Δ -1.52261e+03 | exp(Δ)  0.00000e+00| sa_timer 00033.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0077 | cur  1503.0 | alt 1944.0 | best 1503.0 | Temp  00.047287 | Δ -9.32601e+03 | exp(Δ)  0.00000e+00| sa_timer 00034.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0078 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.039244 | Δ -3.23616e+03 | exp(Δ)  0.00000e+00| sa_timer 00034.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0079 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.039244 | Δ -3.23616e+03 | exp(Δ)  0.00000e+00| sa_timer 00034.6 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0080 | cur  1503.0 | alt 1575.0 | best 1503.0 | Temp  00.039244 | Δ -1.83467e+03 | exp(Δ)  0.00000e+00| sa_timer 00035.0 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0081 | cur  1503.0 | alt 2007.0 | best 1503.0 | Temp  00.032569 | Δ -1.54748e+04 | exp(Δ)  0.00000e+00| sa_timer 00035.5 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0082 | cur  1503.0 | alt 1860.0 | best 1503.0 | Temp  00.032569 | Δ -1.09613e+04 | exp(Δ)  0.00000e+00| sa_timer 00035.6 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0083 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.032569 | Δ -3.89941e+03 | exp(Δ)  0.00000e+00| sa_timer 00036.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0084 | cur  1503.0 | alt 1860.0 | best 1503.0 | Temp  00.027029 | Δ -1.32079e+04 | exp(Δ)  0.00000e+00| sa_timer 00036.3 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0085 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.027029 | Δ -4.69860e+03 | exp(Δ)  0.00000e+00| sa_timer 00036.8 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0086 | cur  1503.0 | alt 1860.0 | best 1503.0 | Temp  00.027029 | Δ -1.32079e+04 | exp(Δ)  0.00000e+00| sa_timer 00037.0 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0087 | cur  1503.0 | alt 1602.0 | best 1503.0 | Temp  00.022432 | Δ -4.41336e+03 | exp(Δ)  0.00000e+00| sa_timer 00037.3 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0088 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.022432 | Δ -5.66158e+03 | exp(Δ)  0.00000e+00| sa_timer 00037.8 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0089 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.022432 | Δ -5.66158e+03 | exp(Δ)  0.00000e+00| sa_timer 00038.5 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0090 | cur  1503.0 | alt 1751.0 | best 1503.0 | Temp  00.018616 | Δ -1.33215e+04 | exp(Δ)  0.00000e+00| sa_timer 00038.7 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0091 | cur  1503.0 | alt 1546.0 | best 1503.0 | Temp  00.018616 | Δ -2.30978e+03 | exp(Δ)  0.00000e+00| sa_timer 00039.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0092 | cur  1503.0 | alt 1650.0 | best 1503.0 | Temp  00.018616 | Δ -7.89624e+03 | exp(Δ)  0.00000e+00| sa_timer 00040.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0093 | cur  1503.0 | alt 1795.0 | best 1503.0 | Temp  00.015450 | Δ -1.88997e+04 | exp(Δ)  0.00000e+00| sa_timer 00040.2 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0094 | cur  1503.0 | alt 1630.0 | best 1503.0 | Temp  00.015450 | Δ -8.22008e+03 | exp(Δ)  0.00000e+00| sa_timer 00040.5 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0095 | cur  1503.0 | alt 1696.0 | best 1503.0 | Temp  00.015450 | Δ -1.24919e+04 | exp(Δ)  0.00000e+00| sa_timer 00041.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0096 | cur  1503.0 | alt 2130.0 | best 1503.0 | Temp  00.012822 | Δ -4.89000e+04 | exp(Δ)  0.00000e+00| sa_timer 00042.3 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0097 | cur  1503.0 | alt 2159.0 | best 1503.0 | Temp  00.012822 | Δ -5.11617e+04 | exp(Δ)  0.00000e+00| sa_timer 00042.6 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0098 | cur  1503.0 | alt 1674.0 | best 1503.0 | Temp  00.012822 | Δ -1.33364e+04 | exp(Δ)  0.00000e+00| sa_timer 00042.7 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0099 | cur  1503.0 | alt 1751.0 | best 1503.0 | Temp  00.010641 | Δ -2.33057e+04 | exp(Δ)  0.00000e+00| sa_timer 00043.1 |
+[Info] Main.SplitSolveMergeMILP:[783] | Iter 0100 | cur  1503.0 | alt 1860.0 | best 1503.0 | Temp  00.010641 | Δ -3.35489e+04 | exp(Δ)  0.00000e+00| sa_timer 00043.5 |
+[Info] Main.SplitSolveMergeMILP:[858] | Simulated Annealing End
+[Info] Main.SplitSolveMergeMILP:[861] | Best Instances: Any[Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[147, 842, 970, 1240], :g => Any[7, 5, 3, 4], :β => 6), Dict{Symbol, Any}(:α => 1, :o => Any[1, 1, 1, 1], :p => 3, :n => Any[342, 463, 215, 99], :g => Any[6, 2, 1, 8], :β => 6)]
+[Info] Main.SplitSolveMergeMILP:[862] | Best Solutions (ts):
+[Info] Main.SplitSolveMergeMILP:[867] | 4×4 DataFrame
+ Row │ Job7,1   Job5,1   Job3,1   Job4,1
+     │ Float64  Float64  Float64  Float64
+─────┼────────────────────────────────────
+   1 │    19.0     -0.0     -0.0     19.0
+   2 │   128.0     -0.0    128.0    128.0
+   3 │    -0.0    842.0    842.0    842.0
+   4 │    -0.0     -0.0     -0.0    251.0
+[Info] Main.SplitSolveMergeMILP:[867] | 5×5 DataFrame
+ Row │ Job6,1   Job2,1   Job1,1   Job8,1   Job4,1
+     │ Float64  Float64  Float64  Float64  Float64
+─────┼─────────────────────────────────────────────
+   1 │     0.0     99.0      0.0     99.0     99.0
+   2 │   152.0    152.0      0.0      0.0    152.0
+   3 │   190.0    190.0    190.0      0.0      0.0
+   4 │     0.0     22.0     22.0      0.0      0.0
+   5 │     0.0      0.0      3.0      0.0      0.0
+[Info] Main.SplitSolveMergeMILP:[876] | Heuristic solutions Best cost: 1503.0
+[Info] Main.SplitSolveMergeMILP:[877] | Heuristic solution  m value: 8.0
+[Info] Main.SplitSolveMergeMILP:[878] | Heuristic iterations Current costs: [1630.0, 1630.0, 1630.0, 1630.0, 1630.0, 1630.0, 1630.0, 1630.0, 1630.0, 1630.0, 1630.0, 1630.0, 1630.0, 1630.0, 1630.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1546.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0, 1503.0]
+[Info] Main.SplitSolveMergeMILP:[879] | Sub-solve bound and gap per iteration available in logs above
+[Info] Main.SplitSolveMergeMILP:[881] | Elapsed time 58.550920405 seconds

@@ -1,7 +1,7 @@
 #= Copyright (C) 2024
 Nuno David Lopes.
 Created:  2024/04/09
-Last changed - N. Lopes: 2026/05/13 11:32:17
+Last changed - N. Lopes: 2026/05/14 10:19:31
 =#
 
 using DrWatson
@@ -13,7 +13,9 @@ using Printf
 const BETA_OVERRIDE = nothing
 
 # Load settings
-include(datadir("settings", "H_O2_#2_3p.jl"))
+# You can change this to any instance file from `data/settings`
+instance_file = "H_O2_#2_3p.jl"
+include(datadir("settings", instance_file))
 
 # Now include and use the (renamed) heuristic module
 include(scriptsdir("simulated_annealing.jl"))

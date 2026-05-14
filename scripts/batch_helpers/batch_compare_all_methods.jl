@@ -4,8 +4,9 @@ Created:  2025/11/28
 Comprehensive batch script to compare all methods:
 1. MILP (E_* files, exact solver)
 2. Split-Solve-Merge (H_* files, heuristic with Pg>1)
-3. Simulated Annealing (E_* files, 100 runs)
+3. Simulated Annealing (E_* files, 1 runs)
 4. GRASP (E_* files, single run)
+4. GA (E_* files, single run)
 
 Output: One LaTeX table per scenario (#1, #2, etc.)
 =#
@@ -80,7 +81,7 @@ end
 # Configuration
 const NUM_SA_RUNS = 1  # Number of independent SA runs per instance
 const NUM_GA_RUNS = 1  # Number of independent GA runs per instance
-const GA_POP_SIZE = 400
+const GA_POP_SIZE = 100
 const GA_CLONE_THRESHOLD = 0.1
 const OUTPUT_DIR = datadir("exp_pro")
 const OUTPUT_CSV = joinpath(OUTPUT_DIR, "all_methods_comparison.csv")

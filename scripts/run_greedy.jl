@@ -1,14 +1,16 @@
 #= Copyright (C) 2024
 Nuno David Lopes.
 Created:  2025/11/21
-Last changed - N. Lopes: 2026/05/13 11:44:02
+Last changed - N. Lopes: 2026/05/14 10:19:14
 =#
 
 using DrWatson
 @quickactivate "SoftIdea"
 
 # Load settings FIRST, before including the module
-include(datadir("settings", "H_O2_#1_3p.jl"))
+# You can change this to any instance file from `data/settings`
+instance_file = "H_O2_#2_3p.jl"
+include(datadir("settings", instance_file))
 
 # Now include and use the GRASP module's greedy wrapper
 include(scriptsdir("grasp.jl"))

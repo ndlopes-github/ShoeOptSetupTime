@@ -1,7 +1,7 @@
 #= Copyright (C) 2024
 Nuno David Lopes.
 Created:  2025/11/21
-Last changed - N. Lopes: 2026/01/13 11:42:53
+Last changed - N. Lopes: 2026/05/14 10:26:46
 
 Run script for Split-Solve-Merge MILP algorithm
 This script executes the Split-Solve-Merge heuristic on a specified instance.
@@ -51,6 +51,10 @@ Parse command-line arguments for the Split-Solve-Merge MILP run script.
 # Default Behavior
 If no arguments provided, loads default heuristic instance: H_O2_#2_3p.jl
 """
+# You can change this to any instance file from `data/settings`
+instance_file_heuristic_default = "H_O2_#2_3p.jl"
+instance_file_exact_default = "E_O2_#2_3p.jl"
+
 function parse_ssm_arguments()
     instance_type = "heuristic"  # default
     custom_file = nothing
@@ -77,7 +81,7 @@ function parse_ssm_arguments()
             println("EXAMPLES:")
             println("    julia --project scripts/run_ssm_milp.jl")
             println("    julia --project scripts/run_ssm_milp.jl exact")
-            println("    julia --project scripts/run_ssm_milp.jl --file=E_O1_#1_2p.jl")
+            println("    julia --project scripts/run_ssm_milp.jl --file=E_O2_#2_3p.jl")
             println("=" ^ 80)
             exit(0)
         else
@@ -109,12 +113,12 @@ if custom_file !== nothing
     include(instance_file)
 elseif instance_type == "exact"
     # Load exact instance
-    include(datadir("settings", "E_O2_#2_3p.jl"))
-    println("Loading instance: E_O2_#2_3p.jl (exact)")
+    include(datadir("settings", instance_file_exact_default))
+    println("Loading instance: $instance_file_exact_default (exact)")
 else
     # Load heuristic instance (default)
-    include(datadir("settings", "H_O2_#2_3p.jl"))
-    println("Loading instance: H_O2_#2_3p.jl (heuristic)")
+    include(datadir("settings", instance_file_heuristic_default))
+    println("Loading instance: $instance_file_heuristic_default (heuristic)")
 end
 
 # Now include and use the module
@@ -131,7 +135,7 @@ elapsed_time = @elapsed begin
 end
 
 println("\n" * "=" ^ 80)
-println("SPLIT-SOLVE-MERGE EXECUTION COMPLETED")
+println("SPLIT-SOLVE-MERGE EXECUTION COMPLE"H_O2_#2_3p.jl"TED")
 println("=" ^ 80)
 println("Total execution time: $(round(elapsed_time, digits=3))s")
 println("=" ^ 80)

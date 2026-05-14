@@ -1,0 +1,3 @@
+[Debug] Main.SplitSolveMergeMILP:[518] | Simulated Annealing Initialization Function
+[Debug] Main.SplitSolveMergeMILP:[485] | Group sizes (subjobs): [6.0, 3.0]
+[Debug] Main.SplitSolveMergeMILP:[41 ] |  Optimization model builder 
