@@ -180,46 +180,69 @@ solver_name = "Gurobi"          # "Gurobi" or "HiGHS"
 
 ### Creating a Simple Custom Instance
 
-Create a new Julia file in `data/settings/` (e.g., `custom_instance.jl`):
+Create a new Julia file in `data/settings/` (e.g., `H_O2_#2_3p.jl`):
 
 ```julia
-using DrWatson
-@quickactivate "ShoeOptSetupTime"
+# ── Jobs ──────────────────────────────────────────────────────────────────────
+g = [1 2 3 4 5 6 7 8]           # Job IDs
+o = [1 1 1 2 1 1 1 1]           # Molds available per job (o≥2 enables multi-mold splits)
+n = [215 463 970 1240 842 342 147 99]  # Job quantities (units)
 
-# Simple 4-job instance
-g = [1 2 3 4]                    
-o = [1 1 1 1]                   
-n = [100 200 150 180]            
+# ── Problem ───────────────────────────────────────────────────────────────────
+p = 3                           # Number of shelves (parallel machines)
+α = 1                           # Makespan weight in objective α·C_max + β·interruptions
+β = 6                           # Interruption-count weight
 
-p = 2                           
-α = 1                           
-β = 3                           
+# ── SSM / MILP ────────────────────────────────────────────────────────────────
+Pg = 2                          # Partition size: Pg=1 → exact MILP, Pg>1 → SSM heuristic
 
-Pg = 1                          # Set Pg=1 for exact solution, Pg>1 for heuristic
-Nit = 50                        
-T0 = 2
-Tf = 0.01
-Tj = 2
+# ── SA / SSM-SA / GRASP ───────────────────────────────────────────────────────
+Nit = 100                       # SA/SSM-SA: iterations per run; GA: number of generations; GRASP  number of independent runs
+T0  = 5                         # SA: initial temperature
+Tf  = 0.01                      # SA: final temperature
+Tj  = 3                         # SA: temperature decrease step interval
 
-Tl = 20                         
-Gl = 300                        
-solver_name = "Gurobi"          
+# ── Time limits ───────────────────────────────────────────────────────────────
+Tl = 30                         # Per-call solver time limit (s); in SSM each sub-problem is capped here
+Gl = 1800                       # Global wall-clock limit (s); run stops after this (may slightly exceed)
 
-# Create order_dict with all parameters
-order_dict = Dict(
-    :g => g, :o => o, :n => n, :p => p, :α => α, :β => β,
-    :Pg => Pg, :Nit => Nit, :T0 => T0, :Tf => Tf, :Tj => Tj,
-    :Tl => Tl, :Gl => Gl, :solver_name => solver_name
-)
+# ── Solver ────────────────────────────────────────────────────────────────────
+solver_name = "Gurobi"          # "Gurobi" (recommended) or "HiGHS" (open-source)
+
+
+#######################################
+# Order Dictionary: DO NOT EDIT
+order_dict = @dict g n o p α β T0 Tf Tj Pg Nit Gl Tl solver_name
+# Order ID
+const FILEBASENAME = splitext(basename(@__FILE__()))[1]
+order_dict[:Oid] = "$(FILEBASENAME)_p_$(p)_nit_$(Nit)_Pg_$(Pg)_Tl_$(Tl)_Ts_$(T0)_$(Tf)_$(Tj)_Gl_$(Gl)"
+# Add file and gitcommit stamps
+@tag!(order_dict)
 ```
+> **⚠ Warning:** Some parameters are overridden in the runner scripts and take precedence over the instance file. Always inspect the relevant `run_*.jl` before running. Key overridable constants: `BETA_OVERRIDE` (β), `NUM_RUNS` (number of independent runs), and GA-specific settings such as `pop_size` and `clone_threshold`.
 
-Then run any algorithm:
+Then set `instance_file` in the chosen runner script and execute it:
+
 ```bash
-julia> include("data/settings/custom_instance.jl")
-julia> include("scripts/split_solve_merge_milp.jl")
-julia> using .SplitSolveMergeMILP
-julia> SplitSolveMergeMILP.run(order_dict)
+# Simulated Annealing — edit instance_file in run_sa.jl (default: H_O2_#2_3p.jl)
+julia --project scripts/run_sa.jl
+
+# Genetic Algorithm — edit instance_file in run_ga.jl (default: H_O2_#2_3p.jl)
+julia --project scripts/run_ga.jl
+
+# GRASP — edit instance_file in run_grasp.jl (default: H_O2_#2_3p.jl)
+julia --project scripts/run_grasp.jl
+
+# Greedy — edit instance_file in run_greedy.jl (default: H_O2_#2_3p.jl)
+julia --project scripts/run_greedy.jl
+
+# SSM / MILP — no script editing needed; pass mode as argument
+julia --project scripts/run_ssm_milp.jl heuristic   # loads H_O2_#2_3p.jl
+julia --project scripts/run_ssm_milp.jl exact        # loads E_O2_#2_3p.jl
+julia --project scripts/run_ssm_milp.jl --file data/settings/H_O2_#1_3p.jl
 ```
+
+SA, GA, GRASP and Greedy runners also expose a `BETA_OVERRIDE` constant at the top of the script to override β without modifying the instance file.
 
 ## 📊 Data and Instances
 
