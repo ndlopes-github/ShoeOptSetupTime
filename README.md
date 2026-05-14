@@ -251,6 +251,66 @@ julia --project=@. scripts/batch_helpers/batch_compare_all_methods.jl \
 
 > Using only the instances files `E_O2_#2_3p.jl` (exact) and `H_O2_#2_3p.jl` (heuristics).
 
+
+### Reading Results
+
+Results are reported differently depending on the method:
+
+**MILP** — written to `data/sims/exact/*_info.log.txt`. Key lines followed by the `ts` solution matrix (rows = time slots, columns = `Job{id},{mold}`, values = qty processed in that slot):
+```
+[Info] | Best cost 1492.0 at instances 1
+[Info] | m value = 8.0
+[Info] | Elapsed time 347.97 seconds
+[Info] | Solution matrix (ts):
+ Row │ Job1,1  Job2,1  Job3,1  Job4,1  Job4,2  Job5,1  Job6,1  Job7,1  Job8,1
+─────┼─────────────────────────────────────────────────────────────────────────
+   1 │  215.0   215.0    0.0    0.0    0.0   215.0    0.0    0.0    0.0
+   2 │    0.0   248.0  248.0    0.0    0.0   248.0    0.0    0.0    0.0
+   3 │    0.0     0.0  379.0  379.0    0.0   379.0    0.0    0.0    0.0
+   4 │    0.0     0.0    1.0    1.0    0.0     0.0    0.0    0.0    0.0
+   5 │    0.0     0.0  342.0  342.0    0.0     0.0  342.0    0.0    0.0
+   6 │    0.0     0.0    0.0   99.0   99.0     0.0    0.0    0.0   99.0
+   7 │    0.0     0.0    0.0  147.0  147.0     0.0    0.0  147.0    0.0
+   8 │    0.0     0.0    0.0   13.0   13.0     0.0    0.0    0.0    0.0
+   9 │    0.0     0.0    0.0    0.0    0.0     0.0    0.0    0.0    0.0
+```
+Each non-empty row is a time slot; the p=3 non-zero columns in that row are the 3 shelves co-processing. `Job4,2` denotes the second mold of job 4.
+
+**SSM** — written to `data/sims/heuristics/*_info.log.txt`. SSM solves sub-partitions independently and merges. One `ts` matrix is reported per sub-partition:
+```
+[Info] | Heuristic solutions Best cost: 1492.0
+[Info] | Heuristic solution  m value: 8.0
+[Info] | Elapsed time 248.88 seconds
+[Info] | Best Solutions (ts) — partition 1 (jobs 6, 4):
+ Row │ Job6,1  Job4,1  Job4,2
+─────┼──────────────────────────
+   1 │  342.0   342.0   342.0
+   2 │    0.0   278.0   278.0
+   3 │    0.0    -0.0     0.0
+[Info] | Best Solutions (ts) — partition 2 (jobs 3,1,2,8,5,7,4):
+ Row │ Job3,1  Job1,1  Job2,1  Job8,1  Job5,1  Job7,1  Job4,1  Job4,2
+─────┼────────────────────────────────────────────────────────────────
+   1 │    0.0    0.0    0.0    0.0  132.0    0.0  132.0  132.0
+   2 │  292.0    0.0    0.0    0.0  292.0    0.0  292.0    0.0
+   3 │  418.0    0.0  418.0    0.0  418.0    0.0    0.0    0.0
+   4 │   45.0    0.0   45.0   45.0    0.0    0.0    0.0    0.0
+   5 │   54.0   54.0    0.0   54.0    0.0    0.0    0.0    0.0
+   6 │  147.0  147.0    0.0    0.0    0.0  147.0    0.0    0.0
+   7 │   14.0   14.0    0.0    0.0    0.0    0.0    0.0    0.0
+   8 │    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0
+```
+Job 4 (with o=2 molds) appears in both partitions; SSM splits it across sub-problems and the SA merge step reconciles the quantities.
+
+**SA, GRASP, GA** — printed to the console. Example (GA, optimal solution):
+```
+[ Info: GA finished: generations=100  best_cost=1492.0  best_m=8  best_max_sum=1444.0
+[ Info: Best partition (shelves) snapshot:
+  Shelf 1: (job=4, mold=1, qty=1229), (job=1, mold=1, qty=215)
+  Shelf 2: (job=4, mold=2, qty=11),   (job=2, mold=1, qty=463), (job=3, mold=1, qty=970)
+  Shelf 3: (job=8, mold=1, qty=99),   (job=5, mold=1, qty=842), (job=6, mold=1, qty=342), (job=7, mold=1, qty=147)
+```
+The DataFrame that follows encodes the same partition in tabular form (`S{k}JobID`, `S{k}MoldID`, `S{k}Qty` for each shelf `k`). SA and GRASP produce an identical structure with their respective method name in the header line.
+
 ## �🔧 Troubleshooting
 
 **Issue:** Gurobi license not found
@@ -264,6 +324,24 @@ julia --project=@. scripts/batch_helpers/batch_compare_all_methods.jl \
 
 **Issue:** Module not found errors
 - **Solution:** Ensure you are in the project directory and have run `Pkg.instantiate()` after `Pkg.activate(".")`
+
+
+
+## 📊 Supplementary Material
+
+Comprehensive experimental results, statistical analysis, and irace configuration files are available in the `supplementary_material/` directory:
+
+- **`GA/`, `GRASP/`, `GREEDY/`, `MILP/`, `SA/`, `SSM-SA/`** - Per-method result archives (`.tar.bz2`)
+- **`INSTANCES/`** - Test instances used in computational experiments
+  - `INSTANCES/MILP/` - Instances for exact solver tests
+  - `INSTANCES/HEURISTICS/` - Instances for heuristic method tests
+- **`IRACE_SCRIPTS/`** - irace parameter tuning configurations
+  - `irace_ga/`, `irace_grasp/`, `irace_sa/`, `irace_ssm_sa/` - One directory per method with scenario files, parameters, and forbidden configurations
+- **`STATS_SCRIPTS/`** - Statistical analysis tools
+  - `compute_rpd.jl` - Compute RPD (Relative Percent Deviation) from best known solutions
+  - `statistical_analysis.jl` - Wilcoxon and Friedman tests
+- **`rpd_boxplot.png`** - RPD boxplot figure
+- **`supplementary_rpd.md`** - Per-instance RPD results table for all methods
 
 ## 🔬 Batch Processing
 
@@ -315,22 +393,6 @@ R -q -e 'install.packages("irace", repos="https://cloud.r-project.org")'
 For full irace integration, see `supplementary_material/IRACE_SCRIPTS/` for example configurations.
 
 The `scripts/irace_helpers/` files are the maintained runners used by this codebase. The `supplementary_material/IRACE_SCRIPTS/` directory stores the paper's experiment setup and reproducibility material.
-
-## 📊 Supplementary Material
-
-Comprehensive experimental results, statistical analysis, and irace configuration files are available in the `supplementary_material/` directory:
-
-- **`GA/`, `GRASP/`, `GREEDY/`, `MILP/`, `SA/`, `SSM-SA/`** - Per-method result archives (`.tar.bz2`)
-- **`INSTANCES/`** - Test instances used in computational experiments
-  - `INSTANCES/MILP/` - Instances for exact solver tests
-  - `INSTANCES/HEURISTICS/` - Instances for heuristic method tests
-- **`IRACE_SCRIPTS/`** - irace parameter tuning configurations
-  - `irace_ga/`, `irace_grasp/`, `irace_sa/`, `irace_ssm_sa/` - One directory per method with scenario files, parameters, and forbidden configurations
-- **`STATS_SCRIPTS/`** - Statistical analysis tools
-  - `compute_rpd.jl` - Compute RPD (Relative Percent Deviation) from best known solutions
-  - `statistical_analysis.jl` - Wilcoxon and Friedman tests
-- **`rpd_boxplot.png`** - RPD boxplot figure
-- **`supplementary_rpd.md`** - Per-instance RPD results table for all methods
 
 ## 📁 Project Structure
 
