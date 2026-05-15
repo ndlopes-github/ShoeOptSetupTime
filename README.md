@@ -237,7 +237,7 @@ with single independent run for each heuristics, as set in the scripts.
 
 **To reproduce:**
 ```bash
-julia --project=@. scripts/batch_helpers/batch_compare_all_methods.jl \
+julia --project scripts/batch_helpers/batch_compare_all_methods.jl \
     --only-file=scripts/batch_helpers/only_o2_2_3.txt
 ```
 
