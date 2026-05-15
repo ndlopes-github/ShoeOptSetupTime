@@ -230,7 +230,7 @@ Each run produces:
 - Console output showing solution quality and computation times
 - CSV exports for batch experiments with statistics
 
-## � Example of Sample Results
+## 📊 Example of Sample Results
 
 Method comparison on instance **O2 / Scenario #2 / p=3** (8 jobs, 3 shelves, α=1, β=6),
 with single independent run for each heuristics, as set in the scripts.
@@ -336,7 +336,7 @@ GA (cost=1492, m=8 — optimal):
   Shelf 3: (job=8, mold=1, qty=99),   (job=5, mold=1, qty=842),  (job=6, mold=1, qty=342),  (job=7, mold=1, qty=147)
 ```
 
-## �🔧 Troubleshooting
+## 🔧 Troubleshooting
 
 **Issue:** Gurobi license not found
 - **Solution:** Install Gurobi or switch to HiGHS solver in settings file by changing `solver_name = "HiGHS"`
