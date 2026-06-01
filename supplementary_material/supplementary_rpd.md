@@ -2,6 +2,9 @@
 
 This file accompanies the paper *Scheduling rubber shoe sole production on a parallel machine with synchronized interruptions*.
 
+This statistical supplementary material was prepared in response to the reviewer's request to report average RPD performance and provide a formal statistical analysis of the stochastic solution methods.
+
+
 **RPD** (Relative Percentage Deviation) is defined as:
 
 ```
@@ -10,10 +13,14 @@ RPD = (cost − BKS) / BKS × 100
 
 where **BKS** (Best Known Solution) is the minimum feasible cost achieved by any method across all runs for that instance.
 
+The summary and per-instance tables below report average performance, rather than only best-so-far outcomes, for the stochastic methods requested by the reviewer.
+
 - `—` for SSM-SA: instance not executed (computationally infeasible for repeated runs).
 - `—` for MILP: Gurobi did not find a proven optimal solution within the time limit (lower bound reported in the paper; feasible value excluded from analysis).
 
 ## Summary Statistics (120 instances, both β values)
+
+This section provides an aggregate view of average RPD across the full benchmark set.
 
 | Algorithm | n | Mean RPD | Std RPD | Median RPD | Min RPD | Max RPD |
 |-----------|--:|--------:|--------:|-----------:|--------:|--------:|
@@ -24,6 +31,8 @@ where **BKS** (Best Known Solution) is the minimum feasible cost achieved by any
 | MILP | 94 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
 
 ## Per-Instance Average RPD
+
+For the stochastic heuristics, each row reports the mean and standard deviation over repeated runs for that instance. For MILP and the deterministic baseline, the reported RPD is the single available value for that instance.
 
 | Instance | β | BKS | SA avg | SA std | GRASP avg | GRASP std | GA avg | GA std | SSM-SA | MILP |
 |----------|:-:|----:|-------:|-------:|----------:|----------:|-------:|-------:|-------:|-----:|
@@ -153,10 +162,13 @@ where **BKS** (Best Known Solution) is the minimum feasible cost achieved by any
 ## Statistical Analysis
 
 The statistical analysis follows the methodology of Derrac et al. (2011), using nonparametric tests appropriate for comparing multiple heuristics over a set of benchmark instances.
+This section addresses the reviewer's request to assess whether the observed differences are statistically significant.
 
 **Dataset:** 109 instances for which all four heuristics (SA, SSM-SA, GRASP, GA) produced valid results (SSM-SA was inapplicable for 11 instances).
 
 ### Normality (Shapiro–Wilk test)
+
+Normality was checked first to determine whether parametric or nonparametric tests were appropriate.
 
 | Algorithm | n | W statistic | p-value | Normal (p ≥ 0.05) |
 |-----------|--:|------------:|--------:|:-----------------:|
@@ -177,6 +189,8 @@ All four RPD distributions are non-normal, justifying the use of nonparametric t
 | Significant (p < 0.05) | Yes |
 
 ### Pairwise Wilcoxon Signed-Rank Tests (Bonferroni corrected, α = 0.05/6)
+
+These post hoc comparisons identify which pairs of heuristics differ after controlling for multiple testing.
 
 | Pair (A vs B) | W statistic | p-value (raw) | p-value (Bonf) | Significant | Effect size (r) | Magnitude |
 |---------------|------------:|--------------:|---------------:|:-----------:|----------------:|:---------:|
