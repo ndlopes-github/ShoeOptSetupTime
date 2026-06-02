@@ -29,8 +29,8 @@ This directory serves **two purposes**:
 | `INSTANCES/HEURISTICS/` | `heuristics.tar.bz2` — instances for the heuristic methods. |
 | `IRACE_SCRIPTS/` | irace tuning setup, one directory per method (`irace_ga/`, `irace_grasp/`, `irace_sa/`, `irace_ssm_sa/`): `scenario.txt`, `parameters.txt`, `forbidden.txt`, `target-runner`, the instance list, and the per-β tuning logs (`logs_beta3/`, `logs_beta6/`). The selected configurations — including `N_runs` — are reported in the *Computational experiments* section of the paper. |
 | `STATS_SCRIPTS/` | Statistical analysis tools and their outputs (see below). |
-| `rpd_boxplot.png` | Boxplot of the per-instance average RPD distributions across the four heuristics. |
-| `supplementary_rpd.md` | Per-instance average RPD table for all methods and the full statistical report. |
+| [`rpd_boxplot.png`](rpd_boxplot.png) | Boxplot of the per-instance average RPD distributions across the four heuristics. |
+| [`supplementary_rpd.md`](supplementary_rpd.md) | **Per-instance average RPD table for all methods and the full statistical report** — the main analysis document referenced from the paper. |
 
 ## `STATS_SCRIPTS/`
 
