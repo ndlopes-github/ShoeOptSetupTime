@@ -192,7 +192,7 @@ For SA, GRASP, and GA, each row reports the mean and standard deviation over the
 
 ## Statistical Analysis of the Differences Between Heuristics
 
-This section assesses whether the differences in average RPD between the four heuristics are statistically significant. The analysis follows the methodology of Derrac et al. (2011) and the guidelines of Molina et al. (2021, *Swarm and Evolutionary Computation* **64**, 100888) for comparing multiple algorithms over a set of benchmark instances: normality is checked first, an omnibus test then determines whether any differences exist, and post-hoc pairwise tests with effect sizes identify which methods differ and by how much.
+This section assesses whether the differences in average RPD between the four heuristics are statistically significant. The analysis follows the methodology of Molina et al. (2021, *Swarm and Evolutionary Computation* **64**, 100888) for comparing multiple algorithms over a set of benchmark instances: normality is checked first, an omnibus test then determines whether any differences exist, and post-hoc pairwise tests with effect sizes identify which methods differ and by how much.
 
 **Dataset:** 109 instances for which all four heuristics (SA, SSM-SA, GRASP, GA) produced valid results (SSM-SA was inapplicable for 11 instances).
 
