@@ -161,10 +161,10 @@ function write_markdown(records::Vector{<:NamedTuple}, algo_cols, algo_labels)
         "**RPD** (Relative Percentage Deviation) is defined as:",
         "",
         "```",
-        "RPD = (cost − BKS) / BKS × 100",
+        "RPD = (OV − BKV) / BKV × 100",
         "```",
         "",
-        "where **BKS** (Best Known Solution) is the minimum feasible cost achieved by any method "*"across all runs for that instance.",
+        "where **OV** (Obtained Value) is the method's objective value on a given run and **BKV** (Best Known Value) is the minimum feasible objective value achieved by any method "*"across all runs for that instance.",
         "",
         "- `—` for SSM-SA: heuristic not applicable — no feasible two-subset job partition exists for the instance (denoted `**` in the main paper).",
         "- `—` for MILP: Gurobi did not find a proven optimal solution within the time limit "*"(lower bound reported in the paper; feasible value excluded from analysis).",
@@ -189,7 +189,7 @@ function write_markdown(records::Vector{<:NamedTuple}, algo_cols, algo_labels)
     # Per-instance table
     push!(lines, "## Per-Instance Average RPD", "")
     push!(lines,
-        "| Instance | β | BKS | SA avg | SA std | GRASP avg | GRASP std | GA avg | GA std | SSM-SA | MILP |",
+        "| Instance | β | BKV | SA avg | SA std | GRASP avg | GRASP std | GA avg | GA std | SSM-SA | MILP |",
         "|----------|:-:|----:|-------:|-------:|----------:|----------:|-------:|-------:|-------:|-----:|",
     )
     for r in records

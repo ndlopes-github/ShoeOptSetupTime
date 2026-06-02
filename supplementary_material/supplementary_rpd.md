@@ -12,10 +12,10 @@ It complements the best-of-runs comparison of the main paper by evaluating the *
 **RPD** (Relative Percentage Deviation) is defined as:
 
 ```
-RPD = (HV − BKV) / BKV × 100
+RPD = (OV − BKV) / BKV × 100
 ```
 
-where **HV** is the objective value obtained by the method under evaluation on a given run, and **BKV** (Best Known Value) is the minimum feasible objective value achieved by any method across all runs for that instance. For deterministic methods, `HV` is simply the single reported objective value.
+where **OV** (Obtained Value) is the objective value obtained by the method under evaluation on a given run, and **BKV** (Best Known Value) is the minimum feasible objective value achieved by any method across all runs for that instance. For deterministic methods, `OV` is simply the single reported objective value.
 
 The summary and per-instance tables below report **average** performance over repeated independent runs, rather than only the best-so-far outcome reported in the main paper.
 
