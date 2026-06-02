@@ -13,10 +13,25 @@ RPD = (cost − BKS) / BKS × 100
 
 where **BKS** (Best Known Solution) is the minimum feasible cost achieved by any method across all runs for that instance.
 
-The summary and per-instance tables below report average performance, rather than only best-so-far outcomes, for the stochastic methods requested by the reviewer.
+The summary and per-instance tables below report **average** performance over repeated independent runs, rather than only the best-so-far outcome reported in the main paper, as requested by the reviewer.
 
-- `—` for SSM-SA: instance not executed (computationally infeasible for repeated runs).
-- `—` for MILP: Gurobi did not find a proven optimal solution within the time limit (lower bound reported in the paper; feasible value excluded from analysis).
+## Number of independent runs
+
+For each stochastic method, the per-instance mean and standard deviation are computed over the number of independent runs ($N_{\text{runs}}$) fixed by the `irace` calibration documented in the main paper (Section *Computational experiments*):
+
+| Method | $N_{\text{runs}}$ ($\beta=3$) | $N_{\text{runs}}$ ($\beta=6$) |
+|--------|:-----------------------------:|:-----------------------------:|
+| SA     | 181 | 196 |
+| GRASP  | 144 | 144 |
+| GA     | 100 | 100 |
+| SSM-SA | 1   | 1   |
+
+SA, GRASP, and GA are each averaged over far more than the 30 independent runs recommended for statistical assessment. SSM-SA is executed **once** per instance by design: each run repeatedly solves MILP subproblems (300 solver calls per run) and is therefore too expensive to repeat, so its reported RPD is the single-run value (see the main paper).
+
+Legend for `—`:
+
+- `—` for SSM-SA: the heuristic is **not applicable** because no feasible two-subset job partition exists for the instance (denoted `**` in the main paper); 11 of the 120 instances fall in this case, leaving 109 applicable instances.
+- `—` for MILP: Gurobi did not prove optimality within the time limit (only a lower bound is available in the paper; the feasible value is excluded from the RPD analysis).
 
 ## Summary Statistics (120 instances, both β values)
 
@@ -29,6 +44,18 @@ This section provides an aggregate view of average RPD across the full benchmark
 | GA | 120 | 2.2915 | 2.9763 | 1.4669 | 0.0000 | 19.0654 |
 | SSM-SA | 109 | 1.8756 | 3.6712 | 0.0000 | 0.0000 | 19.9778 |
 | MILP | 94 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
+
+Because SSM-SA is applicable to only 109 of the 120 instances and the MILP solver proves optimality on a subset, the means above span different instance sets and are not directly comparable across methods. The table below restricts every method to the **109 instances on which all four heuristics are applicable**:
+
+| Algorithm | n | Mean RPD | Std RPD | Median RPD | Min RPD | Max RPD |
+|-----------|--:|--------:|--------:|-----------:|--------:|--------:|
+| SA | 109 | 2.9201 | 3.1980 | 1.9506 | 0.0000 | 18.0956 |
+| GRASP | 109 | 14.3448 | 8.2470 | 13.1990 | 2.9684 | 45.3920 |
+| GA | 109 | 2.2944 | 3.0494 | 1.4690 | 0.0000 | 19.0654 |
+| SSM-SA | 109 | 1.8756 | 3.6712 | 0.0000 | 0.0000 | 19.9778 |
+| MILP | 83 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
+
+On this common set the average-RPD ordering is SSM-SA (1.88%) < GA (2.29%) < SA (2.92%) < GRASP (14.34%). These average values are necessarily larger than the best-of-runs gaps reported in the main paper (e.g., SA 0.57%, GA 0.86%), since averaging over all runs penalizes occasional poor runs that the best-of-runs criterion discards. SSM-SA, being single-run, is unaffected by this distinction; its low mean is driven by frequently reaching the BKS (median 0) on the small-shelf instances where it is strongest, at the cost of higher variance (std 3.67) on the remaining ones.
 
 ## Per-Instance Average RPD
 
@@ -161,10 +188,12 @@ For the stochastic heuristics, each row reports the mean and standard deviation 
 
 ## Statistical Analysis
 
-The statistical analysis follows the methodology of Derrac et al. (2011), using nonparametric tests appropriate for comparing multiple heuristics over a set of benchmark instances.
+The statistical analysis follows the methodology of Derrac et al. (2011) and the guidelines of Molina et al. (2021, *Swarm and Evolutionary Computation* **64**, 100888), using nonparametric tests appropriate for comparing multiple heuristics over a set of benchmark instances.
 This section addresses the reviewer's request to assess whether the observed differences are statistically significant.
 
 **Dataset:** 109 instances for which all four heuristics (SA, SSM-SA, GRASP, GA) produced valid results (SSM-SA was inapplicable for 11 instances).
+
+**Unit of analysis:** each instance forms one block, and each method contributes a single representative RPD per instance — the mean over the $N_{\text{runs}}$ independent runs for SA, GRASP, and GA, and the single-run value for SSM-SA. All tests below are computed on this matched 109-instance set. MILP, being an exact reference rather than a stochastic heuristic, is excluded from the comparison.
 
 ### Normality (Shapiro–Wilk test)
 
@@ -172,19 +201,19 @@ Normality was checked first to determine whether parametric or nonparametric tes
 
 | Algorithm | n | W statistic | p-value | Normal (p ≥ 0.05) |
 |-----------|--:|------------:|--------:|:-----------------:|
-| SA | 120 | 0.7905 | < 0.001 | No |
-| GRASP | 120 | 0.9559 | < 0.001 | No |
-| GA | 120 | 0.7148 | < 0.001 | No |
+| SA | 109 | 0.7812 | < 0.001 | No |
+| GRASP | 109 | 0.9429 | < 0.001 | No |
+| GA | 109 | 0.7013 | < 0.001 | No |
 | SSM-SA | 109 | 0.5847 | < 0.001 | No |
 
-All four RPD distributions are non-normal, justifying the use of nonparametric tests.
+All four RPD distributions are non-normal on the matched 109-instance set, justifying the use of nonparametric tests. (Assessing normality over each method's full set of available instances yields the same conclusion.)
 
 ### Friedman Test (overall comparison)
 
 | Statistic | Value |
 |-----------|------:|
 | n instances | 109 |
-| χ² | 255.52 |
+| χ² | 252.01 |
 | p-value | < 0.001 |
 | Significant (p < 0.05) | Yes |
 
@@ -201,10 +230,12 @@ These post hoc comparisons identify which pairs of heuristics differ after contr
 | GRASP vs SSM-SA | 0.0 | < 0.001 | < 0.001 | Yes | 1.000 | large |
 | GA vs SSM-SA | 1452.0 | < 0.001 | 1.35 × 10⁻³ | Yes | 0.425 | medium |
 
-All six pairwise comparisons are statistically significant after Bonferroni correction. Effect sizes are large for all pairs except GA vs SSM-SA (medium, r = 0.42), indicating that while GA and SSM-SA differ significantly, the practical difference is smaller than the other pairs.
+All six pairwise comparisons are statistically significant after Bonferroni correction. The effect size is the rank-biserial correlation $r$, interpreted with the conventional thresholds $|r| < 0.1$ (negligible), $< 0.3$ (small), $< 0.5$ (medium), $\geq 0.5$ (large). Effect sizes are large for all pairs except GA vs SSM-SA (medium, r = 0.42), indicating that while GA and SSM-SA differ significantly, the practical difference is smaller than for the other pairs.
 
 ### RPD Boxplot
-A boxplot of RPD distributions across the four heuristics is available is
+
+A boxplot of the per-instance average RPD distributions across the four heuristics is shown below.
+
 ![Boxplot](./rpd_boxplot.png)
 
 

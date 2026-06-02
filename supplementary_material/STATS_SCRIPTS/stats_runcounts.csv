@@ -1,0 +1,9 @@
+Algorithm,beta,N_runs_min,N_runs_max
+SA,3,181,181
+GRASP,3,144,144
+GA,3,100,100
+SA,6,196,196
+GRASP,6,144,144
+GA,6,100,100
+SSM-SA,3,1,1
+SSM-SA,6,1,1

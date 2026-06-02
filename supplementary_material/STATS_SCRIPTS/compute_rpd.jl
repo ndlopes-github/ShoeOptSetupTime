@@ -166,7 +166,7 @@ function write_markdown(records::Vector{<:NamedTuple}, algo_cols, algo_labels)
         "",
         "where **BKS** (Best Known Solution) is the minimum feasible cost achieved by any method "*"across all runs for that instance.",
         "",
-        "- `—` for SSM-SA: instance not executed (computationally infeasible for repeated runs).",
+        "- `—` for SSM-SA: heuristic not applicable — no feasible two-subset job partition exists for the instance (denoted `**` in the main paper).",
         "- `—` for MILP: Gurobi did not find a proven optimal solution within the time limit "*"(lower bound reported in the paper; feasible value excluded from analysis).",
         "",
     ]
