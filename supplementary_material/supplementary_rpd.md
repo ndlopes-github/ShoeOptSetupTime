@@ -4,7 +4,7 @@ This file accompanies the paper *Parallel machine scheduling with simultaneous i
 
 It complements the best-of-runs comparison of the main paper by evaluating the **average** performance of the stochastic heuristics (SA, SSM-SA, GRASP, and GA) over their independent runs, and by reporting a formal statistical comparison of the methods. The document is organized as follows:
 
-- **Number of independent runs** averaged per method;
+- **Number of independent runs**  per method;
 - **Summary** and **per-instance** tables of average relative percentage deviation (RPD);
 - **Statistical analysis** — normality assessment, an omnibus Friedman test, and Bonferroni-corrected pairwise Wilcoxon post-hoc tests with effect sizes, followed by a boxplot of the RPD distributions.
 
