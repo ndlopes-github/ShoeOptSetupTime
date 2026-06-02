@@ -16,7 +16,7 @@ This repository contains a **Julia implementation** of novel optimization algori
 
 ## 🏭 Problem Description
 
-We address a real-world scheduling problem arising in shoe sole manufacturing, where parallel machines must be coordinated under simultaneous synchronized interruptions caused by shared resource constraints. Specifically, whenever the first job in a group of simultaneously processed jobs is completed, all remaining jobs are forced to interrupt their processing. This interruption mechanism, in which synchronized interruptions are triggered by the completion of the first job in a group (rather than by the completion of the last job or by external disruptions), leads to a scheduling structure that has not been previously studied in the literature.
+We address a real-world scheduling problem arising in shoe sole manufacturing, where parallel machines must be coordinated under simultaneous interruptions caused by shared resource constraints. Specifically, whenever the first job in a group of simultaneously processed jobs is completed, all remaining jobs are forced to interrupt their processing. This interruption mechanism, in which simultaneous interruptions are triggered by the completion of the first job in a group (rather than by the completion of the last job or by external disruptions), leads to a scheduling structure that has not been previously studied in the literature.
 
 > **Note:** This code is under active development. While the core algorithms are fully functional, further improvements and refinements are anticipated. We welcome contributions from the community to enhance the implementation, add features, or improve performance. Please see the [Contributing](#contributing) section for guidelines.
 
