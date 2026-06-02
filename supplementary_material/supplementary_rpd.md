@@ -34,7 +34,7 @@ SA, GRASP, and GA are each averaged over far more than the 30 independent runs r
 
 Legend for `—`:
 
-- `—` for SSM-SA: the heuristic is **not applicable** because no feasible two-subset job partition exists for the instance (denoted `**` in the main paper); 11 of the 120 instances fall in this case, leaving 109 applicable instances (#Inst).
+- `—` for SSM-SA: the heuristic is **not applicable** because no feasible two-subset job partition exists for the instance (denoted `**` in the main paper); 11 of the 120 instances fall in this case, leaving 109 applicable instances (**#Inst**).
 - `—` for MILP: Gurobi did not prove optimality within the time limit (only a lower bound is available in the paper; the feasible value is excluded from the RPD analysis).
 
 ## Summary Statistics (120 instances, both β values)
