@@ -1,8 +1,12 @@
-# Supplementary Material: RPD Results per Instance
+# Supplementary Material: Average-Performance Evaluation and Statistical Analysis of the Heuristics
 
-This file accompanies the paper *Scheduling rubber shoe sole production on a parallel machine with synchronized interruptions*.
+This file accompanies the paper *Parallel machine scheduling with simultaneous interruptions: a case study in shoe sole production* and is the supplementary material referenced from its *Computational experiments* section.
 
-This statistical supplementary material was prepared in response to the reviewer's request to report average RPD performance and provide a formal statistical analysis of the stochastic solution methods.
+It complements the best-of-runs comparison of the main paper by evaluating the **average** performance of the stochastic heuristics (SA, SSM-SA, GRASP, and GA) over their independent runs, and by reporting a formal statistical comparison of the methods. The document is organized as follows:
+
+- **Number of independent runs** averaged per method;
+- **Summary** and **per-instance** tables of average relative percentage deviation (RPD);
+- **Statistical analysis** — normality assessment, an omnibus Friedman test, and Bonferroni-corrected pairwise Wilcoxon post-hoc tests with effect sizes, followed by a boxplot of the RPD distributions.
 
 
 **RPD** (Relative Percentage Deviation) is defined as:
@@ -13,7 +17,7 @@ RPD = (cost − BKS) / BKS × 100
 
 where **BKS** (Best Known Solution) is the minimum feasible cost achieved by any method across all runs for that instance.
 
-The summary and per-instance tables below report **average** performance over repeated independent runs, rather than only the best-so-far outcome reported in the main paper, as requested by the reviewer.
+The summary and per-instance tables below report **average** performance over repeated independent runs, rather than only the best-so-far outcome reported in the main paper.
 
 ## Number of independent runs
 
@@ -186,10 +190,9 @@ For the stochastic heuristics, each row reports the mean and standard deviation 
 
 ---
 
-## Statistical Analysis
+## Statistical Analysis of the Differences Between Heuristics
 
-The statistical analysis follows the methodology of Derrac et al. (2011) and the guidelines of Molina et al. (2021, *Swarm and Evolutionary Computation* **64**, 100888), using nonparametric tests appropriate for comparing multiple heuristics over a set of benchmark instances.
-This section addresses the reviewer's request to assess whether the observed differences are statistically significant.
+This section assesses whether the differences in average RPD between the four heuristics are statistically significant. The analysis follows the methodology of Derrac et al. (2011) and the guidelines of Molina et al. (2021, *Swarm and Evolutionary Computation* **64**, 100888) for comparing multiple algorithms over a set of benchmark instances: normality is checked first, an omnibus test then determines whether any differences exist, and post-hoc pairwise tests with effect sizes identify which methods differ and by how much.
 
 **Dataset:** 109 instances for which all four heuristics (SA, SSM-SA, GRASP, GA) produced valid results (SSM-SA was inapplicable for 11 instances).
 

@@ -156,7 +156,7 @@ function write_markdown(records::Vector{<:NamedTuple}, algo_cols, algo_labels)
     lines = String[
         "# Supplementary Material: RPD Results per Instance",
         "",
-        "This file accompanies the paper "*"*Scheduling rubber shoe sole production on a parallel machine with synchronized interruptions*.",
+        "This file accompanies the paper "*"*Parallel machine scheduling with simultaneous interruptions: a case study in shoe sole production*.",
         "",
         "**RPD** (Relative Percentage Deviation) is defined as:",
         "",
