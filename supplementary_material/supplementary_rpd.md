@@ -12,10 +12,10 @@ It complements the best-of-runs comparison of the main paper by evaluating the *
 **RPD** (Relative Percentage Deviation) is defined as:
 
 ```
-RPD = (cost − BKS) / BKS × 100
+RPD = (HV − BKV) / BKV × 100
 ```
 
-where **BKS** (Best Known Solution) is the minimum feasible cost achieved by any method across all runs for that instance.
+where **HV** is the objective value obtained by the method under evaluation on a given run, and **BKV** (Best Known Value) is the minimum feasible objective value achieved by any method across all runs for that instance. For deterministic methods, `HV` is simply the single reported objective value.
 
 The summary and per-instance tables below report **average** performance over repeated independent runs, rather than only the best-so-far outcome reported in the main paper.
 
@@ -59,13 +59,13 @@ Because SSM-SA is applicable to only 109 of the 120 instances and the MILP solve
 | SSM-SA | 109 | 1.8756 | 3.6712 | 0.0000 | 0.0000 | 19.9778 |
 | MILP | 83 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
 
-On this common set the average-RPD ordering is SSM-SA (1.88%) < GA (2.29%) < SA (2.92%) < GRASP (14.34%). These average values are necessarily larger than the best-of-runs gaps reported in the main paper (e.g., SA 0.57%, GA 0.86%), since averaging over all runs penalizes occasional poor runs that the best-of-runs criterion discards. SSM-SA, being single-run, is unaffected by this distinction; its low mean is driven by frequently reaching the BKS (median 0) on the small-shelf instances where it is strongest, at the cost of higher variance (std 3.67) on the remaining ones.
+On this common set the average-RPD ordering is SSM-SA (1.88%) < GA (2.29%) < SA (2.92%) < GRASP (14.34%). These average values are necessarily larger than the best-of-runs gaps reported in the main paper (e.g., SA 0.57%, GA 0.86%), since averaging over all runs penalizes occasional poor runs that the best-of-runs criterion discards. SSM-SA, being single-run, is unaffected by this distinction; its low mean is driven by frequently reaching the BKV (median 0) on the small-shelf instances where it is strongest, at the cost of higher variance (std 3.67) on the remaining ones.
 
 ## Per-Instance Average RPD
 
-For the stochastic heuristics, each row reports the mean and standard deviation over repeated runs for that instance. For MILP and the deterministic baseline, the reported RPD is the single available value for that instance.
+For SA, GRASP, and GA, each row reports the mean and standard deviation over the repeated runs for that instance. For SSM-SA (a single run per instance) and MILP (a single solver value), the reported RPD is the only available value for that instance.
 
-| Instance | β | BKS | SA avg | SA std | GRASP avg | GRASP std | GA avg | GA std | SSM-SA | MILP |
+| Instance | β | BKV | SA avg | SA std | GRASP avg | GRASP std | GA avg | GA std | SSM-SA | MILP |
 |----------|:-:|----:|-------:|-------:|----------:|----------:|-------:|-------:|-------:|-----:|
 | H_O1_#1_2p | 3 | 215 | 0.1362 | 0.3012 | 4.1828 | 3.3093 | 0.0140 | 0.0797 | 0.0000 | 0.0000 |
 | H_O1_#1_3p | 3 | 146 | 0.3217 | 0.9345 | 13.0470 | 9.6777 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
