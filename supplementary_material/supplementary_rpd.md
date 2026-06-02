@@ -34,14 +34,14 @@ SA, GRASP, and GA are each averaged over far more than the 30 independent runs r
 
 Legend for `—`:
 
-- `—` for SSM-SA: the heuristic is **not applicable** because no feasible two-subset job partition exists for the instance (denoted `**` in the main paper); 11 of the 120 instances fall in this case, leaving 109 applicable instances.
+- `—` for SSM-SA: the heuristic is **not applicable** because no feasible two-subset job partition exists for the instance (denoted `**` in the main paper); 11 of the 120 instances fall in this case, leaving 109 applicable instances, #Inst.
 - `—` for MILP: Gurobi did not prove optimality within the time limit (only a lower bound is available in the paper; the feasible value is excluded from the RPD analysis).
 
 ## Summary Statistics (120 instances, both β values)
 
 This section provides an aggregate view of average RPD across the full benchmark set.
 
-| Algorithm | #\_inst | Mean RPD | Std RPD | Median RPD | Min RPD | Max RPD |
+| Algorithm | #Inst | Mean RPD | Std RPD | Median RPD | Min RPD | Max RPD |
 |-----------|--:|--------:|--------:|-----------:|--------:|--------:|
 | SA | 120 | 2.9026 | 3.1582 | 1.9721 | 0.0000 | 18.0956 |
 | GRASP | 120 | 14.2236 | 8.1779 | 13.1146 | 0.6620 | 45.3920 |
@@ -51,7 +51,7 @@ This section provides an aggregate view of average RPD across the full benchmark
 
 Because SSM-SA is applicable to only 109 of the 120 instances and the MILP solver proves optimality on a subset, the means above span different instance sets and are not directly comparable across methods. The table below restricts every method to the **109 instances on which all four heuristics are applicable**:
 
-| Algorithm | #\_inst | Mean RPD | Std RPD | Median RPD | Min RPD | Max RPD |
+| Algorithm | #Inst | Mean RPD | Std RPD | Median RPD | Min RPD | Max RPD |
 |-----------|--:|--------:|--------:|-----------:|--------:|--------:|
 | SA | 109 | 2.9201 | 3.1980 | 1.9506 | 0.0000 | 18.0956 |
 | GRASP | 109 | 14.3448 | 8.2470 | 13.1990 | 2.9684 | 45.3920 |
