@@ -6,13 +6,12 @@ simultaneous interruptions: a case study in shoe sole production*
 
 This directory serves **two purposes**:
 
-1. **Statistical information requested by the reviewers** — the per-instance
+1. **Statistical analysis requested by a reviewer** — the per-instance
    *average* RPD (Relative Percentage Deviation) of every stochastic method
    relative to the best-known solution (taken over all methods, exact and
    heuristic), together with a formal nonparametric analysis (Shapiro–Wilk
    normality, Friedman omnibus test, and Bonferroni-corrected pairwise Wilcoxon
-   signed-rank tests with effect sizes), following Derrac et al. (2011) and
-   Molina et al. (2021).
+   signed-rank tests with effect sizes), following Molina et al. (2021).
 2. **irace parameter-tuning scripts** — the configurations used to calibrate
    each heuristic. These also fix the number of independent runs (`N_runs`) per
    method, which is exactly the number of runs averaged in the statistical
