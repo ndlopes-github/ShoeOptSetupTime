@@ -6,7 +6,7 @@ simultaneous interruptions: a case study in shoe sole production*
 
 This directory serves **two purposes**:
 
-1. **Statistical analysis requested by a reviewer** — the per-instance
+1. **Statistical analyses requested by a reviewer** — the per-instance
    *average* RPD (Relative Percentage Deviation) of every stochastic method
    relative to the best-known solution (taken over all methods, exact and
    heuristic), together with a formal nonparametric analysis (Shapiro–Wilk
