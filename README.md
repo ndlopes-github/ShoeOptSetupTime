@@ -3,7 +3,7 @@
 [![Julia 1.12+](https://img.shields.io/badge/Julia-1.12+-9558B2?logo=julia&logoColor=white)](https://julialang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen.svg)](#)
-[![DOI](https://zenodo.org/badge/959174115.svg)](https://doi.org/10.5281/zenodo.20642118)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20642118.svg)](https://doi.org/10.5281/zenodo.20642118)
 
 This repository contains a **Julia implementation** of novel optimization algorithms for a real-world parallel machine scheduling problem in footwear manufacturing. The code accompanies a forthcoming paper and provides both exact and heuristic solution methods.
 
