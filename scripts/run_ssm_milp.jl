@@ -1,7 +1,7 @@
 #= Copyright (C) 2024
 Nuno David Lopes.
 Created:  2025/11/21
-Last changed - N. Lopes: 2026/05/14 10:26:46
+Last changed - N. Lopes:2026/08/17 23:12:12
 
 Run script for Split-Solve-Merge MILP algorithm
 This script executes the Split-Solve-Merge heuristic on a specified instance.
@@ -135,7 +135,7 @@ elapsed_time = @elapsed begin
 end
 
 println("\n" * "=" ^ 80)
-println("SPLIT-SOLVE-MERGE EXECUTION COMPLE"H_O2_#2_3p.jl"TED")
+println("SPLIT-SOLVE-MERGE EXECUTION COMPLETED")
 println("=" ^ 80)
 println("Total execution time: $(round(elapsed_time, digits=3))s")
 println("=" ^ 80)
