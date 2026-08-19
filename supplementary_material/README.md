@@ -23,6 +23,7 @@ This directory serves **two purposes**:
 | Path | Contents |
 |------|----------|
 | `GA/`, `GRASP/`, `MILP/`, `SA/`, `SSM-SA/` | Per-method result archives (`.tar.bz2`): per-run logs (and, for MILP and SSM-SA, solution matrices) for β = 3 and β = 6. The per-run logs are the raw inputs for the average-RPD computation. |
+| [`SA/sa_neighborhood_pseudocode.pdf`](SA/sa_neighborhood_pseudocode.pdf) | Pseudo-code of the neighbor-generation procedure of the Simulated Annealing algorithm (source: `SA/sa_neighborhood_pseudocode.tex`), referenced from the *Simulated Annealing* subsection of the paper. |
 | `GREEDY/` | Reserved for greedy-heuristic outputs; the greedy method is deterministic (single solution per instance) and is reported directly in the paper. |
 | `INSTANCES/MILP/` | `milp.tar.bz2` — instances for the exact solver. |
 | `INSTANCES/HEURISTICS/` | `heuristics.tar.bz2` — instances for the heuristic methods. |

@@ -1,1 +1,0 @@
-# Aqui aparecem as descrçõs dos métodos.
