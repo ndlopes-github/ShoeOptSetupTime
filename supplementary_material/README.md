@@ -11,7 +11,7 @@ This directory serves **two purposes**:
    relative to the best-known solution (taken over all methods, exact and
    heuristic), together with a formal nonparametric analysis (Shapiro–Wilk
    normality, Friedman omnibus test, and Bonferroni-corrected pairwise Wilcoxon
-   signed-rank tests with effect sizes), following Molina et al. (2021).
+   signed-rank tests with effect sizes), following Osaba et al. (2021).
 2. **irace parameter-tuning scripts** — the configurations used to calibrate
    each heuristic. These also fix the number of independent runs (`N_runs`) per
    method, which is exactly the number of runs averaged in the statistical

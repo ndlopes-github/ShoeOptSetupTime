@@ -357,7 +357,7 @@ GA (cost=1492, m=8 — optimal):
 
 The [`supplementary_material/`](supplementary_material/) directory collects the paper's reproducibility artifacts (see its [README](supplementary_material/README.md) for a full description). The per-instance average-RPD tables and the complete statistical analysis are in **[`supplementary_rpd.md`](supplementary_material/supplementary_rpd.md)**. It serves **two purposes**:
 
-1. **Statistical information requested by the reviewers** — the per-instance *average* RPD (Relative Percentage Deviation) of every stochastic method relative to the best-known solution (taken over all methods, exact and heuristic), together with a formal nonparametric analysis (Shapiro–Wilk normality, Friedman omnibus test, and Bonferroni-corrected pairwise Wilcoxon signed-rank tests with effect sizes), following Derrac et al. (2011) and Molina et al. (2021).
+1. **Statistical information requested by the reviewers** — the per-instance *average* RPD (Relative Percentage Deviation) of every stochastic method relative to the best-known solution (taken over all methods, exact and heuristic), together with a formal nonparametric analysis (Shapiro–Wilk normality, Friedman omnibus test, and Bonferroni-corrected pairwise Wilcoxon signed-rank tests with effect sizes), following Derrac et al. (2011) and Osaba et al. (2021).
 2. **irace parameter-tuning scripts** — the configurations used to calibrate each heuristic. These also fix the number of independent runs (`N_runs`) per method, which is exactly the number of runs averaged in the statistical analysis above (`N_runs` = 181/196 for SA at β = 3/6, 144 for GRASP, 100 for GA; SSM-SA is single-run by design, as each run entails repeated MILP solves).
 
 Contents:
