@@ -13,7 +13,7 @@ This repository contains a **Julia implementation** of novel optimization algori
 
 **Authors:** J. Orestes Cerdeira, Ricardo Enguiça, and Nuno Lopes
 
-**Status:** Submitted
+**Status:** Accepted in *Engineering Optimization* (Taylor & Francis), to appear
 
 ## 🏭 Problem Description
 
@@ -496,7 +496,7 @@ If you use this code in your research, please cite:
 @article{Cerdeira2026ShoeOptSetupTime,
   title={Parallel machine scheduling with simultaneous interruptions: a case study in shoe sole production},
   author={Cerdeira, J. Orestes and Enguiça, Ricardo and Lopes, Nuno},
-  journal={Submitted},
+  journal={Engineering Optimization},
   year={2026},
   note={To appear}
 }
